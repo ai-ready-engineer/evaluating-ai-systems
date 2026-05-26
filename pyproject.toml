@@ -1,0 +1,7 @@
+[project]
+name = "evaluating-ai-systems"
+version = "0.1.0"
+description = "Experiment Design and Evaluation of AI Systems — course materials and playgrounds"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []

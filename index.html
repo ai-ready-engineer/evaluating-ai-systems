@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment Design and Evaluation of AI Systems</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+
+    <div class="hero">
+      <h1>Experiment Design and Evaluation of AI Systems</h1>
+      <p class="subtitle" style="font-size:1.4rem; line-height:1.5; font-style:italic; color:var(--color-text); margin-top:1.25rem;">Reliable eval means efficient product cycles, informed decisions, better products, happier customers.</p>
+    </div>
+
+    <section>
+      <p>This course is for <em>everybody</em> who uses AI.</p>
+      <p>The Prerequisites are:</p>
+      <ul>
+        <li>Curiosity</li>
+        <li>Love for your products</li>
+        <li>Passion for your customers</li>
+      </ul>
+    </section>
+
+    <section>
+      <details class="topic" open>
+        <summary><h2>Who this course is for</h2></summary>
+        <div class="details-content">
+          <ul>
+            <li><strong>Engineers and engineering managers:</strong> Iterate towards success. Understand what works, what doesn't, and where to put resources.</li>
+            <li><strong>Product managers:</strong> Translate goals into measurable evals. Ship with confidence.</li>
+            <li><strong>Executives</strong> <span class="text-muted">(compact course)</span><strong>:</strong> Understand what results say and don't say. Ask impactful questions that help teams grow. Promote a culture that recognizes and manages uncertainty.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="topic" open>
+        <summary><h2>How the course works</h2></summary>
+        <div class="details-content">
+          <p>Every lesson is built the same way:</p>
+          <ul>
+            <li>It has <strong>tiles describing what we cover</strong>. You can see if you are already familiar with the content, or need a refresher, or it is new for you.</li>
+            <li>It <strong>isolates one source of uncertainty</strong>, so you meet it on its own before it combines with the others.</li>
+            <li>It teaches the same three moves on it: <strong>understand it, report it, manage it.</strong></li>
+            <li>It contrasts <strong>good practice against the anti-pattern</strong> that fools people — each shown through a worked example of how the mistake actually happens.</li>
+            <li>It hands you a <strong>hands-on playground</strong> — a web tool you first use to feel the concept, then point at your own real eval numbers.</li>
+            <li>It includes an optional <strong>code example</strong>, for those who want to go deeper.</li>
+          </ul>
+          <p>Optional <strong>deep dives</strong> go further for the curious — where statistics came from, and why the normal distribution shows up.</p>
+          <p>Two course-wide tools run across every lesson: <strong>Ask the Playground</strong> (ask any page why a number moved) and the <strong>Experiment-Report Evaluator</strong> (submit a write-up, get structured feedback).</p>
+        </div>
+      </details>
+
+      <h2 style="margin-top:2.5rem;">The sessions</h2>
+      <p>Six <strong>1-hour sessions</strong>, each tackling one source of uncertainty. Every session comes with <em>totally optional</em> hands-on labs and deep dives, for those who want to go further.</p>
+
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="number">L1</div>
+          <div class="title">"Eval" is now an Experiment</div>
+          <p class="description">An eval in ML and AI is an <em>experiment</em>, not a check. The binary classifier, sampling noise, and the first test set.</p>
+          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Sampling noise</p>
+          <a class="playground-link" href="../playground/accuracy_estimator.html">Open the Uncertainty calculator →</a>
+        </div>
+        <div class="module-card">
+          <div class="number">L2</div>
+          <div class="title">What we measure</div>
+          <p class="description">What <em>"78%, green"</em> actually claims. Proportion, probability, and belief — and the spread behind every point number.</p>
+          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Variability across customers, domains, and time</p>
+          <a class="playground-link" href="../playground/distribution_explorer.html">Open the Distribution explorer →</a>
+        </div>
+        <div class="module-card">
+          <div class="number">L3</div>
+          <div class="title">Beyond binary: multiple classes &amp; regression</div>
+          <p class="description">Multiclass and regression metrics, the 1-5 score — and why with many metrics, some look good by pure chance.</p>
+          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Noise around a mean &amp; multiple comparisons</p>
+          <a class="playground-link" href="../playground/multiple_hypothesis_testing.html">Open the Lucky-winner finder →</a>
+        </div>
+        <div class="module-card">
+          <div class="number">L4</div>
+          <div class="title">Overfitting &amp; validation datasets</div>
+          <p class="description">The score is optimistic when the system has already seen the test. Train, validation, test — and the sealed test set as the defense.</p>
+          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Overfitting</p>
+          <a class="playground-link" href="../playground/holdout_simulator.html">Open the Holdout simulator →</a>
+        </div>
+        <div class="module-card">
+          <div class="number">L5</div>
+          <div class="title">Measuring the wrong thing (bias)</div>
+          <p class="description">Bias — systematic error that more data will not fix. Sampling bias, aggregation traps, the wrong metric.</p>
+          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Bias</p>
+          <a class="playground-link" href="../playground/sampling_bias.html">Open the Bias auditor →</a>
+        </div>
+        <div class="module-card">
+          <div class="number">L6</div>
+          <div class="title">Doing evals well over time</div>
+          <p class="description">Drift, judge noise, and the compounding of every source from L1–L5. Designing an eval that survives the world moving.</p>
+          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Drift &amp; compounding</p>
+          <a class="playground-link" href="../playground/judges_and_compounding.html">Open the Compounding visualizer →</a>
+        </div>
+      </div>
+
+      <details class="topic" open>
+        <summary><h2>What you will learn</h2></summary>
+        <div class="details-content">
+          <p>By the end of the course, evaluation will look like the feedback loop that lets a team improve faster, ship more often, and still ship reliable AI products.</p>
+          <p>You will be able to:</p>
+          <ul>
+            <li>Design experiments that make product iteration faster and releases safer.</li>
+            <li>Use evals to find where quality is actually blocked.</li>
+            <li>Apply a practical toolkit: metrics, test sets, holdouts, breakdowns, judge checks, and re-baselining.</li>
+            <li>Spot the traps that make teams move fast in the wrong direction: bias, overfitting, noisy judges, drift, and too many metrics.</li>
+            <li>Report results in a shared language: what works, what is uncertain, what the limitations are, and what decision the evidence supports.</li>
+          </ul>
+          <p class="closing">The point is speed and quality at once. Better evals shorten the loop between idea and evidence, so teams improve faster without guessing. They also make frequent shipping safer: every release is backed by a measurement everyone can understand. As a company, this lets us recognize and reinforce rigorous eval practice — teams that reason clearly about uncertainty, report it honestly, and use it to make better product decisions.</p>
+        </div>
+      </details>
+    </section>
+
+  </main>
+  <footer>
+    <p>Experiment Design and Evaluation of AI Systems</p>
+    <p>Content by Fabio Casati</p>
+  </footer>
+</body>
+</html>
