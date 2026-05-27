@@ -8,3 +8,18 @@ wheels/
 
 # Virtual environments
 .venv
+
+# macOS
+.DS_Store
+
+# Private course-design materials mirrored locally — do NOT publish
+CLAUDE.md
+SYLLABUS.md
+audiences.md
+deep_dive_1.md
+flyer.html
+the_case.html
+the_case.md
+the_case_designs.html
+the_case_v*.html
+lesson_*/
