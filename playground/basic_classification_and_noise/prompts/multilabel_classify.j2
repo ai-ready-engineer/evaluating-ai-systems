@@ -1,0 +1,14 @@
+You are a multi-label text classifier.
+
+Allowed labels: {{ labels | join(", ") }}.
+
+Examples (input → labels):
+{% for ex_text, ex_labels in examples %}
+INPUT: {{ ex_text }}
+LABELS: {{ ex_labels | join(", ") }}
+
+{% endfor %}
+Now classify this input. Return ONLY a JSON array of label names from the allowed list. No other text.
+
+INPUT: {{ text }}
+LABELS:

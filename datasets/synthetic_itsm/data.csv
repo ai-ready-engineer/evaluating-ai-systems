@@ -1,0 +1,1001 @@
+ticket_id,text,labels
+t00000,Can't connect to network can't see my account asap please forgot my password. Any guidance appreciated.,urgent;account;network;login
+t00001,My account is locked application won't open. I would appreciate help.,account;software
+t00002,I was double-billed. Thanks in advance.,billing
+t00003,The app crashes. Any guidance appreciated.,software
+t00004,I was double-billed. I would appreciate help.,billing
+t00005,Application won't open please return the money. Please advise.,refund;software
+t00006,Can't connect to network. Please advise.,network
+t00007,Account issue login error. I would appreciate help.,account;login
+t00008,Asap please please return the money. Please advise.,urgent;refund
+t00009,Hardware problem account issue. I would appreciate help.,account;hardware
+t00010,I'm not happy. Any guidance appreciated.,complaint
+t00011,Can't log in. Any guidance appreciated.,login
+t00012,I need my money back hardware problem software update failed i'm not happy. Please advise.,refund;complaint;hardware;software
+t00013,Hardware problem my invoice is wrong. Please advise.,billing;hardware
+t00014,My laptop won't turn on this is urgent. Please advise.,urgent;hardware
+t00015,Hardware problem i want to complain. Thanks in advance.,complaint;hardware
+t00016,Asap please forgot my password account issue my invoice is wrong my laptop won't turn on. Any guidance appreciated.,billing;urgent;account;hardware;login
+t00017,Application won't open. Looking forward to your reply.,software
+t00018,I want a refund software bug. Thanks in advance.,refund;software
+t00019,Application won't open i was double-billed. I would appreciate help.,billing;software
+t00020,This is urgent account issue. Thanks in advance.,urgent;account
+t00021,I was double-billed this is a complaint. Any guidance appreciated.,billing;complaint
+t00022,Software update failed refund my last charge. Please advise.,refund;software
+t00023,I'm not happy. Thanks in advance.,complaint
+t00024,Account issue i was double-billed. Looking forward to your reply.,billing;account
+t00025,My account is locked forgot my password. I would appreciate help.,account;login
+t00026,My invoice is wrong. Any guidance appreciated.,billing
+t00027,The app crashes. What should I do?,software
+t00028,Software bug. Any guidance appreciated.,software
+t00029,Compromised account. What should I do?,security
+t00030,This is urgent my invoice is wrong. Looking forward to your reply.,billing;urgent
+t00031,Critical issue. Please advise.,urgent
+t00032,Question about my bill account settings problem. Any guidance appreciated.,billing;account
+t00033,Critical issue. I would appreciate help.,urgent
+t00034,Terrible service. Any guidance appreciated.,complaint
+t00035,Need this fixed now application won't open. Looking forward to your reply.,urgent;software
+t00036,I need my money back. Please advise.,refund
+t00037,Screen is broken. Please advise.,hardware
+t00038,Forgot my password my account is locked. What should I do?,account;login
+t00039,Need this fixed now question about my bill wi-fi is down. Please advise.,billing;urgent;network
+t00040,Asap please i want a refund. What should I do?,urgent;refund
+t00041,Critical issue. I would appreciate help.,urgent
+t00042,I want to complain. Looking forward to your reply.,complaint
+t00043,Keyboard not working. Thanks in advance.,hardware
+t00044,I was double-billed account issue forgot my password. Looking forward to your reply.,billing;account;login
+t00045,Screen is broken. Looking forward to your reply.,hardware
+t00046,Security alert. Please advise.,security
+t00047,Software bug login error my invoice is wrong. Any guidance appreciated.,billing;software;login
+t00048,Keyboard not working terrible service. I would appreciate help.,complaint;hardware
+t00049,Asap please i want to complain account settings problem. Any guidance appreciated.,urgent;account;complaint
+t00050,Can't log in software bug. I would appreciate help.,software;login
+t00051,Vpn won't connect can't see my account. Any guidance appreciated.,account;network
+t00052,Account settings problem billing seems off need this fixed now terrible service. Any guidance appreciated.,billing;urgent;account;complaint
+t00053,Question about my bill i'm not happy account issue. Thanks in advance.,billing;account;complaint
+t00054,Billing seems off terrible service. Any guidance appreciated.,billing;complaint
+t00055,Asap please my account is locked my invoice is wrong vpn won't connect. Thanks in advance.,billing;urgent;account;network
+t00056,I want to complain. I would appreciate help.,complaint
+t00057,I need my money back billing seems off. Looking forward to your reply.,billing;refund
+t00058,I think i was hacked. I would appreciate help.,security
+t00059,Network keeps dropping. Please advise.,network
+t00060,I need my money back. I would appreciate help.,refund
+t00061,I was double-billed account issue network keeps dropping keyboard not working. What should I do?,billing;account;hardware;network
+t00062,I was double-billed. What should I do?,billing
+t00063,Account issue can't connect to network. I would appreciate help.,account;network
+t00064,Vpn won't connect software bug. Please advise.,software;network
+t00065,My account is locked. What should I do?,account
+t00066,Application won't open. I would appreciate help.,software
+t00067,Application won't open. Please advise.,software
+t00068,Question about my bill. Looking forward to your reply.,billing
+t00069,Question about my bill software bug. Looking forward to your reply.,billing;software
+t00070,Keyboard not working. Any guidance appreciated.,hardware
+t00071,I want a refund. What should I do?,refund
+t00072,This is urgent software bug billing seems off. Thanks in advance.,billing;urgent;software
+t00073,Asap please. Looking forward to your reply.,urgent
+t00074,Application won't open. Any guidance appreciated.,software
+t00075,Account issue network keeps dropping i want a refund. Any guidance appreciated.,refund;account;network
+t00076,I was double-billed. Please advise.,billing
+t00077,I want to complain please return the money suspicious login attempt. Looking forward to your reply.,refund;complaint;security
+t00078,My invoice is wrong. Looking forward to your reply.,billing
+t00079,Refund my last charge vpn won't connect. Looking forward to your reply.,refund;network
+t00080,Account settings problem. Thanks in advance.,account
+t00081,Can't log in. I would appreciate help.,login
+t00082,Account settings problem this is a complaint. Any guidance appreciated.,account;complaint
+t00083,Account settings problem asap please. Any guidance appreciated.,urgent;account
+t00084,Can't connect to network account settings problem. What should I do?,account;network
+t00085,Account issue this is urgent. Please advise.,urgent;account
+t00086,This is urgent refund my last charge. Any guidance appreciated.,urgent;refund
+t00087,Software update failed this is urgent wi-fi is down i want to complain. Any guidance appreciated.,urgent;complaint;software;network
+t00088,Vpn won't connect. What should I do?,network
+t00089,This is a complaint. Please advise.,complaint
+t00090,Please return the money network keeps dropping. What should I do?,refund;network
+t00091,Account settings problem software update failed. What should I do?,account;software
+t00092,Application won't open can't connect to network. Any guidance appreciated.,software;network
+t00093,My invoice is wrong wi-fi is down i need my money back. Any guidance appreciated.,billing;refund;network
+t00094,Billing seems off refund my last charge asap please. Looking forward to your reply.,billing;urgent;refund
+t00095,Application won't open hardware problem. Any guidance appreciated.,hardware;software
+t00096,Network keeps dropping. Please advise.,network
+t00097,My account is locked. Looking forward to your reply.,account
+t00098,Account settings problem i was double-billed. Please advise.,billing;account
+t00099,Hardware problem billing seems off. Thanks in advance.,billing;hardware
+t00100,Account settings problem. Please advise.,account
+t00101,Can't connect to network my account is locked. Thanks in advance.,account;network
+t00102,My account is locked. Please advise.,account
+t00103,I'm not happy vpn won't connect compromised account critical issue. Thanks in advance.,urgent;complaint;network;security
+t00104,Can't connect to network billing seems off this is urgent. What should I do?,billing;urgent;network
+t00105,This is urgent. Looking forward to your reply.,urgent
+t00106,Need this fixed now can't log in software bug. What should I do?,urgent;software;login
+t00107,Software bug my invoice is wrong. Thanks in advance.,billing;software
+t00108,Application won't open. Thanks in advance.,software
+t00109,Question about my bill. I would appreciate help.,billing
+t00110,Critical issue software bug. Thanks in advance.,urgent;software
+t00111,Wi-fi is down. I would appreciate help.,network
+t00112,Terrible service billing seems off my account is locked. Any guidance appreciated.,billing;account;complaint
+t00113,Mfa not working hardware problem application won't open question about my bill account settings problem. Looking forward to your reply.,billing;account;hardware;software;login
+t00114,Question about my bill. Please advise.,billing
+t00115,Vpn won't connect application won't open forgot my password. I would appreciate help.,software;network;login
+t00116,Application won't open. Please advise.,software
+t00117,Wi-fi is down can't see my account login error. Thanks in advance.,account;network;login
+t00118,Can't see my account i'm not happy forgot my password. Any guidance appreciated.,account;complaint;login
+t00119,Question about my bill software update failed refund my last charge forgot my password. I would appreciate help.,billing;refund;software;login
+t00120,Critical issue. Please advise.,urgent
+t00121,I need my money back i'm not happy application won't open network keeps dropping can't see my account. Looking forward to your reply.,refund;account;complaint;software;network
+t00122,Network keeps dropping i need my money back. I would appreciate help.,refund;network
+t00123,Mfa not working. Any guidance appreciated.,login
+t00124,Can't see my account. Any guidance appreciated.,account
+t00125,Refund my last charge can't see my account. Any guidance appreciated.,refund;account
+t00126,Application won't open. What should I do?,software
+t00127,Account settings problem. Please advise.,account
+t00128,I want to complain. What should I do?,complaint
+t00129,I think i was hacked. What should I do?,security
+t00130,Terrible service. What should I do?,complaint
+t00131,Network keeps dropping billing seems off. Thanks in advance.,billing;network
+t00132,Please return the money question about my bill the app crashes. Please advise.,billing;refund;software
+t00133,I want to complain i was double-billed account settings problem. Thanks in advance.,billing;account;complaint
+t00134,Can't see my account can't log in. Looking forward to your reply.,account;login
+t00135,I want to complain billing seems off can't see my account. I would appreciate help.,billing;account;complaint
+t00136,I want to complain. Looking forward to your reply.,complaint
+t00137,Need this fixed now this is a complaint my account is locked. What should I do?,urgent;account;complaint
+t00138,My account is locked question about my bill. Please advise.,billing;account
+t00139,Account issue. Any guidance appreciated.,account
+t00140,This is a complaint i need my money back. What should I do?,refund;complaint
+t00141,This is urgent vpn won't connect. I would appreciate help.,urgent;network
+t00142,I need my money back mfa not working i'm not happy wi-fi is down. Looking forward to your reply.,refund;complaint;network;login
+t00143,Software bug. I would appreciate help.,software
+t00144,This is urgent. What should I do?,urgent
+t00145,Software update failed mfa not working account issue. I would appreciate help.,account;software;login
+t00146,I was double-billed. Looking forward to your reply.,billing
+t00147,Critical issue. Any guidance appreciated.,urgent
+t00148,Billing seems off. Looking forward to your reply.,billing
+t00149,Account settings problem can't connect to network need this fixed now. Any guidance appreciated.,urgent;account;network
+t00150,Forgot my password software update failed. Looking forward to your reply.,software;login
+t00151,Mfa not working. Thanks in advance.,login
+t00152,Please return the money. Thanks in advance.,refund
+t00153,Billing seems off. Please advise.,billing
+t00154,This is a complaint. What should I do?,complaint
+t00155,Critical issue this is a complaint billing seems off the app crashes. Any guidance appreciated.,billing;urgent;complaint;software
+t00156,Can't see my account. Any guidance appreciated.,account
+t00157,This is urgent. I would appreciate help.,urgent
+t00158,My laptop won't turn on. Any guidance appreciated.,hardware
+t00159,I was double-billed. Thanks in advance.,billing
+t00160,Question about my bill. Looking forward to your reply.,billing
+t00161,Application won't open critical issue. What should I do?,urgent;software
+t00162,Account issue. I would appreciate help.,account
+t00163,Software bug account issue. Please advise.,account;software
+t00164,I want to complain account settings problem can't log in. Any guidance appreciated.,account;complaint;login
+t00165,Application won't open my account is locked. What should I do?,account;software
+t00166,My account is locked. Looking forward to your reply.,account
+t00167,Software update failed my account is locked. Thanks in advance.,account;software
+t00168,Account settings problem. What should I do?,account
+t00169,Vpn won't connect account settings problem i was double-billed. Any guidance appreciated.,billing;account;network
+t00170,This is urgent. Please advise.,urgent
+t00171,Account issue. I would appreciate help.,account
+t00172,My laptop won't turn on. Looking forward to your reply.,hardware
+t00173,Billing seems off account issue. What should I do?,billing;account
+t00174,I'm not happy. Any guidance appreciated.,complaint
+t00175,Critical issue mfa not working software update failed i was double-billed. Please advise.,billing;urgent;software;login
+t00176,Network keeps dropping. Any guidance appreciated.,network
+t00177,Please return the money. Thanks in advance.,refund
+t00178,I was double-billed software bug. Thanks in advance.,billing;software
+t00179,Keyboard not working billing seems off account settings problem software update failed. I would appreciate help.,billing;account;hardware;software
+t00180,Account issue. Any guidance appreciated.,account
+t00181,I was double-billed can't log in screen is broken. Thanks in advance.,billing;hardware;login
+t00182,Can't see my account critical issue. Please advise.,urgent;account
+t00183,Suspicious login attempt. Please advise.,security
+t00184,Software update failed. Please advise.,software
+t00185,Application won't open. Looking forward to your reply.,software
+t00186,I need my money back forgot my password. Please advise.,refund;login
+t00187,Can't log in i want to complain. Please advise.,complaint;login
+t00188,My account is locked need this fixed now. Thanks in advance.,urgent;account
+t00189,Wi-fi is down i want a refund. Any guidance appreciated.,refund;network
+t00190,This is urgent network keeps dropping the app crashes. Please advise.,urgent;software;network
+t00191,Hardware problem. What should I do?,hardware
+t00192,Network keeps dropping software update failed. Please advise.,software;network
+t00193,Asap please. What should I do?,urgent
+t00194,Question about my bill. Thanks in advance.,billing
+t00195,Can't log in security alert question about my bill. Any guidance appreciated.,billing;security;login
+t00196,Forgot my password. Please advise.,login
+t00197,Mfa not working my laptop won't turn on. Looking forward to your reply.,hardware;login
+t00198,Software bug screen is broken i'm not happy network keeps dropping need this fixed now. Thanks in advance.,urgent;complaint;hardware;software;network
+t00199,Can't log in the app crashes. What should I do?,software;login
+t00200,Application won't open can't see my account critical issue. What should I do?,urgent;account;software
+t00201,I think i was hacked account settings problem screen is broken. Any guidance appreciated.,account;hardware;security
+t00202,Security alert. Please advise.,security
+t00203,Can't connect to network question about my bill. Any guidance appreciated.,billing;network
+t00204,Software update failed terrible service. Any guidance appreciated.,complaint;software
+t00205,Billing seems off my account is locked need this fixed now. Please advise.,billing;urgent;account
+t00206,I was double-billed i want to complain. Looking forward to your reply.,billing;complaint
+t00207,Application won't open asap please mfa not working. What should I do?,urgent;software;login
+t00208,Can't connect to network. I would appreciate help.,network
+t00209,Can't connect to network account issue my invoice is wrong. Please advise.,billing;account;network
+t00210,Hardware problem billing seems off account settings problem. Please advise.,billing;account;hardware
+t00211,Mfa not working. Please advise.,login
+t00212,Account settings problem application won't open. Looking forward to your reply.,account;software
+t00213,Can't see my account asap please. Please advise.,urgent;account
+t00214,Software bug i'm not happy. Any guidance appreciated.,complaint;software
+t00215,Vpn won't connect. Any guidance appreciated.,network
+t00216,Can't log in please return the money the app crashes my account is locked. I would appreciate help.,refund;account;software;login
+t00217,Software update failed mfa not working. Please advise.,software;login
+t00218,I want a refund. What should I do?,refund
+t00219,I want to complain. Please advise.,complaint
+t00220,This is urgent. Thanks in advance.,urgent
+t00221,Billing seems off screen is broken. I would appreciate help.,billing;hardware
+t00222,Can't connect to network suspicious login attempt. Please advise.,network;security
+t00223,I need my money back asap please. I would appreciate help.,urgent;refund
+t00224,Forgot my password billing seems off. Thanks in advance.,billing;login
+t00225,My invoice is wrong need this fixed now keyboard not working software update failed. I would appreciate help.,billing;urgent;hardware;software
+t00226,My laptop won't turn on i'm not happy. What should I do?,complaint;hardware
+t00227,Wi-fi is down. Looking forward to your reply.,network
+t00228,Account settings problem. Please advise.,account
+t00229,Need this fixed now my account is locked this is a complaint my laptop won't turn on mfa not working. Thanks in advance.,urgent;account;complaint;hardware;login
+t00230,I want a refund can't connect to network the app crashes. Looking forward to your reply.,refund;software;network
+t00231,Terrible service. What should I do?,complaint
+t00232,I'm not happy my invoice is wrong. Thanks in advance.,billing;complaint
+t00233,The app crashes my account is locked. I would appreciate help.,account;software
+t00234,Keyboard not working the app crashes. What should I do?,hardware;software
+t00235,Billing seems off. Any guidance appreciated.,billing
+t00236,Can't see my account hardware problem wi-fi is down software bug. Any guidance appreciated.,account;hardware;software;network
+t00237,Question about my bill vpn won't connect my account is locked. Looking forward to your reply.,billing;account;network
+t00238,Login error. Thanks in advance.,login
+t00239,Can't see my account. I would appreciate help.,account
+t00240,The app crashes. Any guidance appreciated.,software
+t00241,Please return the money. Thanks in advance.,refund
+t00242,Question about my bill critical issue. Thanks in advance.,billing;urgent
+t00243,Vpn won't connect. Any guidance appreciated.,network
+t00244,Asap please account issue. Thanks in advance.,urgent;account
+t00245,This is urgent can't see my account software update failed. Looking forward to your reply.,urgent;account;software
+t00246,Forgot my password i want a refund. What should I do?,refund;login
+t00247,Refund my last charge software bug keyboard not working. Thanks in advance.,refund;hardware;software
+t00248,This is urgent suspicious login attempt terrible service. Any guidance appreciated.,urgent;complaint;security
+t00249,Can't see my account please return the money my laptop won't turn on application won't open. What should I do?,refund;account;hardware;software
+t00250,Forgot my password. Thanks in advance.,login
+t00251,This is a complaint. What should I do?,complaint
+t00252,Application won't open billing seems off need this fixed now. I would appreciate help.,billing;urgent;software
+t00253,Software bug forgot my password. Thanks in advance.,software;login
+t00254,Software update failed. Looking forward to your reply.,software
+t00255,Software update failed i need my money back i'm not happy. What should I do?,refund;complaint;software
+t00256,Login error wi-fi is down. Looking forward to your reply.,network;login
+t00257,I need my money back. Looking forward to your reply.,refund
+t00258,Keyboard not working account settings problem critical issue. Looking forward to your reply.,urgent;account;hardware
+t00259,My account is locked hardware problem. Thanks in advance.,account;hardware
+t00260,Asap please can't log in. Thanks in advance.,urgent;login
+t00261,Application won't open wi-fi is down my laptop won't turn on. Looking forward to your reply.,hardware;software;network
+t00262,Billing seems off hardware problem. I would appreciate help.,billing;hardware
+t00263,Asap please. I would appreciate help.,urgent
+t00264,I want to complain. Please advise.,complaint
+t00265,I was double-billed. Any guidance appreciated.,billing
+t00266,My account is locked software update failed. What should I do?,account;software
+t00267,Software bug network keeps dropping. Please advise.,software;network
+t00268,I want to complain software bug. What should I do?,complaint;software
+t00269,Vpn won't connect. Please advise.,network
+t00270,Can't log in. Please advise.,login
+t00271,I think i was hacked account issue software bug please return the money. Looking forward to your reply.,refund;account;software;security
+t00272,I need my money back. I would appreciate help.,refund
+t00273,My invoice is wrong. What should I do?,billing
+t00274,Login error screen is broken. Any guidance appreciated.,hardware;login
+t00275,The app crashes this is a complaint forgot my password. What should I do?,complaint;software;login
+t00276,Login error critical issue. I would appreciate help.,urgent;login
+t00277,This is urgent billing seems off account issue. What should I do?,billing;urgent;account
+t00278,This is a complaint vpn won't connect i need my money back. Please advise.,refund;complaint;network
+t00279,Account issue. Any guidance appreciated.,account
+t00280,I need my money back software bug asap please. Please advise.,urgent;refund;software
+t00281,Screen is broken i want a refund. Thanks in advance.,refund;hardware
+t00282,Terrible service billing seems off application won't open. Any guidance appreciated.,billing;complaint;software
+t00283,My account is locked. Looking forward to your reply.,account
+t00284,Terrible service. What should I do?,complaint
+t00285,Can't see my account i need my money back need this fixed now screen is broken. Please advise.,urgent;refund;account;hardware
+t00286,Wi-fi is down. Please advise.,network
+t00287,The app crashes can't see my account. Any guidance appreciated.,account;software
+t00288,Terrible service. Any guidance appreciated.,complaint
+t00289,Need this fixed now. Thanks in advance.,urgent
+t00290,The app crashes terrible service. Looking forward to your reply.,complaint;software
+t00291,Security alert wi-fi is down. Any guidance appreciated.,network;security
+t00292,My invoice is wrong asap please. Any guidance appreciated.,billing;urgent
+t00293,Keyboard not working. Any guidance appreciated.,hardware
+t00294,Can't log in account settings problem. I would appreciate help.,account;login
+t00295,Critical issue forgot my password. Looking forward to your reply.,urgent;login
+t00296,Mfa not working. Thanks in advance.,login
+t00297,I was double-billed screen is broken i want to complain. Any guidance appreciated.,billing;complaint;hardware
+t00298,Terrible service. What should I do?,complaint
+t00299,Can't see my account this is urgent vpn won't connect. I would appreciate help.,urgent;account;network
+t00300,My account is locked. What should I do?,account
+t00301,My laptop won't turn on asap please can't see my account. What should I do?,urgent;account;hardware
+t00302,My invoice is wrong login error need this fixed now. Please advise.,billing;urgent;login
+t00303,Application won't open network keeps dropping. Looking forward to your reply.,software;network
+t00304,Wi-fi is down forgot my password. Looking forward to your reply.,network;login
+t00305,I need my money back screen is broken. Please advise.,refund;hardware
+t00306,Software bug. Please advise.,software
+t00307,Account settings problem network keeps dropping terrible service. Looking forward to your reply.,account;complaint;network
+t00308,Mfa not working question about my bill. Looking forward to your reply.,billing;login
+t00309,Terrible service. Please advise.,complaint
+t00310,Can't see my account. Any guidance appreciated.,account
+t00311,The app crashes. Please advise.,software
+t00312,Forgot my password this is urgent. Please advise.,urgent;login
+t00313,Can't log in. Thanks in advance.,login
+t00314,Can't connect to network. Looking forward to your reply.,network
+t00315,Asap please. Thanks in advance.,urgent
+t00316,Account settings problem billing seems off. Please advise.,billing;account
+t00317,The app crashes critical issue account issue. I would appreciate help.,urgent;account;software
+t00318,This is urgent. I would appreciate help.,urgent
+t00319,I need my money back. What should I do?,refund
+t00320,Application won't open. Please advise.,software
+t00321,This is urgent software update failed. Any guidance appreciated.,urgent;software
+t00322,This is urgent question about my bill software update failed. Any guidance appreciated.,billing;urgent;software
+t00323,This is a complaint. What should I do?,complaint
+t00324,Wi-fi is down. What should I do?,network
+t00325,Refund my last charge account issue this is urgent. Thanks in advance.,urgent;refund;account
+t00326,Can't connect to network can't see my account critical issue. What should I do?,urgent;account;network
+t00327,Suspicious login attempt. Thanks in advance.,security
+t00328,Compromised account account issue. I would appreciate help.,account;security
+t00329,This is a complaint. I would appreciate help.,complaint
+t00330,Asap please account issue. Thanks in advance.,urgent;account
+t00331,I need my money back. Thanks in advance.,refund
+t00332,Account settings problem. What should I do?,account
+t00333,Billing seems off asap please. Thanks in advance.,billing;urgent
+t00334,Software update failed network keeps dropping i want to complain i want a refund. Any guidance appreciated.,refund;complaint;software;network
+t00335,Critical issue. Thanks in advance.,urgent
+t00336,Software update failed forgot my password asap please. Any guidance appreciated.,urgent;software;login
+t00337,Asap please i'm not happy. Any guidance appreciated.,urgent;complaint
+t00338,Critical issue. What should I do?,urgent
+t00339,Can't log in. Thanks in advance.,login
+t00340,Network keeps dropping. Any guidance appreciated.,network
+t00341,My account is locked. I would appreciate help.,account
+t00342,Account issue. Any guidance appreciated.,account
+t00343,This is urgent. Please advise.,urgent
+t00344,Hardware problem. Please advise.,hardware
+t00345,Mfa not working my invoice is wrong. Any guidance appreciated.,billing;login
+t00346,I'm not happy asap please. Thanks in advance.,urgent;complaint
+t00347,My account is locked forgot my password. Any guidance appreciated.,account;login
+t00348,Can't log in. Please advise.,login
+t00349,I'm not happy software bug i think i was hacked. Any guidance appreciated.,complaint;software;security
+t00350,Account issue need this fixed now software update failed. I would appreciate help.,urgent;account;software
+t00351,My laptop won't turn on. Thanks in advance.,hardware
+t00352,Wi-fi is down account settings problem i need my money back. What should I do?,refund;account;network
+t00353,Question about my bill. Please advise.,billing
+t00354,I was double-billed account settings problem. Any guidance appreciated.,billing;account
+t00355,Can't see my account. Looking forward to your reply.,account
+t00356,I want a refund. Thanks in advance.,refund
+t00357,Forgot my password. I would appreciate help.,login
+t00358,Compromised account. What should I do?,security
+t00359,I'm not happy. What should I do?,complaint
+t00360,Account settings problem. Looking forward to your reply.,account
+t00361,My invoice is wrong. Looking forward to your reply.,billing
+t00362,Can't see my account application won't open. Looking forward to your reply.,account;software
+t00363,Account issue. What should I do?,account
+t00364,Vpn won't connect asap please. Thanks in advance.,urgent;network
+t00365,Can't see my account keyboard not working. I would appreciate help.,account;hardware
+t00366,Application won't open i want to complain. I would appreciate help.,complaint;software
+t00367,Please return the money i want to complain. Looking forward to your reply.,refund;complaint
+t00368,Can't log in refund my last charge. I would appreciate help.,refund;login
+t00369,I'm not happy software update failed. I would appreciate help.,complaint;software
+t00370,Question about my bill terrible service. Any guidance appreciated.,billing;complaint
+t00371,Question about my bill application won't open i need my money back. Please advise.,billing;refund;software
+t00372,Mfa not working. What should I do?,login
+t00373,Screen is broken. Thanks in advance.,hardware
+t00374,I'm not happy forgot my password. Thanks in advance.,complaint;login
+t00375,Account settings problem this is a complaint. Any guidance appreciated.,account;complaint
+t00376,Account issue. Thanks in advance.,account
+t00377,Question about my bill. Looking forward to your reply.,billing
+t00378,Suspicious login attempt my invoice is wrong software update failed. Please advise.,billing;software;security
+t00379,Software bug. What should I do?,software
+t00380,My invoice is wrong my account is locked my laptop won't turn on. What should I do?,billing;account;hardware
+t00381,Login error software bug account issue network keeps dropping. Any guidance appreciated.,account;software;network;login
+t00382,Billing seems off critical issue forgot my password. Any guidance appreciated.,billing;urgent;login
+t00383,Keyboard not working can't log in. Thanks in advance.,hardware;login
+t00384,My account is locked. Thanks in advance.,account
+t00385,Login error this is urgent. Thanks in advance.,urgent;login
+t00386,Application won't open. Any guidance appreciated.,software
+t00387,Login error critical issue software bug. Any guidance appreciated.,urgent;software;login
+t00388,Software bug my invoice is wrong. Looking forward to your reply.,billing;software
+t00389,Account settings problem. What should I do?,account
+t00390,Application won't open account issue i want a refund. I would appreciate help.,refund;account;software
+t00391,Billing seems off. Thanks in advance.,billing
+t00392,Asap please this is a complaint hardware problem software update failed. Any guidance appreciated.,urgent;complaint;hardware;software
+t00393,Question about my bill. Looking forward to your reply.,billing
+t00394,Account settings problem refund my last charge. Any guidance appreciated.,refund;account
+t00395,Need this fixed now mfa not working my laptop won't turn on. Any guidance appreciated.,urgent;hardware;login
+t00396,My laptop won't turn on. What should I do?,hardware
+t00397,Need this fixed now refund my last charge wi-fi is down. Thanks in advance.,urgent;refund;network
+t00398,Account issue critical issue please return the money. Please advise.,urgent;refund;account
+t00399,My laptop won't turn on. What should I do?,hardware
+t00400,I need my money back. Looking forward to your reply.,refund
+t00401,My account is locked mfa not working. Thanks in advance.,account;login
+t00402,Refund my last charge. Any guidance appreciated.,refund
+t00403,This is urgent please return the money can't log in my invoice is wrong. Looking forward to your reply.,billing;urgent;refund;login
+t00404,I want to complain. What should I do?,complaint
+t00405,My account is locked i'm not happy. I would appreciate help.,account;complaint
+t00406,My account is locked. I would appreciate help.,account
+t00407,I want to complain i was double-billed need this fixed now compromised account can't connect to network. Any guidance appreciated.,billing;urgent;complaint;network;security
+t00408,Login error terrible service my invoice is wrong. Thanks in advance.,billing;complaint;login
+t00409,Can't log in i'm not happy critical issue please return the money. Looking forward to your reply.,urgent;refund;complaint;login
+t00410,Can't connect to network. Looking forward to your reply.,network
+t00411,Can't log in i was double-billed software update failed. Please advise.,billing;software;login
+t00412,This is urgent account issue. Any guidance appreciated.,urgent;account
+t00413,Refund my last charge. Please advise.,refund
+t00414,I'm not happy account issue. What should I do?,account;complaint
+t00415,Software bug i'm not happy i need my money back. Any guidance appreciated.,refund;complaint;software
+t00416,Vpn won't connect. I would appreciate help.,network
+t00417,My account is locked. I would appreciate help.,account
+t00418,Billing seems off network keeps dropping. Any guidance appreciated.,billing;network
+t00419,I need my money back. Any guidance appreciated.,refund
+t00420,Account issue. Looking forward to your reply.,account
+t00421,Need this fixed now can't see my account. Please advise.,urgent;account
+t00422,I was double-billed can't log in can't see my account. Please advise.,billing;account;login
+t00423,I want a refund. Looking forward to your reply.,refund
+t00424,This is a complaint asap please. What should I do?,urgent;complaint
+t00425,Account issue keyboard not working. Please advise.,account;hardware
+t00426,Can't connect to network. Thanks in advance.,network
+t00427,Can't log in application won't open. Looking forward to your reply.,software;login
+t00428,Keyboard not working account issue. What should I do?,account;hardware
+t00429,Keyboard not working. What should I do?,hardware
+t00430,Can't connect to network. I would appreciate help.,network
+t00431,This is urgent i want to complain my account is locked software bug. Looking forward to your reply.,urgent;account;complaint;software
+t00432,Need this fixed now account settings problem. Looking forward to your reply.,urgent;account
+t00433,Critical issue can't see my account security alert. Please advise.,urgent;account;security
+t00434,Software bug i'm not happy. What should I do?,complaint;software
+t00435,Login error i want to complain. I would appreciate help.,complaint;login
+t00436,Mfa not working. Thanks in advance.,login
+t00437,Forgot my password account issue. Thanks in advance.,account;login
+t00438,My invoice is wrong need this fixed now. Please advise.,billing;urgent
+t00439,Account settings problem. Looking forward to your reply.,account
+t00440,Network keeps dropping. I would appreciate help.,network
+t00441,Can't see my account software bug. Thanks in advance.,account;software
+t00442,I think i was hacked critical issue can't connect to network. Looking forward to your reply.,urgent;network;security
+t00443,Refund my last charge. What should I do?,refund
+t00444,Hardware problem. Thanks in advance.,hardware
+t00445,I was double-billed. I would appreciate help.,billing
+t00446,Need this fixed now. Please advise.,urgent
+t00447,My invoice is wrong software update failed. I would appreciate help.,billing;software
+t00448,Need this fixed now i was double-billed i want a refund. Please advise.,billing;urgent;refund
+t00449,Mfa not working billing seems off. Please advise.,billing;login
+t00450,Can't see my account i'm not happy application won't open i was double-billed. What should I do?,billing;account;complaint;software
+t00451,Account issue. Any guidance appreciated.,account
+t00452,Question about my bill software bug. What should I do?,billing;software
+t00453,Software bug mfa not working. What should I do?,software;login
+t00454,I need my money back. Thanks in advance.,refund
+t00455,Vpn won't connect. Looking forward to your reply.,network
+t00456,Please return the money. Thanks in advance.,refund
+t00457,Billing seems off my account is locked. What should I do?,billing;account
+t00458,Can't log in account issue. Looking forward to your reply.,account;login
+t00459,I want to complain software bug network keeps dropping. Looking forward to your reply.,complaint;software;network
+t00460,I want to complain. Looking forward to your reply.,complaint
+t00461,This is urgent vpn won't connect. Looking forward to your reply.,urgent;network
+t00462,Login error please return the money my account is locked this is urgent. Looking forward to your reply.,urgent;refund;account;login
+t00463,Question about my bill can't log in. Please advise.,billing;login
+t00464,Billing seems off. Any guidance appreciated.,billing
+t00465,My account is locked. Looking forward to your reply.,account
+t00466,My invoice is wrong account issue. Thanks in advance.,billing;account
+t00467,I was double-billed account settings problem. Thanks in advance.,billing;account
+t00468,Account settings problem terrible service. Any guidance appreciated.,account;complaint
+t00469,This is urgent. What should I do?,urgent
+t00470,Question about my bill vpn won't connect. Any guidance appreciated.,billing;network
+t00471,Keyboard not working account issue. I would appreciate help.,account;hardware
+t00472,Asap please. Please advise.,urgent
+t00473,My invoice is wrong. Thanks in advance.,billing
+t00474,Application won't open. Any guidance appreciated.,software
+t00475,My account is locked login error billing seems off. What should I do?,billing;account;login
+t00476,Asap please. Looking forward to your reply.,urgent
+t00477,Keyboard not working. What should I do?,hardware
+t00478,Screen is broken. What should I do?,hardware
+t00479,I want a refund account issue hardware problem. What should I do?,refund;account;hardware
+t00480,Billing seems off terrible service. Looking forward to your reply.,billing;complaint
+t00481,The app crashes asap please. Any guidance appreciated.,urgent;software
+t00482,Application won't open this is a complaint. Any guidance appreciated.,complaint;software
+t00483,Question about my bill application won't open. Looking forward to your reply.,billing;software
+t00484,Question about my bill. Please advise.,billing
+t00485,Keyboard not working software update failed. I would appreciate help.,hardware;software
+t00486,My invoice is wrong this is urgent my account is locked. Thanks in advance.,billing;urgent;account
+t00487,This is a complaint application won't open. Please advise.,complaint;software
+t00488,Terrible service. Looking forward to your reply.,complaint
+t00489,Forgot my password i'm not happy. Looking forward to your reply.,complaint;login
+t00490,Hardware problem. I would appreciate help.,hardware
+t00491,I was double-billed. Looking forward to your reply.,billing
+t00492,Network keeps dropping account issue. I would appreciate help.,account;network
+t00493,Software bug question about my bill. I would appreciate help.,billing;software
+t00494,Software update failed. I would appreciate help.,software
+t00495,Question about my bill software bug. What should I do?,billing;software
+t00496,I was double-billed vpn won't connect. I would appreciate help.,billing;network
+t00497,Billing seems off account issue. Thanks in advance.,billing;account
+t00498,Critical issue vpn won't connect login error billing seems off i think i was hacked the app crashes. I would appreciate help.,billing;urgent;software;network;security;login
+t00499,I want to complain. Any guidance appreciated.,complaint
+t00500,My laptop won't turn on. I would appreciate help.,hardware
+t00501,Need this fixed now. What should I do?,urgent
+t00502,Keyboard not working i'm not happy software bug wi-fi is down. I would appreciate help.,complaint;hardware;software;network
+t00503,Can't see my account i'm not happy. Any guidance appreciated.,account;complaint
+t00504,My account is locked. I would appreciate help.,account
+t00505,My laptop won't turn on. Thanks in advance.,hardware
+t00506,Network keeps dropping. Looking forward to your reply.,network
+t00507,Billing seems off network keeps dropping. Please advise.,billing;network
+t00508,Wi-fi is down terrible service. Any guidance appreciated.,complaint;network
+t00509,I was double-billed vpn won't connect this is urgent i'm not happy. I would appreciate help.,billing;urgent;complaint;network
+t00510,Can't connect to network the app crashes. Any guidance appreciated.,software;network
+t00511,My invoice is wrong asap please. Thanks in advance.,billing;urgent
+t00512,Mfa not working need this fixed now screen is broken. Please advise.,urgent;hardware;login
+t00513,Account issue. Looking forward to your reply.,account
+t00514,I was double-billed terrible service this is urgent. What should I do?,billing;urgent;complaint
+t00515,Account settings problem. What should I do?,account
+t00516,Screen is broken. Please advise.,hardware
+t00517,Billing seems off my laptop won't turn on this is a complaint. What should I do?,billing;complaint;hardware
+t00518,Asap please application won't open. Thanks in advance.,urgent;software
+t00519,The app crashes account settings problem. What should I do?,account;software
+t00520,I need my money back terrible service software update failed. Looking forward to your reply.,refund;complaint;software
+t00521,This is a complaint. What should I do?,complaint
+t00522,My invoice is wrong. Any guidance appreciated.,billing
+t00523,Question about my bill software bug security alert. I would appreciate help.,billing;software;security
+t00524,I was double-billed. Please advise.,billing
+t00525,Application won't open. Any guidance appreciated.,software
+t00526,I'm not happy my invoice is wrong the app crashes account issue. I would appreciate help.,billing;account;complaint;software
+t00527,My account is locked. Looking forward to your reply.,account
+t00528,Screen is broken i'm not happy. Please advise.,complaint;hardware
+t00529,Need this fixed now vpn won't connect i'm not happy. Looking forward to your reply.,urgent;complaint;network
+t00530,Refund my last charge account settings problem. I would appreciate help.,refund;account
+t00531,I want to complain. Looking forward to your reply.,complaint
+t00532,Billing seems off. I would appreciate help.,billing
+t00533,Billing seems off my account is locked hardware problem. I would appreciate help.,billing;account;hardware
+t00534,Question about my bill refund my last charge my account is locked. Thanks in advance.,billing;refund;account
+t00535,My invoice is wrong hardware problem compromised account. Looking forward to your reply.,billing;hardware;security
+t00536,I want to complain my account is locked. What should I do?,account;complaint
+t00537,Need this fixed now i'm not happy can't see my account. I would appreciate help.,urgent;account;complaint
+t00538,I'm not happy can't see my account. Any guidance appreciated.,account;complaint
+t00539,Critical issue question about my bill. Looking forward to your reply.,billing;urgent
+t00540,I want a refund. What should I do?,refund
+t00541,Billing seems off software bug security alert this is a complaint. I would appreciate help.,billing;complaint;software;security
+t00542,Need this fixed now. I would appreciate help.,urgent
+t00543,Account issue software update failed. What should I do?,account;software
+t00544,Billing seems off critical issue the app crashes. Please advise.,billing;urgent;software
+t00545,Can't connect to network. Looking forward to your reply.,network
+t00546,Refund my last charge account settings problem. What should I do?,refund;account
+t00547,Can't see my account i'm not happy. Thanks in advance.,account;complaint
+t00548,Login error. Please advise.,login
+t00549,My account is locked terrible service. Thanks in advance.,account;complaint
+t00550,Hardware problem question about my bill account settings problem. I would appreciate help.,billing;account;hardware
+t00551,Login error asap please security alert can't see my account refund my last charge. Please advise.,urgent;refund;account;security;login
+t00552,My account is locked billing seems off asap please. Any guidance appreciated.,billing;urgent;account
+t00553,Terrible service. Thanks in advance.,complaint
+t00554,My account is locked forgot my password. Please advise.,account;login
+t00555,I'm not happy. Thanks in advance.,complaint
+t00556,Account settings problem. Please advise.,account
+t00557,Network keeps dropping. Please advise.,network
+t00558,Forgot my password. Thanks in advance.,login
+t00559,I want a refund forgot my password. Please advise.,refund;login
+t00560,Network keeps dropping. I would appreciate help.,network
+t00561,Wi-fi is down. Looking forward to your reply.,network
+t00562,Mfa not working account settings problem i was double-billed. Looking forward to your reply.,billing;account;login
+t00563,Critical issue. What should I do?,urgent
+t00564,Wi-fi is down account settings problem software update failed. Any guidance appreciated.,account;software;network
+t00565,Software update failed. I would appreciate help.,software
+t00566,Critical issue can't see my account wi-fi is down mfa not working billing seems off the app crashes. Please advise.,billing;urgent;account;software;network;login
+t00567,Software update failed can't see my account. Looking forward to your reply.,account;software
+t00568,Application won't open network keeps dropping. Any guidance appreciated.,software;network
+t00569,Forgot my password account issue. Thanks in advance.,account;login
+t00570,Can't log in my account is locked. Any guidance appreciated.,account;login
+t00571,Account settings problem software bug. I would appreciate help.,account;software
+t00572,Critical issue application won't open i was double-billed. I would appreciate help.,billing;urgent;software
+t00573,Can't log in software update failed i'm not happy this is urgent. Looking forward to your reply.,urgent;complaint;software;login
+t00574,Asap please can't connect to network question about my bill. What should I do?,billing;urgent;network
+t00575,The app crashes my invoice is wrong asap please can't see my account. I would appreciate help.,billing;urgent;account;software
+t00576,Terrible service. Any guidance appreciated.,complaint
+t00577,Vpn won't connect. What should I do?,network
+t00578,Mfa not working account settings problem. Any guidance appreciated.,account;login
+t00579,Login error. Looking forward to your reply.,login
+t00580,This is urgent account settings problem. I would appreciate help.,urgent;account
+t00581,I'm not happy billing seems off my account is locked. I would appreciate help.,billing;account;complaint
+t00582,Asap please this is a complaint software update failed. Thanks in advance.,urgent;complaint;software
+t00583,Question about my bill. Looking forward to your reply.,billing
+t00584,Need this fixed now. Any guidance appreciated.,urgent
+t00585,Can't see my account. Please advise.,account
+t00586,My invoice is wrong. Looking forward to your reply.,billing
+t00587,I want to complain. What should I do?,complaint
+t00588,Software bug. Thanks in advance.,software
+t00589,Software update failed account settings problem can't connect to network. Looking forward to your reply.,account;software;network
+t00590,My invoice is wrong. I would appreciate help.,billing
+t00591,Account issue. I would appreciate help.,account
+t00592,My invoice is wrong. Looking forward to your reply.,billing
+t00593,Asap please. I would appreciate help.,urgent
+t00594,Can't connect to network. What should I do?,network
+t00595,Refund my last charge i want to complain. Thanks in advance.,refund;complaint
+t00596,Account issue. Looking forward to your reply.,account
+t00597,I want to complain. Any guidance appreciated.,complaint
+t00598,Terrible service. What should I do?,complaint
+t00599,This is a complaint. What should I do?,complaint
+t00600,Vpn won't connect forgot my password. I would appreciate help.,network;login
+t00601,I think i was hacked software update failed my account is locked. What should I do?,account;software;security
+t00602,Account issue application won't open. What should I do?,account;software
+t00603,Login error. What should I do?,login
+t00604,I'm not happy. Looking forward to your reply.,complaint
+t00605,Network keeps dropping. Please advise.,network
+t00606,Login error terrible service. Thanks in advance.,complaint;login
+t00607,Can't see my account. What should I do?,account
+t00608,Mfa not working. Thanks in advance.,login
+t00609,This is a complaint. Please advise.,complaint
+t00610,Can't see my account. Please advise.,account
+t00611,Can't see my account billing seems off. I would appreciate help.,billing;account
+t00612,Account issue wi-fi is down. Looking forward to your reply.,account;network
+t00613,Vpn won't connect. Thanks in advance.,network
+t00614,My account is locked i need my money back this is a complaint. Looking forward to your reply.,refund;account;complaint
+t00615,This is a complaint keyboard not working. I would appreciate help.,complaint;hardware
+t00616,I'm not happy. I would appreciate help.,complaint
+t00617,I think i was hacked my account is locked. Looking forward to your reply.,account;security
+t00618,My account is locked. Any guidance appreciated.,account
+t00619,Wi-fi is down software bug. Any guidance appreciated.,software;network
+t00620,Can't see my account critical issue. I would appreciate help.,urgent;account
+t00621,Keyboard not working. Looking forward to your reply.,hardware
+t00622,Can't see my account please return the money the app crashes terrible service question about my bill. I would appreciate help.,billing;refund;account;complaint;software
+t00623,The app crashes need this fixed now. Please advise.,urgent;software
+t00624,This is a complaint. What should I do?,complaint
+t00625,Keyboard not working critical issue. Looking forward to your reply.,urgent;hardware
+t00626,My account is locked. Looking forward to your reply.,account
+t00627,Account issue wi-fi is down keyboard not working. Any guidance appreciated.,account;hardware;network
+t00628,My account is locked i'm not happy can't connect to network. Please advise.,account;complaint;network
+t00629,My account is locked this is a complaint. What should I do?,account;complaint
+t00630,Question about my bill account issue software update failed. I would appreciate help.,billing;account;software
+t00631,This is a complaint software bug. I would appreciate help.,complaint;software
+t00632,Account settings problem critical issue. Please advise.,urgent;account
+t00633,I'm not happy software bug. What should I do?,complaint;software
+t00634,Critical issue. Please advise.,urgent
+t00635,My account is locked my invoice is wrong critical issue i need my money back. Looking forward to your reply.,billing;urgent;refund;account
+t00636,Asap please my invoice is wrong can't see my account. Please advise.,billing;urgent;account
+t00637,Can't see my account software update failed terrible service keyboard not working i was double-billed. Thanks in advance.,billing;account;complaint;hardware;software
+t00638,Software update failed question about my bill network keeps dropping. Looking forward to your reply.,billing;software;network
+t00639,Question about my bill terrible service hardware problem. Please advise.,billing;complaint;hardware
+t00640,Critical issue i want a refund my laptop won't turn on. Thanks in advance.,urgent;refund;hardware
+t00641,Terrible service. Thanks in advance.,complaint
+t00642,Network keeps dropping can't see my account. Any guidance appreciated.,account;network
+t00643,Billing seems off vpn won't connect. Please advise.,billing;network
+t00644,I was double-billed need this fixed now. Any guidance appreciated.,billing;urgent
+t00645,I was double-billed can't see my account can't log in can't connect to network. Thanks in advance.,billing;account;network;login
+t00646,Network keeps dropping i was double-billed. Thanks in advance.,billing;network
+t00647,Forgot my password. Looking forward to your reply.,login
+t00648,My invoice is wrong. Looking forward to your reply.,billing
+t00649,Can't connect to network forgot my password can't see my account billing seems off. Looking forward to your reply.,billing;account;network;login
+t00650,Security alert i want a refund. I would appreciate help.,refund;security
+t00651,I'm not happy mfa not working. Please advise.,complaint;login
+t00652,Wi-fi is down can't log in software update failed. Please advise.,software;network;login
+t00653,This is urgent can't log in can't see my account. I would appreciate help.,urgent;account;login
+t00654,Asap please application won't open. Thanks in advance.,urgent;software
+t00655,Refund my last charge. Please advise.,refund
+t00656,I'm not happy. Looking forward to your reply.,complaint
+t00657,Software update failed. Any guidance appreciated.,software
+t00658,My account is locked. I would appreciate help.,account
+t00659,I was double-billed terrible service. Please advise.,billing;complaint
+t00660,Can't connect to network mfa not working. I would appreciate help.,network;login
+t00661,Wi-fi is down i need my money back hardware problem. What should I do?,refund;hardware;network
+t00662,Wi-fi is down software bug. Looking forward to your reply.,software;network
+t00663,Can't log in. Any guidance appreciated.,login
+t00664,I want to complain mfa not working. What should I do?,complaint;login
+t00665,The app crashes wi-fi is down. Please advise.,software;network
+t00666,Vpn won't connect this is urgent. I would appreciate help.,urgent;network
+t00667,I want a refund application won't open. What should I do?,refund;software
+t00668,Can't connect to network account issue. Please advise.,account;network
+t00669,Can't see my account. Thanks in advance.,account
+t00670,Account settings problem. I would appreciate help.,account
+t00671,Asap please the app crashes network keeps dropping. Thanks in advance.,urgent;software;network
+t00672,My account is locked billing seems off this is urgent login error. Looking forward to your reply.,billing;urgent;account;login
+t00673,I was double-billed. What should I do?,billing
+t00674,The app crashes i want to complain can't log in critical issue account settings problem. Please advise.,urgent;account;complaint;software;login
+t00675,Asap please software bug. Any guidance appreciated.,urgent;software
+t00676,Billing seems off network keeps dropping. What should I do?,billing;network
+t00677,My invoice is wrong account settings problem this is urgent. Please advise.,billing;urgent;account
+t00678,I was double-billed. I would appreciate help.,billing
+t00679,Security alert. Looking forward to your reply.,security
+t00680,My laptop won't turn on this is urgent. What should I do?,urgent;hardware
+t00681,My account is locked can't log in. Thanks in advance.,account;login
+t00682,Asap please. Looking forward to your reply.,urgent
+t00683,This is urgent. I would appreciate help.,urgent
+t00684,This is urgent. What should I do?,urgent
+t00685,Vpn won't connect. What should I do?,network
+t00686,I need my money back. What should I do?,refund
+t00687,I want to complain can't see my account billing seems off. I would appreciate help.,billing;account;complaint
+t00688,Forgot my password. Any guidance appreciated.,login
+t00689,Software bug my invoice is wrong can't log in. Any guidance appreciated.,billing;software;login
+t00690,Account settings problem. Thanks in advance.,account
+t00691,Login error application won't open. I would appreciate help.,software;login
+t00692,Billing seems off account settings problem terrible service. Please advise.,billing;account;complaint
+t00693,Asap please screen is broken my invoice is wrong. Any guidance appreciated.,billing;urgent;hardware
+t00694,My account is locked software update failed i was double-billed need this fixed now. What should I do?,billing;urgent;account;software
+t00695,Application won't open. Looking forward to your reply.,software
+t00696,Question about my bill account issue. Looking forward to your reply.,billing;account
+t00697,Question about my bill. Looking forward to your reply.,billing
+t00698,Question about my bill this is urgent screen is broken forgot my password. Please advise.,billing;urgent;hardware;login
+t00699,I want to complain mfa not working. Thanks in advance.,complaint;login
+t00700,Need this fixed now my invoice is wrong account issue. Looking forward to your reply.,billing;urgent;account
+t00701,Screen is broken network keeps dropping. Thanks in advance.,hardware;network
+t00702,Login error. Any guidance appreciated.,login
+t00703,Account issue question about my bill. Thanks in advance.,billing;account
+t00704,I want a refund critical issue. Thanks in advance.,urgent;refund
+t00705,Application won't open. Thanks in advance.,software
+t00706,I want a refund. I would appreciate help.,refund
+t00707,Refund my last charge account settings problem software bug need this fixed now. Thanks in advance.,urgent;refund;account;software
+t00708,Account issue hardware problem. I would appreciate help.,account;hardware
+t00709,Account settings problem forgot my password i'm not happy. Any guidance appreciated.,account;complaint;login
+t00710,Software update failed account settings problem. What should I do?,account;software
+t00711,I need my money back account settings problem billing seems off. What should I do?,billing;refund;account
+t00712,I think i was hacked account settings problem. Please advise.,account;security
+t00713,This is urgent i'm not happy my laptop won't turn on. Looking forward to your reply.,urgent;complaint;hardware
+t00714,Can't log in can't see my account. Thanks in advance.,account;login
+t00715,Keyboard not working. I would appreciate help.,hardware
+t00716,I think i was hacked account settings problem. What should I do?,account;security
+t00717,I was double-billed my account is locked. Thanks in advance.,billing;account
+t00718,Terrible service. Thanks in advance.,complaint
+t00719,Account issue my invoice is wrong need this fixed now. Please advise.,billing;urgent;account
+t00720,Please return the money the app crashes. Please advise.,refund;software
+t00721,Account issue. Thanks in advance.,account
+t00722,Software bug. Thanks in advance.,software
+t00723,Terrible service vpn won't connect. Looking forward to your reply.,complaint;network
+t00724,Network keeps dropping software bug terrible service. Please advise.,complaint;software;network
+t00725,This is urgent screen is broken software update failed. I would appreciate help.,urgent;hardware;software
+t00726,I was double-billed. Thanks in advance.,billing
+t00727,Software bug. Please advise.,software
+t00728,Critical issue question about my bill. Looking forward to your reply.,billing;urgent
+t00729,My invoice is wrong critical issue. What should I do?,billing;urgent
+t00730,Can't connect to network. What should I do?,network
+t00731,Security alert login error. Any guidance appreciated.,security;login
+t00732,Billing seems off. I would appreciate help.,billing
+t00733,Login error. Any guidance appreciated.,login
+t00734,Application won't open i want to complain wi-fi is down. I would appreciate help.,complaint;software;network
+t00735,Login error my laptop won't turn on wi-fi is down need this fixed now. Looking forward to your reply.,urgent;hardware;network;login
+t00736,Account issue i was double-billed. What should I do?,billing;account
+t00737,I want to complain critical issue please return the money can't see my account. I would appreciate help.,urgent;refund;account;complaint
+t00738,This is a complaint software bug. Thanks in advance.,complaint;software
+t00739,Account issue. Any guidance appreciated.,account
+t00740,Asap please hardware problem. What should I do?,urgent;hardware
+t00741,Critical issue can't log in. Please advise.,urgent;login
+t00742,This is urgent i want a refund forgot my password. What should I do?,urgent;refund;login
+t00743,Login error need this fixed now. Thanks in advance.,urgent;login
+t00744,This is urgent. What should I do?,urgent
+t00745,I want a refund can't log in critical issue billing seems off. Looking forward to your reply.,billing;urgent;refund;login
+t00746,Terrible service. What should I do?,complaint
+t00747,Software bug need this fixed now. Thanks in advance.,urgent;software
+t00748,Can't connect to network my account is locked i need my money back. Any guidance appreciated.,refund;account;network
+t00749,Need this fixed now can't log in. Thanks in advance.,urgent;login
+t00750,Can't log in. Any guidance appreciated.,login
+t00751,Mfa not working. Looking forward to your reply.,login
+t00752,Account settings problem the app crashes. Thanks in advance.,account;software
+t00753,This is a complaint. Looking forward to your reply.,complaint
+t00754,My invoice is wrong wi-fi is down critical issue. Thanks in advance.,billing;urgent;network
+t00755,The app crashes account issue network keeps dropping need this fixed now hardware problem. Any guidance appreciated.,urgent;account;hardware;software;network
+t00756,Account settings problem. I would appreciate help.,account
+t00757,Can't log in. Please advise.,login
+t00758,Terrible service. Please advise.,complaint
+t00759,Account settings problem. Any guidance appreciated.,account
+t00760,Can't see my account. Thanks in advance.,account
+t00761,Question about my bill. Any guidance appreciated.,billing
+t00762,Software bug. Any guidance appreciated.,software
+t00763,Account settings problem. I would appreciate help.,account
+t00764,My invoice is wrong mfa not working security alert. Please advise.,billing;security;login
+t00765,My account is locked mfa not working. What should I do?,account;login
+t00766,This is a complaint login error. Looking forward to your reply.,complaint;login
+t00767,Critical issue network keeps dropping my account is locked. Please advise.,urgent;account;network
+t00768,Asap please. I would appreciate help.,urgent
+t00769,Wi-fi is down account issue. I would appreciate help.,account;network
+t00770,I want to complain critical issue. Looking forward to your reply.,urgent;complaint
+t00771,This is urgent. Thanks in advance.,urgent
+t00772,Mfa not working this is a complaint my account is locked. Please advise.,account;complaint;login
+t00773,Software bug my account is locked keyboard not working. What should I do?,account;hardware;software
+t00774,Asap please account issue software update failed. Any guidance appreciated.,urgent;account;software
+t00775,Application won't open. Any guidance appreciated.,software
+t00776,Critical issue can't log in refund my last charge. What should I do?,urgent;refund;login
+t00777,Billing seems off the app crashes. Thanks in advance.,billing;software
+t00778,Mfa not working keyboard not working. Any guidance appreciated.,hardware;login
+t00779,Login error account settings problem the app crashes. What should I do?,account;software;login
+t00780,Billing seems off. Please advise.,billing
+t00781,Security alert i want a refund. I would appreciate help.,refund;security
+t00782,This is a complaint critical issue can't connect to network. I would appreciate help.,urgent;complaint;network
+t00783,Network keeps dropping. What should I do?,network
+t00784,Account settings problem. What should I do?,account
+t00785,My account is locked. Thanks in advance.,account
+t00786,I was double-billed vpn won't connect i want a refund. Thanks in advance.,billing;refund;network
+t00787,I need my money back. Thanks in advance.,refund
+t00788,Forgot my password. I would appreciate help.,login
+t00789,Keyboard not working billing seems off. Thanks in advance.,billing;hardware
+t00790,I was double-billed. Any guidance appreciated.,billing
+t00791,Mfa not working. I would appreciate help.,login
+t00792,Forgot my password i'm not happy network keeps dropping critical issue the app crashes. Thanks in advance.,urgent;complaint;software;network;login
+t00793,Forgot my password. I would appreciate help.,login
+t00794,My account is locked. What should I do?,account
+t00795,Application won't open can't log in account issue. Any guidance appreciated.,account;software;login
+t00796,I think i was hacked. Any guidance appreciated.,security
+t00797,Question about my bill account issue software update failed. Please advise.,billing;account;software
+t00798,I was double-billed. What should I do?,billing
+t00799,My account is locked can't log in. What should I do?,account;login
+t00800,Account settings problem critical issue. Looking forward to your reply.,urgent;account
+t00801,Account issue. Looking forward to your reply.,account
+t00802,Need this fixed now. What should I do?,urgent
+t00803,My invoice is wrong. Please advise.,billing
+t00804,Account issue application won't open. Any guidance appreciated.,account;software
+t00805,Wi-fi is down the app crashes. Please advise.,software;network
+t00806,This is a complaint. Looking forward to your reply.,complaint
+t00807,Need this fixed now. I would appreciate help.,urgent
+t00808,Wi-fi is down. What should I do?,network
+t00809,Can't see my account. Thanks in advance.,account
+t00810,My invoice is wrong. Thanks in advance.,billing
+t00811,Wi-fi is down account settings problem. Looking forward to your reply.,account;network
+t00812,This is a complaint. Please advise.,complaint
+t00813,Wi-fi is down. Any guidance appreciated.,network
+t00814,Forgot my password this is urgent. Please advise.,urgent;login
+t00815,Need this fixed now account issue i want to complain. What should I do?,urgent;account;complaint
+t00816,Question about my bill. Thanks in advance.,billing
+t00817,I'm not happy. Thanks in advance.,complaint
+t00818,Screen is broken i want a refund compromised account. Looking forward to your reply.,refund;hardware;security
+t00819,My invoice is wrong application won't open can't log in. I would appreciate help.,billing;software;login
+t00820,My invoice is wrong terrible service critical issue. Any guidance appreciated.,billing;urgent;complaint
+t00821,Vpn won't connect need this fixed now software bug. Looking forward to your reply.,urgent;software;network
+t00822,Need this fixed now. Please advise.,urgent
+t00823,Account issue i'm not happy forgot my password. Looking forward to your reply.,account;complaint;login
+t00824,Login error. Thanks in advance.,login
+t00825,This is a complaint billing seems off. What should I do?,billing;complaint
+t00826,Software bug. What should I do?,software
+t00827,Refund my last charge. Thanks in advance.,refund
+t00828,Question about my bill. Please advise.,billing
+t00829,Question about my bill login error. Looking forward to your reply.,billing;login
+t00830,Can't log in terrible service billing seems off. Thanks in advance.,billing;complaint;login
+t00831,Mfa not working my account is locked. Looking forward to your reply.,account;login
+t00832,Login error i want to complain critical issue. Any guidance appreciated.,urgent;complaint;login
+t00833,Software update failed. Looking forward to your reply.,software
+t00834,My laptop won't turn on. Looking forward to your reply.,hardware
+t00835,Account settings problem this is a complaint. Any guidance appreciated.,account;complaint
+t00836,I was double-billed account settings problem. What should I do?,billing;account
+t00837,Critical issue. Please advise.,urgent
+t00838,Account issue. What should I do?,account
+t00839,Keyboard not working my invoice is wrong mfa not working. Thanks in advance.,billing;hardware;login
+t00840,Can't log in my account is locked. Thanks in advance.,account;login
+t00841,Hardware problem network keeps dropping. Thanks in advance.,hardware;network
+t00842,My account is locked security alert screen is broken application won't open. What should I do?,account;hardware;software;security
+t00843,Account issue network keeps dropping. What should I do?,account;network
+t00844,Software update failed. What should I do?,software
+t00845,My invoice is wrong i'm not happy. Looking forward to your reply.,billing;complaint
+t00846,The app crashes. Thanks in advance.,software
+t00847,Hardware problem. What should I do?,hardware
+t00848,This is a complaint. Please advise.,complaint
+t00849,Asap please. Looking forward to your reply.,urgent
+t00850,Mfa not working asap please billing seems off. Looking forward to your reply.,billing;urgent;login
+t00851,I think i was hacked. What should I do?,security
+t00852,This is a complaint. Looking forward to your reply.,complaint
+t00853,I'm not happy my account is locked. Thanks in advance.,account;complaint
+t00854,Question about my bill. Please advise.,billing
+t00855,I want to complain. Looking forward to your reply.,complaint
+t00856,Question about my bill refund my last charge. I would appreciate help.,billing;refund
+t00857,Terrible service. What should I do?,complaint
+t00858,I want to complain. I would appreciate help.,complaint
+t00859,Software bug billing seems off. Any guidance appreciated.,billing;software
+t00860,Login error i want a refund my account is locked. Please advise.,refund;account;login
+t00861,Account settings problem. Looking forward to your reply.,account
+t00862,My account is locked. Any guidance appreciated.,account
+t00863,Critical issue. Any guidance appreciated.,urgent
+t00864,Please return the money. What should I do?,refund
+t00865,I was double-billed. Thanks in advance.,billing
+t00866,Forgot my password. Please advise.,login
+t00867,My account is locked. Please advise.,account
+t00868,Can't connect to network. Looking forward to your reply.,network
+t00869,I was double-billed account issue can't log in i'm not happy software bug. Looking forward to your reply.,billing;account;complaint;software;login
+t00870,My invoice is wrong network keeps dropping. Thanks in advance.,billing;network
+t00871,Screen is broken. What should I do?,hardware
+t00872,Can't see my account application won't open login error. Please advise.,account;software;login
+t00873,Asap please my account is locked mfa not working. Thanks in advance.,urgent;account;login
+t00874,Please return the money the app crashes asap please account issue. Looking forward to your reply.,urgent;refund;account;software
+t00875,Application won't open critical issue. Thanks in advance.,urgent;software
+t00876,Forgot my password. Please advise.,login
+t00877,Account settings problem. What should I do?,account
+t00878,Can't connect to network account settings problem. Please advise.,account;network
+t00879,Billing seems off hardware problem account settings problem. Any guidance appreciated.,billing;account;hardware
+t00880,Software update failed. What should I do?,software
+t00881,Application won't open account issue my invoice is wrong. Thanks in advance.,billing;account;software
+t00882,Forgot my password. I would appreciate help.,login
+t00883,Application won't open i was double-billed. I would appreciate help.,billing;software
+t00884,Account issue. Looking forward to your reply.,account
+t00885,Network keeps dropping. Please advise.,network
+t00886,Can't see my account. Looking forward to your reply.,account
+t00887,Mfa not working hardware problem can't see my account. Thanks in advance.,account;hardware;login
+t00888,Billing seems off asap please account issue. Thanks in advance.,billing;urgent;account
+t00889,The app crashes can't see my account need this fixed now. Please advise.,urgent;account;software
+t00890,Terrible service. Looking forward to your reply.,complaint
+t00891,Account settings problem. Any guidance appreciated.,account
+t00892,My laptop won't turn on forgot my password the app crashes. Looking forward to your reply.,hardware;software;login
+t00893,The app crashes critical issue. Any guidance appreciated.,urgent;software
+t00894,Screen is broken question about my bill can't see my account. Thanks in advance.,billing;account;hardware
+t00895,I need my money back. I would appreciate help.,refund
+t00896,Software update failed. What should I do?,software
+t00897,My invoice is wrong. Please advise.,billing
+t00898,Mfa not working. Thanks in advance.,login
+t00899,My account is locked my invoice is wrong. Looking forward to your reply.,billing;account
+t00900,I'm not happy. Please advise.,complaint
+t00901,Billing seems off i need my money back. What should I do?,billing;refund
+t00902,Hardware problem. Any guidance appreciated.,hardware
+t00903,Asap please software update failed. Any guidance appreciated.,urgent;software
+t00904,Software bug i want to complain. What should I do?,complaint;software
+t00905,Account settings problem mfa not working hardware problem. Thanks in advance.,account;hardware;login
+t00906,Can't log in question about my bill. Any guidance appreciated.,billing;login
+t00907,Suspicious login attempt my account is locked my invoice is wrong. Any guidance appreciated.,billing;account;security
+t00908,Application won't open. Looking forward to your reply.,software
+t00909,My laptop won't turn on network keeps dropping my invoice is wrong. I would appreciate help.,billing;hardware;network
+t00910,I'm not happy i need my money back. Thanks in advance.,refund;complaint
+t00911,This is a complaint billing seems off. Any guidance appreciated.,billing;complaint
+t00912,Forgot my password. Any guidance appreciated.,login
+t00913,Login error i was double-billed. Please advise.,billing;login
+t00914,Account issue this is a complaint. Any guidance appreciated.,account;complaint
+t00915,Software update failed. Looking forward to your reply.,software
+t00916,My invoice is wrong. Please advise.,billing
+t00917,Security alert. Thanks in advance.,security
+t00918,Software update failed this is urgent. Please advise.,urgent;software
+t00919,Screen is broken can't see my account this is urgent. Please advise.,urgent;account;hardware
+t00920,Refund my last charge can't see my account. Looking forward to your reply.,refund;account
+t00921,Account settings problem. Please advise.,account
+t00922,Account settings problem application won't open. Thanks in advance.,account;software
+t00923,The app crashes. Looking forward to your reply.,software
+t00924,I want a refund software bug critical issue i'm not happy. Please advise.,urgent;refund;complaint;software
+t00925,Forgot my password. What should I do?,login
+t00926,This is a complaint my invoice is wrong. Looking forward to your reply.,billing;complaint
+t00927,Keyboard not working forgot my password suspicious login attempt this is urgent. I would appreciate help.,urgent;hardware;security;login
+t00928,Keyboard not working. Looking forward to your reply.,hardware
+t00929,Software update failed need this fixed now this is a complaint. I would appreciate help.,urgent;complaint;software
+t00930,Account settings problem. Looking forward to your reply.,account
+t00931,Terrible service. Looking forward to your reply.,complaint
+t00932,Software update failed. I would appreciate help.,software
+t00933,Network keeps dropping i was double-billed. What should I do?,billing;network
+t00934,The app crashes. What should I do?,software
+t00935,I was double-billed need this fixed now application won't open i want a refund. Looking forward to your reply.,billing;urgent;refund;software
+t00936,Software bug critical issue can't connect to network terrible service. I would appreciate help.,urgent;complaint;software;network
+t00937,Terrible service my invoice is wrong account settings problem. Thanks in advance.,billing;account;complaint
+t00938,I want to complain need this fixed now my invoice is wrong. Please advise.,billing;urgent;complaint
+t00939,Screen is broken. Looking forward to your reply.,hardware
+t00940,Can't connect to network. What should I do?,network
+t00941,Software update failed. What should I do?,software
+t00942,My laptop won't turn on. I would appreciate help.,hardware
+t00943,Can't log in my account is locked i want a refund. What should I do?,refund;account;login
+t00944,Account settings problem wi-fi is down i want a refund. What should I do?,refund;account;network
+t00945,I want to complain my invoice is wrong. Any guidance appreciated.,billing;complaint
+t00946,Question about my bill can't see my account asap please. Any guidance appreciated.,billing;urgent;account
+t00947,The app crashes can't see my account. I would appreciate help.,account;software
+t00948,Refund my last charge. Any guidance appreciated.,refund
+t00949,Keyboard not working. Thanks in advance.,hardware
+t00950,Account settings problem keyboard not working. Looking forward to your reply.,account;hardware
+t00951,Billing seems off. What should I do?,billing
+t00952,Need this fixed now i'm not happy can't see my account mfa not working. Please advise.,urgent;account;complaint;login
+t00953,Can't see my account vpn won't connect. I would appreciate help.,account;network
+t00954,Refund my last charge. Any guidance appreciated.,refund
+t00955,Critical issue. Thanks in advance.,urgent
+t00956,Can't see my account i'm not happy. Any guidance appreciated.,account;complaint
+t00957,Software update failed need this fixed now account issue. Thanks in advance.,urgent;account;software
+t00958,Screen is broken. Looking forward to your reply.,hardware
+t00959,Wi-fi is down. Any guidance appreciated.,network
+t00960,I think i was hacked keyboard not working can't connect to network. Looking forward to your reply.,hardware;network;security
+t00961,Login error i'm not happy. I would appreciate help.,complaint;login
+t00962,My account is locked can't log in application won't open my invoice is wrong. Looking forward to your reply.,billing;account;software;login
+t00963,My invoice is wrong critical issue. Any guidance appreciated.,billing;urgent
+t00964,Hardware problem i was double-billed the app crashes. I would appreciate help.,billing;hardware;software
+t00965,Account settings problem can't connect to network. Looking forward to your reply.,account;network
+t00966,Forgot my password question about my bill keyboard not working can't see my account. What should I do?,billing;account;hardware;login
+t00967,This is a complaint. What should I do?,complaint
+t00968,Software bug asap please network keeps dropping. Any guidance appreciated.,urgent;software;network
+t00969,Please return the money. Thanks in advance.,refund
+t00970,The app crashes i was double-billed. I would appreciate help.,billing;software
+t00971,Forgot my password. What should I do?,login
+t00972,My laptop won't turn on i was double-billed account issue. I would appreciate help.,billing;account;hardware
+t00973,I was double-billed the app crashes. What should I do?,billing;software
+t00974,Hardware problem need this fixed now i want to complain. What should I do?,urgent;complaint;hardware
+t00975,I want to complain. Please advise.,complaint
+t00976,Can't see my account. Thanks in advance.,account
+t00977,Compromised account. Thanks in advance.,security
+t00978,Need this fixed now can't see my account. Any guidance appreciated.,urgent;account
+t00979,Suspicious login attempt. Any guidance appreciated.,security
+t00980,I want to complain critical issue question about my bill. What should I do?,billing;urgent;complaint
+t00981,Compromised account i want a refund. I would appreciate help.,refund;security
+t00982,Security alert. Please advise.,security
+t00983,Refund my last charge network keeps dropping i'm not happy. What should I do?,refund;complaint;network
+t00984,This is urgent account settings problem screen is broken. I would appreciate help.,urgent;account;hardware
+t00985,Account settings problem screen is broken forgot my password. I would appreciate help.,account;hardware;login
+t00986,Can't log in keyboard not working. Looking forward to your reply.,hardware;login
+t00987,Software bug. I would appreciate help.,software
+t00988,Can't connect to network please return the money account settings problem. Please advise.,refund;account;network
+t00989,Account issue vpn won't connect. Thanks in advance.,account;network
+t00990,Can't connect to network. I would appreciate help.,network
+t00991,Login error i was double-billed wi-fi is down compromised account. What should I do?,billing;network;security;login
+t00992,This is a complaint my invoice is wrong network keeps dropping my account is locked. Looking forward to your reply.,billing;account;complaint;network
+t00993,Forgot my password i'm not happy. Looking forward to your reply.,complaint;login
+t00994,Account settings problem can't log in. Looking forward to your reply.,account;login
+t00995,Wi-fi is down billing seems off. Any guidance appreciated.,billing;network
+t00996,Refund my last charge mfa not working. Looking forward to your reply.,refund;login
+t00997,Forgot my password. Looking forward to your reply.,login
+t00998,Hardware problem. Thanks in advance.,hardware
+t00999,Can't see my account. Any guidance appreciated.,account
