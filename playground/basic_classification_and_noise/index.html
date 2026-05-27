@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic classification + noise — the L1 lab</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <a class="nav-back" href="../">← All playgrounds</a>
+
+    <div class="hero">
+      <h1>Basic classification + noise</h1>
+      <p class="subtitle">L1 lab · multi-label text classification with two classifiers, three demos.</p>
+      <p class="hero-meta">Uncertainty dimension: sampling noise — a score is one draw.</p>
+    </div>
+
+    <section class="lab-section">
+      <h2>What this lab does</h2>
+      <p>
+        We pick a multi-label text-classification task — labelling support tickets with tags like <code>billing</code>,
+        <code>urgent</code>, <code>refund</code> — and run two classifiers on a <strong>subsample</strong> of the data:
+      </p>
+      <ul>
+        <li><strong>TF-IDF + Logistic Regression</strong>, one-vs-rest. Fast, deterministic, no LLM.</li>
+        <li><strong>LLM few-shot</strong>. A small prompt with 2–3 labelled examples; model and key from <code>.env</code>.</li>
+      </ul>
+      <p>
+        We then re-sample many times. The headline accuracy wobbles. Rare labels wobble a lot. A trivial
+        "predict the common tags" baseline catches up on aggregate metrics as the data skews — and the gap on macro-F1
+        is the only honest signal.
+      </p>
+      <div class="takeaway">
+        <strong>The single thing to feel:</strong> a single F1 number is one draw from a distribution. The number you
+        report could have come out 5 points higher or lower if the test set had been sampled differently — and rare
+        labels are noisier still.
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>Datasets</h2>
+      <table>
+        <thead><tr><th>Dataset</th><th>What it is</th><th>Labels</th></tr></thead>
+        <tbody>
+          <tr><td><code>bitext_customer_support</code></td><td>Real customer-support utterances (HuggingFace)</td><td>27 intent classes, single-label</td></tr>
+          <tr><td><code>goemotions</code></td><td>Reddit comments with emotion tags (Google Research)</td><td>27 emotions + neutral, multi-label, heavy-tailed</td></tr>
+          <tr><td><code>synthetic_itsm</code></td><td>Generated ITSM tickets (course-built)</td><td>10 tags, multi-label, controllable skew</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="lab-section">
+      <h2>Demo A — Per-label F1 on a subsample</h2>
+      <p>
+        Take 300 cases. Train TF-IDF+LogReg on 70% of them. Run both classifiers on the rest. The headline numbers
+        (micro-F1, macro-F1) summarize everything — but the per-label F1 shows where the model actually fails.
+      </p>
+      <div class="figure">
+        <strong>Illustrative output</strong> (your actual numbers will differ — run the notebook for live results)
+      </div>
+      <table>
+        <thead><tr><th>Label</th><th class="num">TF-IDF F1</th><th class="num">LLM F1</th><th class="num">Support</th></tr></thead>
+        <tbody>
+          <tr><td>joy</td>      <td class="num">0.71</td><td class="num">0.74</td><td class="num">42</td></tr>
+          <tr><td>neutral</td>  <td class="num">0.68</td><td class="num">0.65</td><td class="num">38</td></tr>
+          <tr><td>anger</td>    <td class="num">0.55</td><td class="num">0.58</td><td class="num">18</td></tr>
+          <tr><td>love</td>     <td class="num">0.41</td><td class="num">0.47</td><td class="num">9</td></tr>
+          <tr><td>grief</td>    <td class="num">0.00</td><td class="num">0.18</td><td class="num">2</td></tr>
+          <tr><td>pride</td>    <td class="num">0.00</td><td class="num">0.00</td><td class="num">1</td></tr>
+          <tr><td colspan="4" class="note">… 22 more rows</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><strong>micro-F1</strong></td><td class="num"><strong>0.64</strong></td><td class="num"><strong>0.62</strong></td><td></td></tr>
+          <tr><td><strong>macro-F1</strong></td><td class="num"><strong>0.31</strong></td><td class="num"><strong>0.34</strong></td><td></td></tr>
+        </tfoot>
+      </table>
+      <div class="takeaway">
+        <strong>What to notice:</strong> the headline micro-F1 (0.64) looks decent. The macro-F1 (0.31) is half of it.
+        The gap is the rare-label story: <code>grief</code> and <code>pride</code> have so few examples that one mistake
+        moves their F1 by 50 points. The single "0.64" hides this completely.
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>Demo B — Resampling spread</h2>
+      <p>
+        Run Demo A twenty times with different random subsamples of the same dataset. Plot the spread of each metric.
+      </p>
+      <div class="figure">
+        <strong>Illustrative output</strong> — a box plot of F1 across 20 resamples:
+      </div>
+      <table>
+        <thead><tr><th>Metric</th><th class="num">mean</th><th class="num">std</th><th class="num">min</th><th class="num">max</th></tr></thead>
+        <tbody>
+          <tr><td>tfidf_micro</td><td class="num">0.64</td><td class="num">0.025</td><td class="num">0.59</td><td class="num">0.68</td></tr>
+          <tr><td>tfidf_macro</td><td class="num">0.31</td><td class="num">0.045</td><td class="num">0.22</td><td class="num">0.39</td></tr>
+          <tr><td>llm_micro</td>  <td class="num">0.62</td><td class="num">0.028</td><td class="num">0.56</td><td class="num">0.66</td></tr>
+          <tr><td>llm_macro</td>  <td class="num">0.34</td><td class="num">0.038</td><td class="num">0.26</td><td class="num">0.40</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        Per-label spread is wider still — common labels like <code>joy</code> wobble by ~3 points, rare labels like
+        <code>grief</code> wobble by 30+ because a single case being misclassified moves the score wildly.
+      </p>
+      <div class="takeaway">
+        <strong>What to notice:</strong> with the <em>same data, same classifier</em>, the headline number swings by
+        ~10 points across resamples. If you ran your eval once and reported "0.59", you'd be calling something a
+        regression that another draw would have shown as "0.68".
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>Demo C — Skew slider on the synthetic ITSM dataset</h2>
+      <p>
+        Generate the synthetic dataset at three skew levels and compare the TF-IDF classifier against a trivial
+        "predict the K most common tags" baseline. Watch what happens to each metric.
+      </p>
+      <table>
+        <thead><tr><th>Skew</th><th class="num">tfidf_micro</th><th class="num">tfidf_macro</th><th class="num">majority_micro</th><th class="num">majority_macro</th></tr></thead>
+        <tbody>
+          <tr><td>flat</td>    <td class="num">0.72</td><td class="num">0.70</td><td class="num">0.30</td><td class="num">0.08</td></tr>
+          <tr><td>default</td> <td class="num">0.71</td><td class="num">0.59</td><td class="num">0.52</td><td class="num">0.12</td></tr>
+          <tr><td>heavy</td>   <td class="num">0.69</td><td class="num">0.41</td><td class="num">0.66</td><td class="num">0.11</td></tr>
+        </tbody>
+      </table>
+      <div class="takeaway">
+        <strong>What to notice:</strong> as the data skews more, the trivial baseline catches up to the real classifier
+        on <code>micro_f1</code> (which is dominated by common labels). On <code>macro_f1</code> — which weights every
+        label equally — the gap stays wide. The micro number flatters the trivial baseline; the macro number is the
+        only honest comparison.
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>Running it yourself</h2>
+      <p>Two paths:</p>
+      <ul>
+        <li>
+          <strong>Code path:</strong> open <code>notebook.ipynb</code>. <code>pip install scikit-learn datasets
+          pandas python-dotenv jinja2 matplotlib</code>, then run the cells top to bottom. To run the LLM live, copy
+          <code>.env.example</code> to <code>.env</code> and fill in an API key; otherwise a deterministic mock runs
+          and the metric flow still works.
+        </li>
+        <li>
+          <strong>Inspect path:</strong> read <code>lab.py</code> for the dataset loaders, the TF-IDF+LogReg classifier,
+          the few-shot LLM wrapper, and the evaluator. Read <code>prompts/multilabel_classify.j2</code> for the prompt.
+        </li>
+      </ul>
+      <p class="note">
+        First-time setup: run <code>python ../../datasets/cache_datasets.py</code> to cache Bitext and GoEmotions
+        from HuggingFace. The synthetic ITSM dataset is already committed; regenerate at different skew levels with
+        <code>python ../../datasets/synthetic_itsm/generate.py --skew heavy</code>.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

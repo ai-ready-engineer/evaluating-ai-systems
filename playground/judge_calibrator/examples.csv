@@ -1,0 +1,23 @@
+question,ai_answer,reference
+What is the capital of France?,Paris,Paris
+What is the capital of France?,"It's Paris, the City of Light.",Paris
+What is the capital of France?,"Paris, France",Paris
+What is the capital of France?,Marseille,Paris
+What is the largest planet in our solar system?,Jupiter,Jupiter
+What is the largest planet in our solar system?,"That would be Jupiter, the gas giant.",Jupiter
+What is the largest planet in our solar system?,Saturn,Jupiter
+Who wrote Hamlet?,Shakespeare,William Shakespeare
+Who wrote Hamlet?,William Shakespeare,William Shakespeare
+Who wrote Hamlet?,Christopher Marlowe,William Shakespeare
+What year did World War II end?,1945,1945
+What year did World War II end?,It ended in 1945.,1945
+What year did World War II end?,1944,1945
+What is H2O?,water,water
+What is H2O?,"H2O is water, the chemical compound.",water
+What is H2O?,hydrogen peroxide,water
+What does CPU stand for?,Central Processing Unit,Central Processing Unit
+What does CPU stand for?,It stands for Central Processing Unit.,Central Processing Unit
+What does CPU stand for?,Computer Processing Unit,Central Processing Unit
+What is the speed of light?,"300,000 km/s","299,792 km/s"
+What is the speed of light?,"approximately 300,000 kilometers per second","299,792 km/s"
+What is the speed of light?,"150,000 km/s","299,792 km/s"
