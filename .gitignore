@@ -5,12 +5,18 @@ build/
 dist/
 wheels/
 *.egg-info
+.ipynb_checkpoints/
 
 # Virtual environments
 .venv
 
 # macOS
 .DS_Store
+
+# Local secrets — never commit real keys; .env.example is the committed template
+.env
+.env.*
+!.env.example
 
 # Private course-design materials mirrored locally — do NOT publish
 CLAUDE.md
@@ -22,4 +28,3 @@ the_case.html
 the_case.md
 the_case_designs.html
 the_case_v*.html
-lesson_*/

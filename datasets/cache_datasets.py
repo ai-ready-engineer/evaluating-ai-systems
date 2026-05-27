@@ -17,6 +17,10 @@ from datasets import load_dataset
 
 HERE = Path(__file__).resolve().parent
 
+# Keep the L1 demo to a handful of distinct categories so the confusion matrix stays
+# readable and the task isn't trivially separable. (Full set is 11 categories.)
+BITEXT_CATEGORIES = ["ACCOUNT", "ORDER", "REFUND", "PAYMENT", "DELIVERY"]
+
 
 def cache_bitext(n=2000):
     out = HERE / "bitext_customer_support" / "data.csv"
@@ -25,13 +29,16 @@ def cache_bitext(n=2000):
         print(f"already cached: {out}")
         return
     print("pulling Bitext Customer Support from HuggingFace...")
-    ds = load_dataset(
+    # The HF split is sorted by intent, so shuffle first, then keep only the chosen
+    # categories before taking n.
+    full = load_dataset(
         "bitext/Bitext-customer-support-llm-chatbot-training-dataset",
-        split=f"train[:{n}]",
-    )
+        split="train",
+    ).shuffle(seed=42).filter(lambda r: r["category"] in BITEXT_CATEGORIES)
+    ds = full.select(range(min(n, len(full))))
     df = pd.DataFrame({
         "text": ds["instruction"],
-        "labels": [i for i in ds["intent"]],  # one intent per row (multi-class)
+        "labels": [c for c in ds["category"]],  # coarse category, restricted to BITEXT_CATEGORIES
     })
     df.to_csv(out, index=False)
     print(f"  wrote {len(df)} rows to {out}")
@@ -44,7 +51,7 @@ def cache_goemotions(n=2000):
         print(f"already cached: {out}")
         return
     print("pulling GoEmotions from HuggingFace...")
-    ds = load_dataset("go_emotions", "simplified", split=f"train[:{n}]")
+    ds = load_dataset("google-research-datasets/go_emotions", "simplified", split=f"train[:{n}]")
     names = ds.features["labels"].feature.names
     df = pd.DataFrame({
         "text": ds["text"],

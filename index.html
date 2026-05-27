@@ -79,7 +79,7 @@
       </details>
 
       <h2 style="margin-top:2.5rem;">The sessions</h2>
-      <p>Seven <strong>1-hour sessions</strong>, each tackling one source of uncertainty. Every session comes with <em>totally optional</em> hands-on labs and deep dives, for those who want to go further.</p>
+      <p>Eight <strong>1-hour sessions</strong>. The first seven isolate one source of uncertainty at a time; the final capstone runs an end-to-end experiment design. Every session comes with <em>totally optional</em> hands-on labs and deep dives, for those who want to go further.</p>
 
       <div class="modules-grid">
         <div class="module-card">
@@ -117,8 +117,8 @@
           </details>
           <details class="objectives">
             <summary>Tools and Playgrounds</summary>
-            <p>Uncertainty calculator (<code>accuracy_estimator.html</code>) · <code>sampling_noise.html</code> · Data skew analysis (class imbalance &amp; test-set stratification)</p>
-            <a class="playground-link" href="playground/accuracy_estimator/">Open the Uncertainty calculator →</a>
+            <p><strong>Basic classification + noise</strong> (the L1 lab) — two classifiers (trained TF-IDF and gen-AI) on three datasets: set a test-set size, spin the wheel, and read per-property accuracy, the confusion matrix, and a Beta credible interval with <code>P(accuracy &gt; X)</code>. Folds in the uncertainty calculator and data-skew (class-imbalance) story.</p>
+            <a class="playground-link" href="playground/basic_classification_and_noise/index.html">Open Basic classification + noise →</a>
           </details>
         </div>
 
@@ -302,38 +302,121 @@
 
         <div class="module-card">
           <div class="number">L7</div>
-          <div class="title">Measuring, Reporting, Managing, and Reducing Uncertainty</div>
-          <p class="description">The capstone — putting all sources of uncertainty together into one honest eval pipeline that survives the world moving.</p>
+          <div class="title">Additional sources of errors and uncertainty — and why they compound</div>
+          <p class="description">An eval is not run once — it has to keep meaning something as the system, model, and world move.</p>
           <details class="objectives">
             <summary>Content</summary>
             <ul>
+              <li>Drift and model evolution — yesterday's eval does not automatically carry forward</li>
               <li>Uncertainties <strong>compound</strong> — every source from L1–L6 stacks; the real uncertainty in a number is their combination</li>
-              <li><strong>Measure</strong> — designing an eval that estimates uncertainty, not just a point score: ranges, intervals, per-domain breakdowns</li>
-              <li><strong>Report</strong> — what claim a number is making; the language for communicating ranges, methods, and caveats so a result can be challenged</li>
-              <li><strong>Manage</strong> — the eval-driven improvement loop; re-baselining as the model and the world move; deciding when uncertainty matters for a decision and when it does not</li>
-              <li><strong>Reduce</strong> — which sources shrink with more data, which need better design, which need better judges; the "uncertainty budget"</li>
-              <li>The full design → measure → report → manage → reduce loop, applied end-to-end</li>
+              <li>Re-baselining: when to redo the eval, and how to compare results across model versions</li>
+              <li>The eval-driven improvement loop: design, run, report, update, and re-check</li>
             </ul>
           </details>
           <details class="objectives">
             <summary>Skills you unlock</summary>
             <ul>
-              <li>Build an eval that produces a range, not a point — and report it as such</li>
               <li>Estimate the <em>combined</em> uncertainty of an eval — not just the largest single source</li>
               <li>Re-baseline an eval on a schedule, and after every model or world change</li>
-              <li>Decide which uncertainty sources matter most for a given decision, and which to ignore</li>
-              <li>Allocate effort to reducing the sources that actually block your roadmap</li>
-              <li>Report a result so any colleague — engineer, PM, exec — can act on it with the same confidence</li>
+              <li>Report design, method, and caveats so a result can be challenged honestly</li>
+              <li>Design an eval that survives the next quarter, not just the next release</li>
             </ul>
           </details>
           <details class="objectives">
             <summary>Uncertainty dimension mastered</summary>
-            <p><strong>Combined / total uncertainty.</strong> Every source from L1–L6 in play at once, plus drift over time. Not a new source, but the integrated picture — with practical guidance on which sources to measure, report, manage around, and spend effort reducing.</p>
+            <p><strong>Drift, model evolution, and compounding.</strong> The eval ages as the world moves, and the earlier sources stack: the real uncertainty in a number is their <em>combination</em>, not the largest single one.</p>
           </details>
           <details class="objectives">
             <summary>Tools and Playgrounds</summary>
-            <p>Compounding visualizer (<code>judges_and_compounding.html</code>) · Experiment-Report Evaluator (<code>experiment_report.html</code>)</p>
+            <p>Temporal Drift Lab (<code>temporal_drift.html</code>) · LLM Evolution Lab (<code>llm_evolution.html</code>) · Compounding visualizer (<code>judges_and_compounding.html</code>)</p>
+            <a class="playground-link" href="playground/temporal_drift/">Open the Temporal Drift Lab →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L8</div>
+          <div class="title">Designing Reliable Experiments</div>
+          <p class="description">Run the whole eval: from product question to experiment plan, measured result, decision report, and next iteration.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>Start with the decision: what would change if the experiment came back positive?</li>
+              <li>Turn a product claim into an experiment plan: baseline, candidate, population, metrics, and guardrails</li>
+              <li>Build the evaluation set: representative strata, dev / validation / sealed test split, and judge calibration set</li>
+              <li>Choose scoring instruments: programmatic checks where possible; calibrated LLM judge where judgment is required</li>
+              <li>Run the comparison: point estimate, range, per-domain breakdowns, judge reliability, and multiple-metric discipline</li>
+              <li>Write the decision report: what can ship, what cannot, what remains uncertain, and when to re-baseline</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Translate a vague quality goal into a measurable experiment without losing the product decision</li>
+              <li>Design an eval plan that includes data, metrics, judges, holdouts, acceptance criteria, and reporting</li>
+              <li>Read an end-to-end result as evidence, not as a verdict handed down by one number</li>
+              <li>Spot the hidden blocker in a positive aggregate result: weak strata, judge disagreement, safety guardrails, drift, or overfitting</li>
+              <li>Produce a final eval report that a PM, engineer, and executive can all act on consistently</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Total experiment risk.</strong> All earlier sources are in play at once: sampling noise, representativeness, metric choice, judge noise, subjectivity, multiple testing, overfitting, drift, and model evolution.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Experiment-Report Evaluator (<code>experiment_report.html</code>) · supporting tools from the full course</p>
             <a class="playground-link" href="playground/experiment_report/">Open the Experiment-Report Evaluator →</a>
+          </details>
+        </div>
+      </div>
+
+      <h2 style="margin-top:2.5rem;">Optional deep dives</h2>
+      <p>Two <strong>totally optional</strong> take-home reads for the curious — background that explains the "why" behind the language we use, but is <em>not</em> required to follow any of the eight sessions.</p>
+
+      <div class="modules-grid">
+        <div class="module-card deep-dive">
+          <div class="number">OPTIONAL DEEP DIVE</div>
+          <div class="title">The Gaussian &amp; the Central Limit Theorem</div>
+          <p class="description">Where statistics came from, and why the normal distribution keeps showing up — felt, not proven.</p>
+          <details class="objectives">
+            <summary>What we cover</summary>
+            <ul>
+              <li>A short history of statistics — the law of error, Galton &amp; Pearson, Fisher and experiment design</li>
+              <li>The normal distribution demystified — not a law of nature, just what a pile of independent noise looks like once you add it up</li>
+              <li>The Central Limit Theorem, felt not proven — why one outcome isn't normal but an <em>average</em> drifts toward it</li>
+              <li>Why averages settle, and why a confidence interval has the shape it does</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Where it connects</summary>
+            <ul>
+              <li>L1–L2 — measurement as experiment, the random variable</li>
+              <li>L3 — averages settling, noise around a mean</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="module-card deep-dive">
+          <div class="number">OPTIONAL DEEP DIVE</div>
+          <div class="title">Conditional Probability &amp; Bayes</div>
+          <p class="description">What a probability <em>means</em> once you condition on evidence — and why "92% confident" is a promise the model may not keep.</p>
+          <details class="objectives">
+            <summary>What we cover</summary>
+            <ul>
+              <li>Conditional probability — "given what?", and the trap of reading an unconditional number as if it were conditional</li>
+              <li>Bayes' rule and base rates — why a 90%-accurate judge's flag can still be wrong most of the time (the prosecutor's fallacy)</li>
+              <li>Calibration — when "92% confident" really means right 92% of the time; the reliability diagram and ECE</li>
+              <li>Calibration ≠ accuracy; why modern LLMs skew overconfident; temperature scaling</li>
+              <li>The payoff — confidence-based routing and abstention only work if the model is calibrated</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Where it connects</summary>
+            <ul>
+              <li>L1 — class imbalance / base rates, seen from the belief side</li>
+              <li>L2 — judge accuracy vs. "is a flagged answer truly bad?"</li>
+              <li>L3 — proportion / probability / belief, applied to the model's own self-report</li>
+            </ul>
           </details>
         </div>
       </div>

@@ -18,9 +18,10 @@ A shared `style.css` lives in this folder for common look-and-feel; individual p
 | `sampling_bias/` | Unrepresentative test sets and the gap they hide | L6 |
 | `domain_variance/` | Variability across customers/domains/time | L3 |
 | `metric_choice/` | The same data, different metrics, different verdicts | L4 |
-| `judges_and_compounding/` | Judge noise + how uncertainty sources stack ("compounding visualizer") | L2, L6, L7 |
+| `judges_and_compounding/` | Judge noise + how uncertainty sources stack ("compounding visualizer") | L2, L6, L7, L8 |
 | `temporal_drift/` | Evals age — yesterday's number stops meaning what it did | L7 |
 | `llm_evolution/` | How model upgrades shift eval results | L7 |
+| `experiment_report/` | Structured feedback on an experiment write-up and the decision it supports | L8 |
 
 ## Conventions
 

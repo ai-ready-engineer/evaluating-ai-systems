@@ -390,6 +390,26 @@ a.module-card:hover {
   line-height: 1.45;
 }
 
+/* Optional deep-dive tiles — warm amber tint to set them apart from lesson cards */
+.module-card.deep-dive {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.module-card.deep-dive:has(a.module-link:hover),
+a.module-card.deep-dive:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 1px #f59e0b;
+}
+
+.module-card.deep-dive .number {
+  color: #b45309;
+}
+
+.module-card.deep-dive details.objectives summary::before {
+  color: #d97706;
+}
+
 /* Skillset labels — uniform across skillsets */
 .phase {
   display: inline-block;

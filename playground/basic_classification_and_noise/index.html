@@ -6,6 +6,69 @@
   <title>Basic classification + noise — the L1 lab</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    :root {
+      --tfidf: #2563eb;   /* traditional classifier */
+      --llm:   #b45309;   /* gen-AI classifier */
+      --good:  #15803d;
+      --bad:   #b91c1c;
+      --grid:  #e5e7eb;
+      --muted: #6b7280;
+    }
+    .tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin: 1.4rem 0 0; }
+    .tabs button {
+      border: 1px solid var(--grid); background: #fff; padding: .55rem 1rem;
+      border-radius: 8px 8px 0 0; cursor: pointer; font: inherit; font-weight: 600;
+      color: var(--muted); border-bottom: none;
+    }
+    .tabs button.active { color: #111; background: #f8fafc; box-shadow: inset 0 -3px 0 #111; }
+    .tabpanel { display: none; border: 1px solid var(--grid); border-radius: 0 8px 8px 8px;
+      padding: 1.2rem 1.4rem; background: #f8fafc; }
+    .tabpanel.active { display: block; }
+
+    .controls { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: flex-end;
+      background: #fff; border: 1px solid var(--grid); border-radius: 10px; padding: .9rem 1.1rem; margin: 1rem 0; }
+    .controls label { display: block; font-size: .78rem; color: var(--muted); margin-bottom: .25rem; font-weight: 600; }
+    .controls select, .controls input[type=number] { font: inherit; padding: .4rem .5rem; border: 1px solid var(--grid); border-radius: 6px; }
+    .controls .spin { background: #111; color: #fff; border: none; border-radius: 6px; padding: .55rem 1rem; cursor: pointer; font-weight: 600; }
+    .controls .spin.secondary { background: #fff; color: #111; border: 1px solid #111; }
+    .sample-note { font-size: .85rem; color: var(--muted); margin: .2rem 0 0; }
+
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+    .clf-card { background: #fff; border: 1px solid var(--grid); border-radius: 10px; padding: 1rem; min-width: 0; }
+    .cm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    @media (max-width: 720px) { .cm-row { grid-template-columns: 1fr; } }
+    .cm-box { background: #fff; border: 1px solid var(--grid); border-radius: 10px; padding: .8rem 1rem; min-width: 0; }
+    .cm-box h5 { margin: .1rem 0 .4rem; display: flex; align-items: center; gap: .4rem; font-size: .9rem; }
+    .clf-card h4 { margin: 0 0 .2rem; display: flex; align-items: center; gap: .5rem; }
+    .swatch { width: .8rem; height: .8rem; border-radius: 2px; display: inline-block; }
+    .acc { font-size: 2rem; font-weight: 700; line-height: 1; }
+    .acc small { font-size: .9rem; font-weight: 500; color: var(--muted); }
+    .pr { display: flex; gap: 1.4rem; margin: .5rem 0 .2rem; font-size: .9rem; }
+    .pr b { font-size: 1.1rem; }
+
+    table.cm { border-collapse: collapse; margin: .5rem 0; font-size: .8rem; }
+    table.cm th, table.cm td { border: 1px solid var(--grid); padding: .3rem .5rem; text-align: center; }
+    table.cm th { background: #f1f5f9; color: var(--muted); font-weight: 600; }
+    table.cm td.diag { font-weight: 700; }
+    .cm-wrap { overflow: auto; max-width: 100%; max-height: 340px; }
+    table.cm.big th, table.cm.big td { padding: .15rem .3rem; font-size: .68rem; min-width: 2.2rem; }
+    table.cm.big th.rot { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; max-height: 7rem; }
+
+    .strip { background:#fff; border:1px solid var(--grid); border-radius:10px; padding:.8rem 1rem; margin-top:1rem; }
+    .strip svg { width: 100%; height: 70px; display:block; }
+
+    .beta { background:#fff; border:1px solid var(--grid); border-radius:10px; padding:1rem 1.1rem; margin-top:1rem; }
+    .beta-grid { display:grid; grid-template-columns: 1fr 320px; gap:1.2rem; align-items:center; }
+    @media (max-width: 720px){ .beta-grid{ grid-template-columns:1fr; } }
+    .beta svg { width:100%; height:170px; }
+    .beta .readout { font-size:.9rem; }
+    .beta .ci { font-weight:700; }
+    .xrow { display:flex; align-items:center; gap:.6rem; margin:.6rem 0; }
+    .xrow input { width: 90px; }
+    .legend { font-size:.8rem; color:var(--muted); display:flex; gap:1rem; flex-wrap:wrap; }
+  </style>
 </head>
 <body>
   <main>
@@ -13,148 +76,338 @@
 
     <div class="hero">
       <h1>Basic classification + noise</h1>
-      <p class="subtitle">L1 lab · multi-label text classification with two classifiers, three demos.</p>
+      <p class="subtitle">L1 lab · evaluate two classifiers — a trained TF-IDF model and a gen-AI few-shot model — on three datasets.</p>
       <p class="hero-meta">Uncertainty dimension: sampling noise — a score is one draw.</p>
     </div>
 
     <section class="lab-section">
-      <h2>What this lab does</h2>
+      <h2>What this is</h2>
       <p>
-        We pick a multi-label text-classification task — labelling support tickets with tags like <code>billing</code>,
-        <code>urgent</code>, <code>refund</code> — and run two classifiers on a <strong>subsample</strong> of the data:
+        We have three text-classification datasets and, for each, two fixed classifiers: a <strong>trained</strong>
+        TF-IDF + Logistic Regression model and a <strong>gen-AI</strong> few-shot LLM. Predictions and ground truth are
+        <em>precomputed</em> — the page just resamples them, so you can spin freely with no waiting and no API calls.
       </p>
-      <ul>
-        <li><strong>TF-IDF + Logistic Regression</strong>, one-vs-rest. Fast, deterministic, no LLM.</li>
-        <li><strong>LLM few-shot</strong>. A small prompt with 2–3 labelled examples; model and key from <code>.env</code>.</li>
-      </ul>
       <p>
-        We then re-sample many times. The headline accuracy wobbles. Rare labels wobble a lot. A trivial
-        "predict the common tags" baseline catches up on aggregate metrics as the data skews — and the gap on macro-F1
-        is the only honest signal.
+        Two questions drive the lab: <strong>(1)</strong> given a classifier, how do we decide it's good — which metrics,
+        and good enough for what? <strong>(2)</strong> How much should we trust a single score? Every number here is one
+        draw from a test set; spin the wheel and watch it move, then read it honestly with the uncertainty tool.
       </p>
       <div class="takeaway">
-        <strong>The single thing to feel:</strong> a single F1 number is one draw from a distribution. The number you
-        report could have come out 5 points higher or lower if the test set had been sampled differently — and rare
-        labels are noisier still.
+        Metrics are computed <strong>per property</strong> (the thing being classified): for the single-label category
+        dataset that's one 5-value confusion matrix; for the multi-label datasets each label is its own yes/no property
+        with its own accuracy, confusion matrix, and precision/recall.
       </div>
     </section>
 
-    <section class="lab-section">
-      <h2>Datasets</h2>
-      <table>
-        <thead><tr><th>Dataset</th><th>What it is</th><th>Labels</th></tr></thead>
-        <tbody>
-          <tr><td><code>bitext_customer_support</code></td><td>Real customer-support utterances (HuggingFace)</td><td>27 intent classes, single-label</td></tr>
-          <tr><td><code>goemotions</code></td><td>Reddit comments with emotion tags (Google Research)</td><td>27 emotions + neutral, multi-label, heavy-tailed</td></tr>
-          <tr><td><code>synthetic_itsm</code></td><td>Generated ITSM tickets (course-built)</td><td>10 tags, multi-label, controllable skew</td></tr>
-        </tbody>
-      </table>
-    </section>
+    <div class="tabs" id="tabs"></div>
+    <div id="panels"></div>
 
-    <section class="lab-section">
-      <h2>Demo A — Per-label F1 on a subsample</h2>
-      <p>
-        Take 300 cases. Train TF-IDF+LogReg on 70% of them. Run both classifiers on the rest. The headline numbers
-        (micro-F1, macro-F1) summarize everything — but the per-label F1 shows where the model actually fails.
-      </p>
-      <div class="figure">
-        <strong>Illustrative output</strong> (your actual numbers will differ — run the notebook for live results)
-      </div>
-      <table>
-        <thead><tr><th>Label</th><th class="num">TF-IDF F1</th><th class="num">LLM F1</th><th class="num">Support</th></tr></thead>
-        <tbody>
-          <tr><td>joy</td>      <td class="num">0.71</td><td class="num">0.74</td><td class="num">42</td></tr>
-          <tr><td>neutral</td>  <td class="num">0.68</td><td class="num">0.65</td><td class="num">38</td></tr>
-          <tr><td>anger</td>    <td class="num">0.55</td><td class="num">0.58</td><td class="num">18</td></tr>
-          <tr><td>love</td>     <td class="num">0.41</td><td class="num">0.47</td><td class="num">9</td></tr>
-          <tr><td>grief</td>    <td class="num">0.00</td><td class="num">0.18</td><td class="num">2</td></tr>
-          <tr><td>pride</td>    <td class="num">0.00</td><td class="num">0.00</td><td class="num">1</td></tr>
-          <tr><td colspan="4" class="note">… 22 more rows</td></tr>
-        </tbody>
-        <tfoot>
-          <tr><td><strong>micro-F1</strong></td><td class="num"><strong>0.64</strong></td><td class="num"><strong>0.62</strong></td><td></td></tr>
-          <tr><td><strong>macro-F1</strong></td><td class="num"><strong>0.31</strong></td><td class="num"><strong>0.34</strong></td><td></td></tr>
-        </tfoot>
-      </table>
-      <div class="takeaway">
-        <strong>What to notice:</strong> the headline micro-F1 (0.64) looks decent. The macro-F1 (0.31) is half of it.
-        The gap is the rare-label story: <code>grief</code> and <code>pride</code> have so few examples that one mistake
-        moves their F1 by 50 points. The single "0.64" hides this completely.
-      </div>
-    </section>
-
-    <section class="lab-section">
-      <h2>Demo B — Resampling spread</h2>
-      <p>
-        Run Demo A twenty times with different random subsamples of the same dataset. Plot the spread of each metric.
-      </p>
-      <div class="figure">
-        <strong>Illustrative output</strong> — a box plot of F1 across 20 resamples:
-      </div>
-      <table>
-        <thead><tr><th>Metric</th><th class="num">mean</th><th class="num">std</th><th class="num">min</th><th class="num">max</th></tr></thead>
-        <tbody>
-          <tr><td>tfidf_micro</td><td class="num">0.64</td><td class="num">0.025</td><td class="num">0.59</td><td class="num">0.68</td></tr>
-          <tr><td>tfidf_macro</td><td class="num">0.31</td><td class="num">0.045</td><td class="num">0.22</td><td class="num">0.39</td></tr>
-          <tr><td>llm_micro</td>  <td class="num">0.62</td><td class="num">0.028</td><td class="num">0.56</td><td class="num">0.66</td></tr>
-          <tr><td>llm_macro</td>  <td class="num">0.34</td><td class="num">0.038</td><td class="num">0.26</td><td class="num">0.40</td></tr>
-        </tbody>
-      </table>
-      <p class="note">
-        Per-label spread is wider still — common labels like <code>joy</code> wobble by ~3 points, rare labels like
-        <code>grief</code> wobble by 30+ because a single case being misclassified moves the score wildly.
-      </p>
-      <div class="takeaway">
-        <strong>What to notice:</strong> with the <em>same data, same classifier</em>, the headline number swings by
-        ~10 points across resamples. If you ran your eval once and reported "0.59", you'd be calling something a
-        regression that another draw would have shown as "0.68".
-      </div>
-    </section>
-
-    <section class="lab-section">
-      <h2>Demo C — Skew slider on the synthetic ITSM dataset</h2>
-      <p>
-        Generate the synthetic dataset at three skew levels and compare the TF-IDF classifier against a trivial
-        "predict the K most common tags" baseline. Watch what happens to each metric.
-      </p>
-      <table>
-        <thead><tr><th>Skew</th><th class="num">tfidf_micro</th><th class="num">tfidf_macro</th><th class="num">majority_micro</th><th class="num">majority_macro</th></tr></thead>
-        <tbody>
-          <tr><td>flat</td>    <td class="num">0.72</td><td class="num">0.70</td><td class="num">0.30</td><td class="num">0.08</td></tr>
-          <tr><td>default</td> <td class="num">0.71</td><td class="num">0.59</td><td class="num">0.52</td><td class="num">0.12</td></tr>
-          <tr><td>heavy</td>   <td class="num">0.69</td><td class="num">0.41</td><td class="num">0.66</td><td class="num">0.11</td></tr>
-        </tbody>
-      </table>
-      <div class="takeaway">
-        <strong>What to notice:</strong> as the data skews more, the trivial baseline catches up to the real classifier
-        on <code>micro_f1</code> (which is dominated by common labels). On <code>macro_f1</code> — which weights every
-        label equally — the gap stays wide. The micro number flatters the trivial baseline; the macro number is the
-        only honest comparison.
-      </div>
-    </section>
-
-    <section class="lab-section">
+    <section class="lab-section" style="margin-top:2rem">
       <h2>Running it yourself</h2>
-      <p>Two paths:</p>
-      <ul>
-        <li>
-          <strong>Code path:</strong> open <code>notebook.ipynb</code>. <code>pip install scikit-learn datasets
-          pandas python-dotenv jinja2 matplotlib</code>, then run the cells top to bottom. To run the LLM live, copy
-          <code>.env.example</code> to <code>.env</code> and fill in an API key; otherwise a deterministic mock runs
-          and the metric flow still works.
-        </li>
-        <li>
-          <strong>Inspect path:</strong> read <code>lab.py</code> for the dataset loaders, the TF-IDF+LogReg classifier,
-          the few-shot LLM wrapper, and the evaluator. Read <code>prompts/multilabel_classify.j2</code> for the prompt.
-        </li>
-      </ul>
       <p class="note">
-        First-time setup: run <code>python ../../datasets/cache_datasets.py</code> to cache Bitext and GoEmotions
-        from HuggingFace. The synthetic ITSM dataset is already committed; regenerate at different skew levels with
-        <code>python ../../datasets/synthetic_itsm/generate.py --skew heavy</code>.
+        The numbers come from <code>predictions/&lt;dataset&gt;.json</code>, produced by
+        <code>build_predictions.py</code> (trains TF-IDF once, runs the LLM in batches, caches everything). Regenerate
+        with a key in <code>.env</code> (<code>LIVE=true</code>, <code>OPENROUTER_API_KEY</code>) via
+        <code>python build_predictions.py</code>. The code path is <code>notebook.ipynb</code>.
       </p>
     </section>
-
   </main>
+
+  <script src="predictions/data.js"></script>
+  <script>
+  // ---------- special-function math: lgamma, regularized incomplete beta, quantile ----------
+  function lgamma(z){
+    const g=7, c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,
+      771.32342877765313,-176.61502916214059,12.507343278686905,
+      -0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+    if(z<0.5) return Math.log(Math.PI/Math.sin(Math.PI*z))-lgamma(1-z);
+    z-=1; let x=c[0]; const t=z+g+0.5;
+    for(let i=1;i<g+2;i++) x+=c[i]/(z+i);
+    return 0.5*Math.log(2*Math.PI)+(z+0.5)*Math.log(t)-t+Math.log(x);
+  }
+  function betacf(a,b,x){
+    const FPMIN=1e-300, EPS=3e-12, MAXIT=300;
+    let qab=a+b, qap=a+1, qam=a-1, c=1, d=1-qab*x/qap;
+    if(Math.abs(d)<FPMIN) d=FPMIN; d=1/d; let h=d;
+    for(let m=1;m<=MAXIT;m++){
+      const m2=2*m;
+      let aa=m*(b-m)*x/((qam+m2)*(a+m2));
+      d=1+aa*d; if(Math.abs(d)<FPMIN)d=FPMIN; c=1+aa/c; if(Math.abs(c)<FPMIN)c=FPMIN; d=1/d; h*=d*c;
+      aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));
+      d=1+aa*d; if(Math.abs(d)<FPMIN)d=FPMIN; c=1+aa/c; if(Math.abs(c)<FPMIN)c=FPMIN; d=1/d;
+      const del=d*c; h*=del; if(Math.abs(del-1)<EPS) break;
+    }
+    return h;
+  }
+  function betai(a,b,x){ // regularized incomplete beta I_x(a,b) = CDF of Beta(a,b)
+    if(x<=0) return 0; if(x>=1) return 1;
+    const bt=Math.exp(lgamma(a+b)-lgamma(a)-lgamma(b)+a*Math.log(x)+b*Math.log(1-x));
+    return x < (a+1)/(a+b+2) ? bt*betacf(a,b,x)/a : 1-bt*betacf(b,a,1-x)/b;
+  }
+  function betaQuantile(p,a,b){ // inverse CDF via bisection
+    let lo=0, hi=1;
+    for(let i=0;i<80;i++){ const m=(lo+hi)/2; (betai(a,b,m)<p)?lo=m:hi=m; }
+    return (lo+hi)/2;
+  }
+  function betaPdf(x,a,b){
+    if(x<=0||x>=1) return 0;
+    return Math.exp((a-1)*Math.log(x)+(b-1)*Math.log(1-x)-(lgamma(a)+lgamma(b)-lgamma(a+b)));
+  }
+
+  // ---------- helpers ----------
+  const DATA = window.L1_PREDICTIONS || {};
+  const DESC = {
+    bitext: {title:'Bitext — customer support categories',
+      body:'Real customer-support utterances, each labelled with one of 5 <strong>categories</strong> (account, order, refund, payment, delivery). Single-label / multi-class: one property, the category. The trained model sees only a small labelled set and a tiny vocabulary, so it is honestly imperfect.'},
+    goemotions: {title:'GoEmotions — Reddit emotions',
+      body:'Reddit comments tagged with 27 emotions + neutral. Truly <strong>multi-label</strong> and heavy-tailed (some emotions are very rare). Each emotion is a yes/no property.'},
+    synthetic: {title:'Synthetic ITSM tickets',
+      body:'Course-generated IT-support tickets with 10 tags (billing, urgent, refund, account, …). <strong>Multi-label</strong> with controllable skew. Each tag is a yes/no property.'},
+  };
+  const ORDER = ['bitext','goemotions','synthetic'];
+  const clfs = [['tfidf','TF-IDF (trained)','var(--tfidf)'], ['llm','LLM (few-shot)','var(--llm)']];
+
+  function freqOfLabels(items, key){ // count label occurrences in truth
+    const c={}; items.forEach(it=>it.truth.forEach(l=>c[l]=(c[l]||0)+1)); return c;
+  }
+  function sampleIndices(n, size){
+    const idx=[...Array(n).keys()];
+    for(let i=n-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [idx[i],idx[j]]=[idx[j],idx[i]]; }
+    return idx.slice(0, Math.min(size,n));
+  }
+
+  // metrics for the multi-label case: a single label is a yes/no property
+  function propMetrics(sample, clf, label){
+    let TP=0,FP=0,FN=0,TN=0;
+    sample.forEach(it=>{
+      const t=it.truth.includes(label), p=it[clf].includes(label);
+      if(t&&p)TP++; else if(!t&&p)FP++; else if(t&&!p)FN++; else TN++;
+    });
+    const n=sample.length, correct=TP+TN;
+    return {TP,FP,FN,TN,n,correct,
+      acc:correct/n,
+      precision:(TP+FP)?TP/(TP+FP):NaN,
+      recall:(TP+FN)?TP/(TP+FN):NaN,
+      support:TP+FN};
+  }
+  // metrics for the multi-class intent case
+  function classMetrics(sample, clf, focus, labels){
+    let correct=0; const cm={}; labels.forEach(a=>cm[a]={});
+    sample.forEach(it=>{
+      const t=it.truth[0]||'∅', p=it[clf][0]||'∅';
+      if(t===p)correct++;
+      cm[t]=cm[t]||{}; cm[t][p]=(cm[t][p]||0)+1;
+    });
+    const n=sample.length;
+    let TP=0,FP=0,FN=0,support=0;
+    sample.forEach(it=>{
+      const t=it.truth[0]||'∅', p=it[clf][0]||'∅';
+      if(t===focus) support++;
+      if(p===focus && t===focus) TP++;
+      else if(p===focus && t!==focus) FP++;
+      else if(p!==focus && t===focus) FN++;
+    });
+    return {n,correct,acc:correct/n,cm,
+      precision:(TP+FP)?TP/(TP+FP):NaN, recall:(TP+FN)?TP/(TP+FN):NaN, support};
+  }
+
+  const pct = x => isNaN(x)? '—' : (100*x).toFixed(1)+'%';
+
+  // ---------- per-tab state & rendering ----------
+  const state = {};
+
+  function buildTab(key){
+    const d = DATA[key];
+    const panel = document.getElementById('panel-'+key);
+    if(!d){ panel.innerHTML = '<p class="note">No predictions found for <code>'+key+'</code>. Run <code>python build_predictions.py</code> then <code>--bundle</code>.</p>'; return; }
+
+    const freq = freqOfLabels(d.items);
+    const labelsByFreq = [...d.labels].sort((a,b)=>(freq[b]||0)-(freq[a]||0));
+    state[key] = { size:50, focus: labelsByFreq[0], history:[] };
+
+    const desc = DESC[key];
+    panel.innerHTML = `
+      <h3>${desc.title}</h3>
+      <p>${desc.body} <span class="note">(${d.n} precomputed test cases, classifiers trained on a separate ${d.train_size}.)</span></p>
+      <div class="controls">
+        <div><label>${d.multilabel?'Property (label)':'Class of interest'}</label>
+          <select id="focus-${key}">${labelsByFreq.map(l=>`<option value="${l}">${l} (${freq[l]||0})</option>`).join('')}</select></div>
+        <div><label>Test-set size</label><input type="number" id="size-${key}" min="2" max="${d.n}" value="50"></div>
+        <button class="spin" id="spin-${key}">🎲 Spin the wheel</button>
+        <button class="spin secondary" id="spin20-${key}">Spin 20×</button>
+        <div class="sample-note" id="note-${key}"></div>
+      </div>
+      <div class="cols" id="cards-${key}"></div>
+      <div class="cm-row" id="cms-${key}"></div>
+      <div class="strip">
+        <div class="legend"><span><span class="swatch" style="background:var(--tfidf)"></span> TF-IDF</span>
+          <span><span class="swatch" style="background:var(--llm)"></span> LLM</span>
+          <span>each dot = one spin's accuracy · ${d.multilabel?'for the selected property':'overall intent accuracy'}</span></div>
+        <svg id="strip-${key}" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="beta">
+        <h4 style="margin:.1rem 0 .3rem">Sample uncertainty estimation</h4>
+        <p class="note" style="margin:.1rem 0 .7rem">You really have <em>one</em> test set. From its result we form the posterior over the true accuracy — a Beta distribution — and read off a 95% credible interval and P(accuracy &gt; X). <em>(How it works: a deep dive. Here it's just a tool.)</em></p>
+        <div class="beta-grid">
+          <div><svg id="beta-${key}" viewBox="0 0 320 170"></svg></div>
+          <div class="readout" id="readout-${key}"></div>
+        </div>
+        <div class="xrow"><label style="font-weight:600">P( accuracy &gt; </label>
+          <input type="number" id="x-${key}" min="0" max="1" step="0.01" value="0.80">
+          <label style="font-weight:600"> )</label></div>
+      </div>
+    `;
+
+    const spin = () => { state[key].sample = sampleIndices(d.n, state[key].size); render(key); };
+    document.getElementById('focus-'+key).onchange = e => { state[key].focus=e.target.value; render(key); };
+    document.getElementById('size-'+key).onchange = e => { state[key].size=Math.max(2,Math.min(d.n, +e.target.value||50)); render(key); };
+    document.getElementById('spin-'+key).onclick = ()=>{ state[key].history.push; spin(); };
+    document.getElementById('spin20-'+key).onclick = ()=>{
+      for(let i=0;i<20;i++){ const s=sampleIndices(d.n,state[key].size); recordHistory(key, s); }
+      state[key].sample = sampleIndices(d.n, state[key].size); render(key);
+    };
+    document.getElementById('x-'+key).oninput = ()=> renderBeta(key);
+    spin();
+  }
+
+  function recordHistory(key, sampleIdx){
+    const d=DATA[key], st=state[key]; const s=sampleIdx.map(i=>d.items[i]);
+    const a = d.multilabel ? {tfidf:propMetrics(s,'tfidf',st.focus).acc, llm:propMetrics(s,'llm',st.focus).acc}
+                           : {tfidf:classMetrics(s,'tfidf',st.focus,d.labels).acc, llm:classMetrics(s,'llm',st.focus,d.labels).acc};
+    st.history.push(a); if(st.history.length>60) st.history.shift();
+  }
+
+  function render(key){
+    const d=DATA[key], st=state[key];
+    const sample = st.sample.map(i=>d.items[i]);
+    recordHistory(key, st.sample);
+
+    const m = {};
+    clfs.forEach(([ck])=>{
+      m[ck] = d.multilabel ? propMetrics(sample, ck, st.focus) : classMetrics(sample, ck, st.focus, d.labels);
+    });
+
+    document.getElementById('note-'+key).innerHTML =
+      `sampled <b>${sample.length}</b> of ${d.n} cases` +
+      (d.multilabel ? ` · “${st.focus}” present in <b>${m.tfidf.support}</b>` : ` · “${st.focus}” true in <b>${m.tfidf.support}</b>`);
+
+    document.getElementById('cards-'+key).innerHTML = clfs.map(([ck,label,color])=>{
+      const x=m[ck];
+      return `<div class="clf-card">
+        <h4><span class="swatch" style="background:${color}"></span>${label}</h4>
+        <div class="acc" style="color:${color}">${pct(x.acc)} <small>accuracy (${x.correct}/${x.n})</small></div>
+        <div class="pr"><span>precision <b>${pct(x.precision)}</b></span><span>recall <b>${pct(x.recall)}</b></span></div>
+        <p class="note" style="margin:.1rem 0 0">precision/recall for “${st.focus}”</p>
+      </div>`;
+    }).join('');
+
+    document.getElementById('cms-'+key).innerHTML = clfs.map(([ck,label,color])=>{
+      const x=m[ck];
+      const cm = d.multilabel ? cm2x2(x, st.focus) : cmBig(x.cm, d.labels, st.focus);
+      return `<div class="cm-box"><h5><span class="swatch" style="background:${color}"></span>${label} — confusion</h5>${cm}</div>`;
+    }).join('');
+
+    renderStrip(key);
+    renderBeta(key);
+  }
+
+  function cm2x2(x, label){
+    return `<div class="cm-wrap"><table class="cm">
+      <tr><th></th><th>pred: ${label}</th><th>pred: not</th></tr>
+      <tr><th>actual: ${label}</th><td class="diag">${x.TP}</td><td>${x.FN}</td></tr>
+      <tr><th>actual: not</th><td>${x.FP}</td><td class="diag">${x.TN}</td></tr>
+    </table></div>`;
+  }
+  function cmBig(cm, labels, focus){
+    // show only labels appearing in this sample to keep it compact
+    const present = labels.filter(l => Object.values(cm).some(row=>row[l]) || Object.keys(cm[l]||{}).length);
+    const abbr = s => s.length>10 ? s.slice(0,9)+'…' : s;
+    const head = '<tr><th>actual ＼ pred</th>'+present.map(l=>`<th class="rot" title="${l}">${abbr(l)}</th>`).join('')+'</tr>';
+    const rows = present.map(a=>{
+      const tds = present.map(p=>{ const v=(cm[a]&&cm[a][p])||0; const diag=a===p?' class="diag"':''; return `<td${diag}>${v||''}</td>`; }).join('');
+      const hl = a===focus ? ' style="background:#fffbeb"' : '';
+      return `<tr><th title="${a}"${hl}>${abbr(a)}</th>${tds}</tr>`;
+    }).join('');
+    return `<div class="cm-wrap"><table class="cm big">${head}${rows}</table></div>`;
+  }
+
+  function renderStrip(key){
+    const st=state[key]; const svg=document.getElementById('strip-'+key);
+    const lo=0, hi=1; const X=v=>(v-lo)/(hi-lo)*100;
+    const ticks=[0,0.25,0.5,0.75,1].map(v=>`<line x1="${X(v)}" y1="2" x2="${X(v)}" y2="18" stroke="#e5e7eb" stroke-width="0.3"/><text x="${X(v)}" y="21.5" font-size="2.4" fill="#9ca3af" text-anchor="middle">${v}</text>`).join('');
+    const dots=[];
+    st.history.forEach((h,i)=>{
+      const age = 1-(st.history.length-1-i)/Math.max(1,st.history.length); const op=0.25+0.75*age;
+      dots.push(`<circle cx="${X(h.tfidf)}" cy="7" r="0.9" fill="var(--tfidf)" opacity="${op}"/>`);
+      dots.push(`<circle cx="${X(h.llm)}" cy="13" r="0.9" fill="var(--llm)" opacity="${op}"/>`);
+    });
+    svg.innerHTML = ticks + dots.join('');
+  }
+
+  function renderBeta(key){
+    const d=DATA[key], st=state[key]; const sample=st.sample.map(i=>d.items[i]);
+    const X = +document.getElementById('x-'+key).value;
+    const svg=document.getElementById('beta-'+key);
+    const W=320,H=170,padL=6,padR=6,padB=22,padT=8;
+
+    const series = clfs.map(([ck,label,color])=>{
+      const m = d.multilabel ? propMetrics(sample, ck, st.focus) : classMetrics(sample, ck, st.focus, d.labels);
+      const a=m.correct+1, b=(m.n-m.correct)+1;
+      return {ck,label,color, a,b, n:m.n, k:m.correct,
+        mean:a/(a+b), lo:betaQuantile(0.025,a,b), hi:betaQuantile(0.975,a,b),
+        pgt: 1-betai(a,b,X)};
+    });
+
+    // x-window covering both posteriors
+    let xlo=Math.min(...series.map(s=>s.lo)), xhi=Math.max(...series.map(s=>s.hi));
+    const pad=(xhi-xlo)*0.6+0.02; xlo=Math.max(0,xlo-pad); xhi=Math.min(1,xhi+pad);
+    const sx=v=>padL+(v-xlo)/(xhi-xlo)*(W-padL-padR);
+    let ymax=0; const N=160;
+    series.forEach(s=>{ for(let i=0;i<=N;i++){ const x=xlo+(xhi-xlo)*i/N; ymax=Math.max(ymax,betaPdf(x,s.a,s.b)); } });
+    const sy=v=>H-padB-(v/ymax)*(H-padB-padT);
+
+    let svgInner='';
+    // axis
+    const axTicks=4;
+    for(let i=0;i<=axTicks;i++){ const v=xlo+(xhi-xlo)*i/axTicks;
+      svgInner+=`<line x1="${sx(v)}" y1="${H-padB}" x2="${sx(v)}" y2="${H-padB+3}" stroke="#9ca3af"/><text x="${sx(v)}" y="${H-padB+13}" font-size="9" fill="#6b7280" text-anchor="middle">${(v*100).toFixed(0)}%</text>`; }
+    svgInner+=`<line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#9ca3af"/>`;
+    // X marker
+    if(X>=xlo && X<=xhi) svgInner+=`<line x1="${sx(X)}" y1="${padT}" x2="${sx(X)}" y2="${H-padB}" stroke="#111" stroke-dasharray="3 2" stroke-width="1"/><text x="${sx(X)}" y="${padT+2}" font-size="8" fill="#111" text-anchor="middle">X=${X}</text>`;
+    // curves + CI shading
+    series.forEach(s=>{
+      let path='', area='';
+      for(let i=0;i<=N;i++){ const x=xlo+(xhi-xlo)*i/N; const y=betaPdf(x,s.a,s.b); path+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(y).toFixed(1)+' '; }
+      for(let i=0;i<=N;i++){ const x=s.lo+(s.hi-s.lo)*i/N; const y=betaPdf(x,s.a,s.b); area+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(y).toFixed(1)+' '; }
+      area=`M${sx(s.lo).toFixed(1)} ${(H-padB)} `+area.replace(/^M/,'L')+`L${sx(s.hi).toFixed(1)} ${(H-padB)} Z`;
+      svgInner+=`<path d="${area}" fill="${s.color}" opacity="0.12"/><path d="${path}" fill="none" stroke="${s.color}" stroke-width="1.6"/>`;
+    });
+    svg.innerHTML=svgInner;
+
+    document.getElementById('readout-'+key).innerHTML = series.map(s=>`
+      <div style="margin-bottom:.7rem">
+        <div><span class="swatch" style="background:${s.color}"></span> <b>${s.label}</b> · ${s.k}/${s.n} correct</div>
+        <div>95% credible interval: <span class="ci" style="color:${s.color}">${pct(s.lo)} – ${pct(s.hi)}</span></div>
+        <div>P(accuracy &gt; ${(X*100).toFixed(0)}%) = <b>${(s.pgt*100).toFixed(1)}%</b></div>
+      </div>`).join('');
+  }
+
+  // ---------- boot ----------
+  const tabsEl=document.getElementById('tabs'), panelsEl=document.getElementById('panels'), btns={};
+  function activate(key){
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpanel').forEach(x=>x.classList.remove('active'));
+    if(btns[key]) btns[key].classList.add('active');
+    const p=document.getElementById('panel-'+key); if(p) p.classList.add('active');
+  }
+  ORDER.forEach(key=>{
+    const b=document.createElement('button'); b.textContent=DESC[key]?DESC[key].title.split(' — ')[0]:key;
+    b.onclick=()=>{ location.hash=key; activate(key); };
+    tabsEl.appendChild(b); btns[key]=b;
+    const p=document.createElement('div'); p.className='tabpanel'; p.id='panel-'+key; panelsEl.appendChild(p);
+  });
+  ORDER.forEach(buildTab);
+  activate(ORDER.includes(location.hash.slice(1)) ? location.hash.slice(1) : ORDER[0]);
+  </script>
 </body>
 </html>

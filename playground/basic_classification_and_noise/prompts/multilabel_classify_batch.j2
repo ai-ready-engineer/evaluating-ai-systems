@@ -1,0 +1,18 @@
+You are a text classifier. Classify EACH numbered input below.
+
+Allowed labels: {{ labels | join(", ") }}.
+{% if multilabel %}Each input may have zero, one, or several labels.{% else %}Each input has exactly one label.{% endif %}
+Use ONLY labels from the allowed list — never invent a label.
+
+Examples (input → labels):
+{% for ex_text, ex_labels in examples %}
+INPUT: {{ ex_text }}
+LABELS: {{ ex_labels | join(", ") }}
+{% endfor %}
+Now classify these {{ texts | length }} inputs:
+{% for t in texts %}
+{{ loop.index0 }}. {{ t }}
+{% endfor %}
+
+Return ONLY a JSON array with exactly {{ texts | length }} elements, in order. Element i is
+an array of label strings for input i (an empty array {% if multilabel %}if no label applies{% else %}is not allowed — pick the single best label{% endif %}). No other text.
