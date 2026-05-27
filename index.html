@@ -15,13 +15,13 @@
     </div>
 
     <section>
-      <p>This course is for <em>everybody</em> who uses AI.</p>
-      <p>The Prerequisites are:</p>
+      <p>The course has no prerequisites except for:</p>
       <ul>
         <li>Curiosity</li>
         <li>Love for your products</li>
         <li>Passion for your customers</li>
       </ul>
+      <p>The course is "hands-on" but no coding is required: you will get to play with simple AI agents to <em>feel</em> what uncertainty looks like and how it affects a system.</p>
     </section>
 
     <section>
@@ -53,54 +53,6 @@
         </div>
       </details>
 
-      <h2 style="margin-top:2.5rem;">The sessions</h2>
-      <p>Six <strong>1-hour sessions</strong>, each tackling one source of uncertainty. Every session comes with <em>totally optional</em> hands-on labs and deep dives, for those who want to go further.</p>
-
-      <div class="modules-grid">
-        <div class="module-card">
-          <div class="number">L1</div>
-          <div class="title">"Eval" is now an Experiment</div>
-          <p class="description">An eval in ML and AI is an <em>experiment</em>, not a check. The binary classifier, sampling noise, and the first test set.</p>
-          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Sampling noise</p>
-          <a class="playground-link" href="../playground/accuracy_estimator.html">Open the Uncertainty calculator →</a>
-        </div>
-        <div class="module-card">
-          <div class="number">L2</div>
-          <div class="title">What we measure</div>
-          <p class="description">What <em>"78%, green"</em> actually claims. Proportion, probability, and belief — and the spread behind every point number.</p>
-          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Variability across customers, domains, and time</p>
-          <a class="playground-link" href="../playground/distribution_explorer.html">Open the Distribution explorer →</a>
-        </div>
-        <div class="module-card">
-          <div class="number">L3</div>
-          <div class="title">Beyond binary: multiple classes &amp; regression</div>
-          <p class="description">Multiclass and regression metrics, the 1-5 score — and why with many metrics, some look good by pure chance.</p>
-          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Noise around a mean &amp; multiple comparisons</p>
-          <a class="playground-link" href="../playground/multiple_hypothesis_testing.html">Open the Lucky-winner finder →</a>
-        </div>
-        <div class="module-card">
-          <div class="number">L4</div>
-          <div class="title">Overfitting &amp; validation datasets</div>
-          <p class="description">The score is optimistic when the system has already seen the test. Train, validation, test — and the sealed test set as the defense.</p>
-          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Overfitting</p>
-          <a class="playground-link" href="../playground/holdout_simulator.html">Open the Holdout simulator →</a>
-        </div>
-        <div class="module-card">
-          <div class="number">L5</div>
-          <div class="title">Measuring the wrong thing (bias)</div>
-          <p class="description">Bias — systematic error that more data will not fix. Sampling bias, aggregation traps, the wrong metric.</p>
-          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Bias</p>
-          <a class="playground-link" href="../playground/sampling_bias.html">Open the Bias auditor →</a>
-        </div>
-        <div class="module-card">
-          <div class="number">L6</div>
-          <div class="title">Doing evals well over time</div>
-          <p class="description">Drift, judge noise, and the compounding of every source from L1–L5. Designing an eval that survives the world moving.</p>
-          <p class="dimension"><strong>Uncertainty dimension unlocked:</strong> Drift &amp; compounding</p>
-          <a class="playground-link" href="../playground/judges_and_compounding.html">Open the Compounding visualizer →</a>
-        </div>
-      </div>
-
       <details class="topic" open>
         <summary><h2>What you will learn</h2></summary>
         <div class="details-content">
@@ -113,9 +65,279 @@
             <li>Spot the traps that make teams move fast in the wrong direction: bias, overfitting, noisy judges, drift, and too many metrics.</li>
             <li>Report results in a shared language: what works, what is uncertain, what the limitations are, and what decision the evidence supports.</li>
           </ul>
-          <p class="closing">The point is speed and quality at once. Better evals shorten the loop between idea and evidence, so teams improve faster without guessing. They also make frequent shipping safer: every release is backed by a measurement everyone can understand. As a company, this lets us recognize and reinforce rigorous eval practice — teams that reason clearly about uncertainty, report it honestly, and use it to make better product decisions.</p>
         </div>
       </details>
+
+      <details class="topic" open>
+        <summary><h2>What the course is NOT about</h2></summary>
+        <div class="details-content">
+          <ul>
+            <li>We are not training ML models — the focus is on evaluating AI agents or already-trained models.</li>
+            <li>We are not covering methods for monitoring, observability, and telemetry.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h2 style="margin-top:2.5rem;">The sessions</h2>
+      <p>Seven <strong>1-hour sessions</strong>, each tackling one source of uncertainty. Every session comes with <em>totally optional</em> hands-on labs and deep dives, for those who want to go further.</p>
+
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="number">L1</div>
+          <div class="title">"Eval" is now an Experiment</div>
+          <p class="description">From traditional software to ML to AI agents — an eval is an <em>experiment</em>, not a <em>check</em>.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>Why "progress" means different things in software 1.0 vs. ML vs. gen AI</li>
+              <li>An eval as an experiment that <em>estimates</em> a quantity, not a deterministic check</li>
+              <li>Metrics, test sets, the sealed test set</li>
+              <li>Class imbalance and test-set stratification — why a "95% accurate" classifier might just be predicting the majority class every time</li>
+              <li>Why a single number is an estimate, and how sample size shapes how much to trust it</li>
+              <li>Why "regression testing" doesn't transfer cleanly to ML — shown by example</li>
+              <li>A map of the recurring sources of uncertainty we'll meet across the course</li>
+              <li>Why eval in software and in AI are different concepts (but, alas, share the name) and what this implies</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Pick the right metric for your purpose</li>
+              <li>Pick the right baseline and tell whether a change is a real improvement, or noise</li>
+              <li>Build a test set you can trust — and know when you can't trust someone else's</li>
+              <li>Estimate the uncertainty around a result — give it as a range, not a point</li>
+              <li>Report on uncertainty in a manner that clarifies what we know and what we don't</li>
+              <li>Ask questions that uncover (but do not punish) uncertainty</li>
+              <li>Identify and avoid common errors</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Sampling noise</strong> — a score is one draw from a distribution. The same eval run again can land 5 points higher or lower. Sample size — and what's in the sample — set how much it wobbles.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Uncertainty calculator (<code>accuracy_estimator.html</code>) · <code>sampling_noise.html</code> · Data skew analysis (class imbalance &amp; test-set stratification)</p>
+            <a class="playground-link" href="../playground/accuracy_estimator.html">Open the Uncertainty calculator →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L2</div>
+          <div class="title">Assessing one "run" of an Agent · Part I</div>
+          <p class="description">How we programmatically assess whether an AI answer is correct — programmatic checks, judges, and numeric scores. Ground Truth, AI Judges, and Judges of Judges.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>Programmatic checks for the "easy" cases — exact match, format and schema checks, JSON validation</li>
+              <li>When there is no clean ground truth — reference-based metrics, and LLM-as-judge</li>
+              <li>Score types: binary (0/1), multiclass, ordinal (1–5), continuous</li>
+              <li><strong>Variance around a score</strong> — the same AI answer can be scored differently on re-run, even when the case has a clear answer</li>
+              <li>A first "judge of judges" — calibrating a judge against humans, sanity-checking the rubric</li>
+              <li>(Subjectivity and "the judge has opinions" is Part II, in L6)</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Choose a scoring approach that fits the task — programmatic, reference-based, or LLM-as-judge</li>
+              <li>Write a clear rubric an LLM-as-judge can apply consistently</li>
+              <li>Spot when variance is coming from the judge, not from the data</li>
+              <li>Calibrate a judge against human labels before trusting it</li>
+              <li>Pick the right score type (binary, multiclass, ordinal, continuous) for the output</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Variance around a score</strong> — the wobble in the score for a given case, even when the case has a clear answer. The judge — programmatic, LLM, or human — is an instrument with its own noise. Distinct from L1's sampling noise, which comes from picking different cases.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p><strong>Pick your Judge</strong> (<code>judge_calibrator.html</code>) — see how an AI judge can work, and the effect of minor judge changes on the final result.</p>
+            <a class="playground-link" href="../playground/judge_calibrator.html">Open Pick your Judge →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L3</div>
+          <div class="title">Proportions, Probabilities, Beliefs: What are we measuring?</div>
+          <p class="description">A gentle introduction to probability and uncertainty.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>Proportion vs. probability vs. belief — three different things one number gets used for</li>
+              <li>The mean, median, and variance — reading a spread, not just a point</li>
+              <li>Random variables — and experiments as estimation of random variables</li>
+              <li>Bias vs. variance</li>
+              <li>Variability across domains, and why a sample may not stand for real traffic</li>
+              <li>The language we will use for the rest of the course</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Say what claim a number is actually making — proportion, probability, or belief — and call out which one a teammate or vendor really meant</li>
+              <li>Quote a result as a range, not a point — give the spread, not just the mean</li>
+              <li>Tell when more data will fix your uncertainty problem and when it won't</li>
+              <li>Spot when a number is "right on average" but unreliable per-domain — and ask for the breakdown</li>
+              <li>Use a shared vocabulary so the same number means the same thing to everyone who sees it</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Variability across customers, domains, and time.</strong> Unlike sampling noise, this kind of spread does <em>not</em> shrink with more data — only better coverage does. The bias-vs-variance distinction lives here.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Bias - Variance - Noise explorator</p>
+            <a class="playground-link" href="../playground/distribution_explorer.html">Open the Bias - Variance - Noise explorator →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L4</div>
+          <div class="title">Closed-Book Overfitting: Why "regression testing" generates biased results</div>
+          <p class="description">Run an eval many times or watch many metrics and some will look good by pure chance. The sealed test set is the defense.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>"Regression testing" in the AI sense — why the same eval re-run shows different numbers</li>
+              <li>Multiple comparisons: with many metrics — and many re-tests — some will move by pure chance</li>
+              <li>The lucky-winner problem: best-of-N picked across many tries</li>
+              <li><strong>Validation datasets</strong> — the train / validation / test split as the structural defense</li>
+              <li>Sealed test set: touched only to report, never to tune</li>
+              <li>Simpson's paradox in comparisons — an aggregate disagreeing with every per-domain story</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Recognize a winner picked from too many tries — tell honest comparison from fishing</li>
+              <li>Decide which metrics matter up front, so the results land with weight</li>
+              <li>Set up a train / validation / test split that does its job</li>
+              <li>Keep a sealed test set — and notice when one is being touched during iteration</li>
+              <li>Spot Simpson's paradox in a comparison and ask for the per-domain breakdown</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>MHT — bias from multiple hypothesis testing.</strong> Track many metrics or re-run many times and one will jump by pure chance. The sealed test set is the structural defense; statistical corrections are the numerical one.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Lucky-winner finder (<code>multiple_hypothesis_testing.html</code>) · Holdout simulator</p>
+            <a class="playground-link" href="../playground/multiple_hypothesis_testing.html">Open the Lucky-winner finder →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L5</div>
+          <div class="title">Open-Book Overfitting: The Plague of Modern AI Evals</div>
+          <p class="description">Every AI team faces overfitting — to the prompt, to the benchmark, to the eval set. Spot it before it ships.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>Overfitting as the gap between the score you measured and behaviour in the wild</li>
+              <li>The three flavours of AI overfitting: <strong>model</strong> (memorized train / leaked test), <strong>prompt</strong> (tuned to the eval set), <strong>leaderboard</strong> (fishing — the MHT side, covered in L4)</li>
+              <li>Benchmark contamination — when the system has already seen the test</li>
+              <li>The structural defense (sealed test set, validation discipline) was set up in L4; here we focus on recognizing the symptom</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Spot a score inflated by tuning against its own benchmark</li>
+              <li>Tell model overfitting from prompt overfitting from leaderboard overfitting</li>
+              <li>Recognize benchmark contamination — when a "win" is really memorization</li>
+              <li>Report the validation-vs-test gap so the inflation is visible, not hidden</li>
+              <li>Resist the institutional pressure to "improve the eval number"</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Overfitting</strong> — the optimistic gap between the measured score and behaviour in the wild. Grows every time the system, the prompt, or the team is tuned against the eval. In modern AI it shows up everywhere — at the model, the prompt, and the leaderboard.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Overfitting visualizer · Holdout simulator (<code>holdout_simulator.html</code>)</p>
+            <a class="playground-link" href="../playground/holdout_simulator.html">Open the Holdout simulator →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L6</div>
+          <div class="title">Subjectivity and Noise in Judges and Ground Truth</div>
+          <p class="description">When there is no clean ground truth — when the "right answer" is contested, and the judge has its own opinions.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>When ground truth itself is contested — humans disagree on the right answer</li>
+              <li>Annotator / rater disagreement, and inter-rater agreement</li>
+              <li>LLM-as-judge has biases too: length bias, position bias, sycophancy, format preferences</li>
+              <li>Multiple raters and pooling judgments</li>
+              <li>Subjectivity is not bias to be "removed" — it's the reality of the task</li>
+              <li>A deeper "judge of judges" — auditing a judge for systematic errors</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Tell when "no ground truth" is the actual situation, not a temporary gap</li>
+              <li>Set up multiple raters and read inter-rater agreement</li>
+              <li>Spot common LLM-judge biases — length, position, sycophancy</li>
+              <li>Push back on a single judge's score for a subjective task</li>
+              <li>Decide whether to fix the judge or to live with — and report — the subjectivity</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Subjectivity &amp; judge errors.</strong> When the question has no single right answer, the score isn't just noisy — it's contested. Adding raters helps; pretending the judge is objective doesn't.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Judge auditor (<code>judge_audit.html</code>) · Inter-rater agreement viewer</p>
+            <a class="playground-link" href="../playground/judge_audit.html">Open the Judge auditor →</a>
+          </details>
+        </div>
+
+        <div class="module-card">
+          <div class="number">L7</div>
+          <div class="title">Measuring, Reporting, Managing, and Reducing Uncertainty</div>
+          <p class="description">The capstone — putting all sources of uncertainty together into one honest eval pipeline that survives the world moving.</p>
+          <details class="objectives">
+            <summary>Content</summary>
+            <ul>
+              <li>Uncertainties <strong>compound</strong> — every source from L1–L6 stacks; the real uncertainty in a number is their combination</li>
+              <li><strong>Measure</strong> — designing an eval that estimates uncertainty, not just a point score: ranges, intervals, per-domain breakdowns</li>
+              <li><strong>Report</strong> — what claim a number is making; the language for communicating ranges, methods, and caveats so a result can be challenged</li>
+              <li><strong>Manage</strong> — the eval-driven improvement loop; re-baselining as the model and the world move; deciding when uncertainty matters for a decision and when it does not</li>
+              <li><strong>Reduce</strong> — which sources shrink with more data, which need better design, which need better judges; the "uncertainty budget"</li>
+              <li>The full design → measure → report → manage → reduce loop, applied end-to-end</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Skills you unlock</summary>
+            <ul>
+              <li>Build an eval that produces a range, not a point — and report it as such</li>
+              <li>Estimate the <em>combined</em> uncertainty of an eval — not just the largest single source</li>
+              <li>Re-baseline an eval on a schedule, and after every model or world change</li>
+              <li>Decide which uncertainty sources matter most for a given decision, and which to ignore</li>
+              <li>Allocate effort to reducing the sources that actually block your roadmap</li>
+              <li>Report a result so any colleague — engineer, PM, exec — can act on it with the same confidence</li>
+            </ul>
+          </details>
+          <details class="objectives">
+            <summary>Uncertainty dimension mastered</summary>
+            <p><strong>Combined / total uncertainty.</strong> Every source from L1–L6 in play at once, plus drift over time. Not a new source, but the integrated picture — with practical guidance on which sources to measure, report, manage around, and spend effort reducing.</p>
+          </details>
+          <details class="objectives">
+            <summary>Tools and Playgrounds</summary>
+            <p>Compounding visualizer (<code>judges_and_compounding.html</code>) · Experiment-Report Evaluator (<code>experiment_report.html</code>)</p>
+            <a class="playground-link" href="../playground/experiment_report.html">Open the Experiment-Report Evaluator →</a>
+          </details>
+        </div>
+      </div>
+
     </section>
 
   </main>

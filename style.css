@@ -847,3 +847,12 @@ details.topic .details-content > :last-child { margin-bottom: 0; }
   color: var(--color-primary-dark);
   text-decoration: underline;
 }
+.module-card details.objectives p {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--color-text);
+}
+.module-card details.objectives .playground-link {
+  margin-top: 0.5rem;
+}
