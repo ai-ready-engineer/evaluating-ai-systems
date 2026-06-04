@@ -120,6 +120,9 @@
     .ci-wrap { margin-top:.8rem; }
     .ci-bar { width:100%; max-width:520px; height:auto; display:block; }
     .ci-cap { font-size:.82rem; color:var(--muted); margin:.3rem 0 0; }
+    .how-link { margin-top:1.4rem; }
+    .how-link a { color:var(--tfidf); font-weight:600; text-decoration:none; }
+    .how-link a:hover { text-decoration:underline; }
     .surf-know h4 { margin:0 0 .4rem; }
     .surf-intro { margin:.2rem 0 .6rem; color:var(--muted); font-size:1rem; }
     .surf-sample { display:flex; align-items:center; gap:.8rem; margin:.2rem 0 .1rem; flex-wrap:wrap; }
@@ -520,13 +523,13 @@
   }
 
   // ---------- Classifier stage ----------
-  // Gen-AI as a classifier: no training, no embedding — we just prompt a general model with the
+  // Gen-AI as a classifier: no training, no embedding — we just prompt one general model with the
   // task, the allowed classes, and a few labelled "few-shot" examples; it replies with a class.
   // Rendered statically from this dataset (no backend call).
   function llmPromptPanel(d){
     const labels=d.labels;
     const shots=d.items.slice(0,4).map(it=>[it.text, lab1(it)]);   // few-shot examples to inject
-    const tests=d.items.slice(4,8);                                // inputs + the answers returned
+    const tests=d.items.slice(8,12);                               // inputs + the answers returned
     const shotLines=shots.map(([t,l])=>`INPUT: ${t}\nCLASS: ${l}`).join('\n\n');
     const prompt=
 `You are a text classifier. Read the input and reply with EXACTLY ONE class.
@@ -540,11 +543,13 @@ Here are some labelled examples:
 Now classify this input. Reply with only the class name:
 INPUT: {{ the text to classify }}
 CLASS:`;
-    const answers=tests.map(it=>`INPUT: ${it.text}\nANSWER: ${lab1(it)}`).join('\n\n');
+    // real precomputed gen-AI predictions (not ground truth) — flag any that are wrong
+    const answers=tests.map(it=>{ const p=predOf(it,'llm'), ok=p===lab1(it);
+      return `INPUT: ${it.text}\nANSWER: ${p}${ok?'':`   (✗ wrong — true class: ${lab1(it)})`}`; }).join('\n\n');
     return `
       <div class="promptbox open">
         <h4>Using gen-AI as a classifier — the prompt</h4>
-        <p class="note">No model is trained and nothing is embedded into a feature space. We simply <b>ask</b> a general gen-AI model: here is the task, the allowed classes, and a few labelled (<b>few-shot</b>) examples. It replies with one class name. Examples below are drawn from this dataset.</p>
+        <p class="note">No model is trained and nothing is embedded into a feature space. We simply <b>ask</b> a general gen-AI model: here is the task, the allowed classes, and a few labelled (<b>few-shot</b>) examples. It replies with one class name. Examples are drawn from this dataset.</p>
         <div class="prompt-label">1 · The classification prompt</div>
         <pre class="prompt-pre">${esc(prompt)}</pre>
         <div class="prompt-label">2 · Few-shot examples we inject</div>
@@ -563,20 +568,9 @@ CLASS:`;
         <div class="row"><button id="trybtn">Classify with ${meta.btn}</button><span class="note" id="trynote"></span></div>
         <div id="tryout"></div>
       </div>`;
-    document.getElementById('stagepanel').innerHTML = `
-      <h3><span class="swatch" style="background:${meta.color}"></span>${meta.name}</h3>
-      <p class="stage-intro">${meta.desc}</p>
-      ${head}
-      <div class="controls">
-        <div><label>Class of interest</label>
-          <select id="focus">${st.labelsByFreq.map(l=>`<option value="${esc(l)}"${l===st.focus?' selected':''}>${esc(l)} (${st.freq[l]||0})</option>`).join('')}</select></div>
-        <div><label>Test-set size</label><input type="number" id="size" min="2" max="${d.n}" value="${st.size}"></div>
-        <button class="spin" id="spin">🎲 Spin the wheel</button>
-        <button class="spin secondary" id="spin20">Spin 20×</button>
-        <div class="sample-note" id="note"></div>
-      </div>
-      <div class="cols"><div id="card"></div>
-        <div class="cm-box"><h5><span class="swatch" style="background:${meta.color}"></span>${meta.kind} confusion matrix</h5><div id="cm"></div></div></div>
+    // The jaggedness scatter is a feature-space view — it belongs to the trained ML model only.
+    // Gen-AI is prompted (no embeddings computed here), so we omit the space representation.
+    const scatterBlock = clf==='llm' ? '' : `
       <div class="scatter" id="scatterbox">
         <div class="head">
           <div><h4>The jaggedness — where ${meta.btn} is right and wrong</h4>
@@ -591,7 +585,22 @@ CLASS:`;
         <svg id="scatter" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"></svg>
         <p class="cap" id="scatcap"></p>
         <div id="scatter-tip"></div>
+      </div>`;
+    document.getElementById('stagepanel').innerHTML = `
+      <h3><span class="swatch" style="background:${meta.color}"></span>${meta.name}</h3>
+      <p class="stage-intro">${meta.desc}</p>
+      ${head}
+      <div class="controls">
+        <div><label>Class of interest</label>
+          <select id="focus">${st.labelsByFreq.map(l=>`<option value="${esc(l)}"${l===st.focus?' selected':''}>${esc(l)} (${st.freq[l]||0})</option>`).join('')}</select></div>
+        <div><label>Test-set size</label><input type="number" id="size" min="2" max="${d.n}" value="${st.size}"></div>
+        <button class="spin" id="spin">🎲 Spin the wheel</button>
+        <button class="spin secondary" id="spin20">Spin 20×</button>
+        <div class="sample-note" id="note"></div>
       </div>
+      <div class="cols"><div id="card"></div>
+        <div class="cm-box"><h5><span class="swatch" style="background:${meta.color}"></span>${meta.kind} confusion matrix</h5><div id="cm"></div></div></div>
+      ${scatterBlock}
       <div class="clsmetrics-box">
         <h4>Sample metrics — accuracy and per-class precision / recall</h4>
         <p class="note" style="margin:.1rem 0 .2rem">From this one draw. Spin again (above) and watch every number move — that wobble is sampling noise.</p>
@@ -604,8 +613,9 @@ CLASS:`;
     document.getElementById('size').onchange = e=>{ syncSize(e.target.value); renderClf(); };
     document.getElementById('spin').onclick = spin;
     document.getElementById('spin20').onclick = ()=>{ for(let i=0;i<20;i++){ recordHistory(sampleIndices(d.n,st.size)); } spin(); };
-    document.getElementById('viewseg').querySelectorAll('button').forEach(b=> b.onclick=()=>{
-      st.view=b.dataset.v; document.getElementById('viewseg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    const viewseg=document.getElementById('viewseg');   // absent on the gen-AI tab (no scatter)
+    if(viewseg) viewseg.querySelectorAll('button').forEach(b=> b.onclick=()=>{
+      st.view=b.dataset.v; viewseg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
       renderScatter(); });
     const sc=document.getElementById('scatter'), tip=document.getElementById('scatter-tip');
     if(sc && tip){
@@ -784,12 +794,12 @@ CLASS:`;
           claimsEl.innerHTML = `
             <h3 class="surfclaims-title">What this one sample lets us claim</h3>
             <p class="surfclaims-assume">Under a few important assumptions: samples are distributed as production data, we use our test sample only once, and sample labels are correct.</p>
-            <p>Reading the uncertainty off this single draw of <b>${sn}</b> labelled points (a Beta posterior — the maths is on the <b>Uncertainty (Beta)</b> tab):</p>
+            <p>Reading the uncertainty off this single draw of <b>${sn}</b> labelled points (the <b>Reporting</b> tab turns any correct/wrong count into this):</p>
             <ul>
               <li>With <b>95%</b> probability, the accuracy we'd see in production is between <b>${pct(lo)}</b> and <b>${pct(hi)}</b>.</li>
               <li>I'm <b>${pgt(0.70)}</b> confident it is above <b>70%</b>, <b>${pgt(0.80)}</b> that it is above <b>80%</b>, <b>${pgt(0.90)}</b> above <b>90%</b>, and <b>${pgt(0.95)}</b> above <b>95%</b>.</li>
             </ul>
-            <div class="ci-wrap">${ci}<p class="ci-cap"><b>Black line</b> = this sample's accuracy · <b style="color:${meta.color}">shaded band</b> = the 95% credible interval, on a 0–100% scale.</p></div>`;
+            <div class="ci-wrap">${ci}<p class="ci-cap"><b>Black line</b> = this sample's accuracy · <b style="color:${meta.color}">shaded band</b> = the 95% range, on a 0–100% scale.</p></div>`;
         } else claimsEl.innerHTML='';
       }
     }
@@ -828,57 +838,6 @@ CLASS:`;
       `<span class="note">The axes are t-SNE coordinates — no units, no origin, no feature meaning; only how close two points are matters. Points fill a normalized box centred near the middle (~0.5), not 0.</span>`;
   }
 
-  function renderStrip(){
-    const st=state[curDS], meta=CLF[st.clf]; const svg=document.getElementById('strip'); if(!svg) return;
-    const X=v=>v*100;
-    const ticks=[0,0.25,0.5,0.75,1].map(v=>`<line x1="${X(v)}" y1="2" x2="${X(v)}" y2="14" stroke="#e5e7eb" stroke-width="0.3"/><text x="${X(v)}" y="17.5" font-size="2.4" fill="#9ca3af" text-anchor="middle">${v}</text>`).join('');
-    const dots=st.history.map((h,i)=>{ const age=1-(st.history.length-1-i)/Math.max(1,st.history.length); const op=0.25+0.75*age;
-      return `<circle cx="${X(h)}" cy="8" r="1.1" fill="${meta.color}" opacity="${op}"/>`; }).join('');
-    svg.innerHTML = ticks + dots;
-  }
-
-  function renderBeta(){
-    const st=state[curDS], d=st.d, meta=CLF[st.clf]; const sample=st.sample.map(i=>d.items[i]);
-    const X=+document.getElementById('xinp').value;
-    const svg=document.getElementById('beta'); const W=320,H=170,padL=6,padR=6,padB=22,padT=8;
-    const m=classMetrics(sample, st.clf, st.focus, d.labels);
-    const a=m.correct+1, b=(m.n-m.correct)+1;
-    const s={a,b,n:m.n,k:m.correct,lo:betaQuantile(0.025,a,b),hi:betaQuantile(0.975,a,b),pgt:1-betai(a,b,X)};
-    let xlo=s.lo, xhi=s.hi; const pad=(xhi-xlo)*0.6+0.02; xlo=Math.max(0,xlo-pad); xhi=Math.min(1,xhi+pad);
-    const sx=v=>padL+(v-xlo)/(xhi-xlo)*(W-padL-padR);
-    let ymax=0; const N=160; for(let i=0;i<=N;i++){ ymax=Math.max(ymax,betaPdf(xlo+(xhi-xlo)*i/N,a,b)); }
-    const sy=v=>H-padB-(v/ymax)*(H-padB-padT);
-    let g='';
-    for(let i=0;i<=4;i++){ const v=xlo+(xhi-xlo)*i/4; g+=`<line x1="${sx(v)}" y1="${H-padB}" x2="${sx(v)}" y2="${H-padB+3}" stroke="#9ca3af"/><text x="${sx(v)}" y="${H-padB+13}" font-size="9" fill="#6b7280" text-anchor="middle">${(v*100).toFixed(0)}%</text>`; }
-    g+=`<line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#9ca3af"/>`;
-    if(X>=xlo&&X<=xhi) g+=`<line x1="${sx(X)}" y1="${padT}" x2="${sx(X)}" y2="${H-padB}" stroke="#111" stroke-dasharray="3 2"/><text x="${sx(X)}" y="${padT+2}" font-size="8" fill="#111" text-anchor="middle">X=${X}</text>`;
-    let path='',area='';
-    for(let i=0;i<=N;i++){ const x=xlo+(xhi-xlo)*i/N; path+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(betaPdf(x,a,b)).toFixed(1)+' '; }
-    for(let i=0;i<=N;i++){ const x=s.lo+(s.hi-s.lo)*i/N; area+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(betaPdf(x,a,b)).toFixed(1)+' '; }
-    area=`M${sx(s.lo).toFixed(1)} ${H-padB} `+area.replace(/^M/,'L')+`L${sx(s.hi).toFixed(1)} ${H-padB} Z`;
-    g+=`<path d="${area}" fill="${meta.color}" opacity="0.12"/><path d="${path}" fill="none" stroke="${meta.color}" stroke-width="1.6"/>`;
-    svg.innerHTML=g;
-    document.getElementById('readout').innerHTML = `
-      <div><span class="swatch" style="background:${meta.color}"></span> <b>${meta.short}</b> · ${s.k}/${s.n} correct</div>
-      <div>95% credible interval: <span class="ci" style="color:${meta.color}">${pct(s.lo)} – ${pct(s.hi)}</span></div>
-      <div>P(accuracy &gt; ${(X*100).toFixed(0)}%) = <b>${(s.pgt*100).toFixed(1)}%</b></div>`;
-  }
-
-  function renderClfBrowse(){
-    const st=state[curDS], d=st.d, clf=st.clf, meta=CLF[clf];
-    let rows = st.bsrc==='draw' ? st.sample.map(i=>d.items[i]) : d.items.slice();
-    if(st.bcls!=='__all__') rows=rows.filter(it=>lab1(it)===st.bcls);
-    if(st.bshow==='errors') rows=rows.filter(it=>!correctOf(it,clf));
-    const total=rows.length;
-    if(st.bsrc==='pool') rows=shuffleSeeded(rows, st.bseed);
-    rows=rows.slice(0, st.bn);
-    const cell=it=>{ const p=predOf(it,clf), ok=p===lab1(it); return `<span class="${ok?'ok':'bad'}">${ok?'✓':'✗'} ${esc(p)}</span>`; };
-    document.getElementById('blist').innerHTML =
-      `<table><tr><th>text</th><th>true</th><th>${meta.short}</th></tr>`+
-      rows.map(it=>`<tr><td>${esc(it.text)}</td><td class="truth">${esc(lab1(it))}</td><td>${cell(it)}</td></tr>`).join('')+`</table>`;
-    document.getElementById('bcnt').textContent = `showing ${rows.length} of ${total} matching rows (pool of ${d.n})`;
-  }
-
   // ---------- panel dispatch + nav ----------
   function renderPanel(){
     const panel=document.getElementById('stagepanel');
@@ -893,28 +852,33 @@ CLASS:`;
 
   function renderBetaTab(){
     document.getElementById('stagepanel').innerHTML = `
-      <h3>Reporting uncertainty — the Beta distribution</h3>
-      <p>A standalone calculator. Type in how many your eval got <strong>correct</strong> and <strong>wrong</strong> — from this lab or anywhere — and read off the 95% credible interval and P(accuracy &gt; 80, 90, 95, 99%). Treat it as a tool; the mechanics are a later deep dive.</p>
+      <h3>From a score to what you can report</h3>
+      <p>The simple version: tell me how many your eval got <strong>correct</strong> and <strong>wrong</strong> — I'll tell you what to report and what it means. No statistics needed.</p>
       <div class="beta" style="margin-top:.6rem">
         <div class="controls" style="margin:.2rem 0 1rem">
           <div><label>Correct</label><input type="number" id="calc-k" min="0" value="78"></div>
           <div><label>Wrong</label><input type="number" id="calc-w" min="0" value="22"></div>
-          <div><label>Custom threshold (0–1)</label><input type="number" id="calc-x" min="0" max="1" step="0.01" value="0.85"></div>
+          <div><label>Bar to clear (0–1)</label><input type="number" id="calc-x" min="0" max="1" step="0.01" value="0.85"></div>
         </div>
-        <div class="beta-grid"><div><svg id="calc-svg" viewBox="0 0 320 170"></svg></div><div class="readout" id="calc-readout"></div></div>
+        <div class="calc-result" id="calc-readout"></div>
+        <div class="ci-wrap" style="margin-top:.8rem">
+          <svg id="calc-svg" class="ci-bar" viewBox="0 0 400 70" preserveAspectRatio="xMidYMid meet"></svg>
+          <p class="ci-cap"><b>Black line</b> = your measured accuracy · <b style="color:#2563eb">shaded band</b> = the range the true accuracy is 95% likely to fall in.</p>
+        </div>
         <div class="takeaway" id="calc-report" style="margin-top:1rem"></div>
       </div>
-      <h4 style="margin-top:1.4rem">How to report a score</h4>
+      <h4 style="margin-top:1.4rem">What to report</h4>
       <ol>
-        <li><strong>Always quote n.</strong> “78%” means something different on 30 cases than on 3,000.</li>
-        <li><strong>Give the 95% credible interval, not a point</strong> — e.g. <em>78% (95% CI 69–85%, n=100)</em>. It narrows as n grows; that shrinkage is the value of a bigger test set.</li>
-        <li><strong>If a decision rides on a bar, quote P(accuracy &gt; X)</strong> — the honest answer is a probability, not yes/no.</li>
-      </ol>`;
+        <li><strong>Always say how many you tested.</strong> “78%” means something different on 30 cases than on 3,000.</li>
+        <li><strong>Give a range, not a single number</strong> — e.g. <em>78% (likely 69–85%, n=100)</em>. The range shrinks as you test more; that shrinkage is the value of a bigger test set.</li>
+        <li><strong>If a decision rides on a bar (“is it above 90%?”), report the chance of clearing it</strong> — the honest answer is a probability, not a yes/no.</li>
+      </ol>
+      <p class="how-link"><a href="../accuracy_estimator/" target="_blank" rel="noopener">Curious how these numbers are computed? Open the statistical version →</a></p>`;
     ['calc-k','calc-w','calc-x'].forEach(id=>{ const el=document.getElementById(id); if(el) el.oninput=renderCalc; });
     renderCalc();
   }
 
-  const STAGES=[['explore','Explore the data'],['ml','ML classifier'],['sampling','Sampling'],['genai','Gen-AI classifier'],['imbalance','Class imbalance'],['beta','Uncertainty (Beta)']];
+  const STAGES=[['explore','Explore the data'],['ml','ML classifier'],['sampling','Sampling'],['genai','Gen-AI classifier'],['imbalance','Class imbalance'],['beta','Reporting']];
   const dsbar=document.getElementById('dsbar'), stageTabs=document.getElementById('stagetabs');
   const dsBtns={}, stageBtns={};
   ORDER.forEach(key=>{ const b=document.createElement('button');
@@ -940,7 +904,9 @@ CLASS:`;
   window.addEventListener('hashchange', applyHash);
   if(location.hash) applyHash(); else location.hash = curDS+'/'+curStage;
 
-  // ---------- standalone Beta calculator ----------
+  // ---------- standalone reporting calculator (simple version; the statistics live in the
+  // accuracy_estimator playground). Maths uses a Beta posterior under the hood, but the UI
+  // never says so — it just turns correct/wrong into a range and chances. ----------
   function renderCalc(){
     const kEl=document.getElementById('calc-k'), wEl=document.getElementById('calc-w'), xEl=document.getElementById('calc-x');
     if(!kEl) return;
@@ -949,34 +915,28 @@ CLASS:`;
     let n=k+w; if(n<1) n=1;
     const X=Math.max(0, Math.min(1, +xEl.value||0));
     const a=k+1, b=w+1;
-    const mean=k/n, lo=betaQuantile(0.025,a,b), hi=betaQuantile(0.975,a,b), pgt=1-betai(a,b,X);
+    const mean=k/n, lo=betaQuantile(0.025,a,b), hi=betaQuantile(0.975,a,b);
     const pAbove=t=>1-betai(a,b,t);
-    const svg=document.getElementById('calc-svg'); const W=320,H=170,padL=6,padR=6,padB=22,padT=8;
-    let xlo=lo, xhi=hi; const pad=(xhi-xlo)*0.6+0.02; xlo=Math.max(0,xlo-pad); xhi=Math.min(1,xhi+pad);
-    const sx=v=>padL+(v-xlo)/(xhi-xlo)*(W-padL-padR);
-    let ymax=0; const N=200; for(let i=0;i<=N;i++){ ymax=Math.max(ymax,betaPdf(xlo+(xhi-xlo)*i/N,a,b)); }
-    const sy=v=>H-padB-(v/ymax)*(H-padB-padT);
-    let s='';
-    for(let i=0;i<=4;i++){ const v=xlo+(xhi-xlo)*i/4; s+=`<line x1="${sx(v)}" y1="${H-padB}" x2="${sx(v)}" y2="${H-padB+3}" stroke="#9ca3af"/><text x="${sx(v)}" y="${H-padB+13}" font-size="9" fill="#6b7280" text-anchor="middle">${(v*100).toFixed(0)}%</text>`; }
-    s+=`<line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#9ca3af"/>`;
-    let area='';
-    for(let i=0;i<=N;i++){ const x=lo+(hi-lo)*i/N; area+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(betaPdf(x,a,b)).toFixed(1)+' '; }
-    area=`M${sx(lo).toFixed(1)} ${H-padB} `+area.replace(/^M/,'L')+`L${sx(hi).toFixed(1)} ${H-padB} Z`;
-    s+=`<path d="${area}" fill="#2563eb" opacity="0.12"/>`;
-    let path='';
-    for(let i=0;i<=N;i++){ const x=xlo+(xhi-xlo)*i/N; path+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(betaPdf(x,a,b)).toFixed(1)+' '; }
-    s+=`<path d="${path}" fill="none" stroke="#2563eb" stroke-width="1.6"/>`;
-    if(X>=xlo&&X<=xhi) s+=`<line x1="${sx(X)}" y1="${padT}" x2="${sx(X)}" y2="${H-padB}" stroke="#111" stroke-dasharray="3 2"/><text x="${sx(X)}" y="${padT+2}" font-size="8" fill="#111" text-anchor="middle">X=${X}</text>`;
-    svg.innerHTML=s;
+    // simple 0–100% interval bar: shaded 95% range + a line at the measured accuracy
+    const C='#2563eb', bx=v=>(30+Math.max(0,Math.min(1,v))*340).toFixed(1);
+    let s=`<line x1="${bx(0)}" y1="34" x2="${bx(1)}" y2="34" stroke="#cbd5e1" stroke-width="2"/>`+
+      `<rect x="${bx(lo)}" y="24" width="${(bx(hi)-bx(lo)).toFixed(1)}" height="20" rx="3" fill="${C}" opacity="0.22"/>`+
+      `<line x1="${bx(lo)}" y1="20" x2="${bx(lo)}" y2="48" stroke="${C}" stroke-width="2"/>`+
+      `<line x1="${bx(hi)}" y1="20" x2="${bx(hi)}" y2="48" stroke="${C}" stroke-width="2"/>`+
+      `<text x="${bx(lo)}" y="15" font-size="12" fill="${C}" text-anchor="middle" font-weight="700">${pct(lo)}</text>`+
+      `<text x="${bx(hi)}" y="15" font-size="12" fill="${C}" text-anchor="middle" font-weight="700">${pct(hi)}</text>`+
+      `<line x1="${bx(mean)}" y1="18" x2="${bx(mean)}" y2="50" stroke="#111" stroke-width="2.5"/>`+
+      [0,0.25,0.5,0.75,1].map(t=>`<line x1="${bx(t)}" y1="34" x2="${bx(t)}" y2="39" stroke="#9ca3af" stroke-width="1"/><text x="${bx(t)}" y="64" font-size="11" fill="#6b7280" text-anchor="middle">${t*100}%</text>`).join('');
+    document.getElementById('calc-svg').innerHTML=s;
     const fixed=[0.80,0.90,0.95,0.99];
-    const pRows=fixed.map(t=>`<tr><td>P(accuracy &gt; ${(t*100).toFixed(0)}%)</td><td class="num"><b>${(pAbove(t)*100).toFixed(1)}%</b></td></tr>`).join('')
-      + `<tr class="sel"><td>P(accuracy &gt; ${(X*100).toFixed(0)}%) — custom</td><td class="num"><b>${(pgt*100).toFixed(1)}%</b></td></tr>`;
+    const pRows=fixed.map(t=>`<tr><td>Chance the true accuracy is above ${(t*100).toFixed(0)}%</td><td class="num"><b>${(pAbove(t)*100).toFixed(1)}%</b></td></tr>`).join('')
+      + `<tr class="sel"><td>Chance it clears your bar (${(X*100).toFixed(0)}%)</td><td class="num"><b>${(pAbove(X)*100).toFixed(1)}%</b></td></tr>`;
     document.getElementById('calc-readout').innerHTML = `
-      <div style="margin-bottom:.5rem"><b>${k} correct / ${w} wrong</b> (n=${n}) → point estimate <b>${pct(mean)}</b></div>
-      <div style="margin-bottom:.6rem">95% credible interval: <span class="ci" style="color:#2563eb">${pct(lo)} – ${pct(hi)}</span></div>
+      <div style="margin-bottom:.5rem"><b>${k} correct / ${w} wrong</b> (tested ${n}) → measured accuracy <b>${pct(mean)}</b></div>
+      <div style="margin-bottom:.6rem">We can be 95% sure the true accuracy is between <b style="color:#2563eb">${pct(lo)}</b> and <b style="color:#2563eb">${pct(hi)}</b>.</div>
       <table class="pcm">${pRows}</table>`;
     document.getElementById('calc-report').innerHTML =
-      `Report it as: <strong>${pct(mean)} (95% CI ${pct(lo)}–${pct(hi)}, n=${n})</strong>.`;
+      `Report it as: <strong>${pct(mean)} (95% range ${pct(lo)}–${pct(hi)}, n=${n})</strong>.`;
   }
   </script>
 </body>
