@@ -1,0 +1,5211 @@
+[
+ {
+  "n": 1,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.67,
+    "t": 1.43,
+    "w": 6.53,
+    "h": 1.53,
+    "paras": [
+     [
+      {
+       "t": "Experimentation and evaluation in the age of AI",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 1.12,
+    "t": 3.19,
+    "w": 5.25,
+    "h": 1.44
+   }
+  ]
+ },
+ {
+  "n": 2,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.5,
+    "t": 4.08,
+    "w": 4.35,
+    "h": 0.98,
+    "paras": [
+     [
+      {
+       "t": "How “reliable” is this information?",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "What does it tell us?",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 6.09,
+    "t": 2.27,
+    "w": 1.3,
+    "h": 0.98,
+    "paras": [
+     [
+      {
+       "t": "89%",
+       "sz": 32.73,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.69,
+    "t": 1.86,
+    "w": 2.49,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "Technical accuracy",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 5.92,
+    "t": 3.87,
+    "w": 1.78,
+    "h": 1.19,
+    "img": "s02_1.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.92,
+    "t": 0.14,
+    "w": 5.0,
+    "h": 0.78,
+    "paras": [
+     [
+      {
+       "t": " ",
+       "sz": 14.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "You've been in this room….",
+       "sz": 24.0,
+       "b": true
+      },
+      {
+       "t": " ",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.5,
+    "t": 1.76,
+    "w": 5.0,
+    "h": 1.78,
+    "paras": [
+     [
+      {
+       "t": "A slide goes up.",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Metric is green.",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "The demo looked great. ",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Leadership is ready to ship. ",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": " ",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 3,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 0.04
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.53,
+    "t": 0.43,
+    "w": 1.25,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "“",
+       "sz": 72.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.74,
+    "t": 0.56,
+    "w": 8.6,
+    "h": 1.88,
+    "paras": [
+     [
+      {
+       "t": "“Those who are able to represent what they do not know make better decisions.”",
+       "sz": 28.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.94,
+    "t": 2.11,
+    "w": 1.25,
+    "h": 0.03
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.07,
+    "t": 2.29,
+    "w": 7.0,
+    "h": 0.62,
+    "paras": [
+     [
+      {
+       "t": "Chris Piech  - CS109 class at Stanford",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.29,
+    "t": 1.62,
+    "w": 1.25,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "”",
+       "sz": 72.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 4,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 0.04
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.53,
+    "t": 0.43,
+    "w": 1.25,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "“",
+       "sz": 72.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.74,
+    "t": 0.56,
+    "w": 8.6,
+    "h": 1.88,
+    "paras": [
+     [
+      {
+       "t": "Any measurement, without knowledge of the uncertainty, is meaningless.",
+       "sz": 28.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.94,
+    "t": 2.11,
+    "w": 1.25,
+    "h": 0.03
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.07,
+    "t": 2.29,
+    "w": 7.0,
+    "h": 0.62,
+    "paras": [
+     [
+      {
+       "t": "Walter Lewin- ",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "Intro",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": " Physics class at MIT",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.29,
+    "t": 1.62,
+    "w": 1.25,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "”",
+       "sz": 72.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.74,
+    "t": 3.95,
+    "w": 8.01,
+    "h": 1.01,
+    "paras": [
+     [
+      {
+       "t": "“I want you to hear this at 3am tonight, ",
+       "sz": 18.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "when you wake up”",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 5,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 0.04
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.53,
+    "t": 0.43,
+    "w": 1.25,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "“",
+       "sz": 72.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.74,
+    "t": 0.56,
+    "w": 8.6,
+    "h": 1.88,
+    "paras": [
+     [
+      {
+       "t": "Any measurement, without knowledge of the uncertainty, is meaningless.",
+       "sz": 28.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.94,
+    "t": 2.11,
+    "w": 1.25,
+    "h": 0.03
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.07,
+    "t": 2.29,
+    "w": 7.0,
+    "h": 0.62,
+    "paras": [
+     [
+      {
+       "t": "Walter Lewin- ",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "Intro",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": " Physics class at MIT",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.29,
+    "t": 1.62,
+    "w": 1.25,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "”",
+       "sz": 72.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 2.19,
+    "t": 1.96,
+    "w": 5.47,
+    "h": 2.8,
+    "group": true
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 2.19,
+    "t": 4.36,
+    "w": 5.0,
+    "h": 0.4
+   },
+   {
+    "type": "LINE (9)",
+    "l": 7.19,
+    "t": 1.96,
+    "w": 0.47,
+    "h": 1.81
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.67,
+    "t": 3.87,
+    "w": 5.43,
+    "h": 1.11,
+    "paras": [
+     [
+      {
+       "t": "Meaningless – not ",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "”",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "an ok engineering approximation, ",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "because we crawl-walk-run",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "”",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 6,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.85,
+    "t": 0.28,
+    "w": 8.81,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "But this course is not (just) about error bars…",
+       "sz": 32.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.45,
+    "t": 4.17,
+    "w": 9.43,
+    "h": 1.17,
+    "paras": [
+     [
+      {
+       "t": "It’s about understanding how to increase our ",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "knowledge",
+       "sz": 24.0,
+       "b": true
+      },
+      {
+       "t": " about our ",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "system",
+       "sz": 24.0,
+       "b": true
+      },
+      {
+       "t": " and about our ",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "uncertainty",
+       "sz": 24.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 0.85,
+    "t": 1.41,
+    "w": 5.19,
+    "h": 1.98,
+    "img": "s06_2.png"
+   }
+  ]
+ },
+ {
+  "n": 7,
+  "shapes": [
+   {
+    "type": "PICTURE (13)",
+    "l": 3.93,
+    "t": 1.61,
+    "w": 6.07,
+    "h": 3.42,
+    "img": "s07_3.wmf"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.46,
+    "t": 0.2,
+    "w": 5.25,
+    "h": 0.61,
+    "paras": [
+     [
+      {
+       "t": "Andrej ",
+       "sz": 15.0,
+       "b": false
+      },
+      {
+       "t": "Karpathy",
+       "sz": 15.0,
+       "b": false
+      },
+      {
+       "t": ", ",
+       "sz": 15.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "At ",
+       "sz": 15.0,
+       "b": false
+      },
+      {
+       "t": "AI Startup School",
+       "sz": 15.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "LINE (9)",
+    "l": 2.48,
+    "t": 3.32,
+    "w": 3.0,
+    "h": 0.11
+   }
+  ]
+ },
+ {
+  "n": 8,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.37,
+    "t": 1.31,
+    "w": 8.61,
+    "h": 3.71,
+    "paras": [
+     [
+      {
+       "t": "In this course we try to master the science of experiment design and obtain estimates we can rely on",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "But first…. why do we need anything new on top of what we already excel at: eval of large, complex, evolving code bases?",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 9,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.59,
+    "t": 3.61,
+    "w": 6.38,
+    "h": 1.12,
+    "paras": [
+     [
+      {
+       "t": "Why ai-powered systems are “different”",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.59,
+    "t": 2.38,
+    "w": 6.38,
+    "h": 1.23
+   }
+  ]
+ },
+ {
+  "n": 10,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 0.04
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.42,
+    "t": 0.19,
+    "w": 9.17,
+    "h": 0.52,
+    "paras": [
+     [
+      {
+       "t": "Three Roles for AI in Software",
+       "sz": 27.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.42,
+    "t": 1.04,
+    "w": 9.17,
+    "h": 1.35
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.42,
+    "t": 1.04,
+    "w": 0.05,
+    "h": 1.35
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.62,
+    "t": 1.19,
+    "w": 0.42,
+    "h": 0.33,
+    "paras": [
+     [
+      {
+       "t": "01",
+       "sz": 13.5,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.62,
+    "t": 1.54,
+    "w": 2.6,
+    "h": 0.38,
+    "paras": [
+     [
+      {
+       "t": "AI as a Component",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.4,
+    "t": 1.17,
+    "w": 0.02,
+    "h": 1.1
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.54,
+    "t": 1.17,
+    "w": 5.9,
+    "h": 1.1,
+    "paras": [
+     [
+      {
+       "t": "AI is embedded inside your solution",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 0.42,
+    "t": 2.5,
+    "w": 9.17,
+    "h": 1.35,
+    "group": true
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 3.33,
+    "w": 12.22,
+    "h": 1.81
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 3.33,
+    "w": 0.07,
+    "h": 1.81
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 3.53,
+    "w": 0.56,
+    "h": 0.44,
+    "paras": [
+     [
+      {
+       "t": "02",
+       "sz": 14.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 4.0,
+    "w": 3.47,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "AI as a Coding Agent",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.53,
+    "t": 3.5,
+    "w": 0.02,
+    "h": 1.47
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.72,
+    "t": 3.5,
+    "w": 7.86,
+    "h": 1.47,
+    "paras": [
+     [
+      {
+       "t": "AI helps you write, review, and refactor code. It accelerates development but the output is traditional software.",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 0.42,
+    "t": 3.96,
+    "w": 9.17,
+    "h": 1.35,
+    "group": true
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 5.28,
+    "w": 12.22,
+    "h": 1.81
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 5.28,
+    "w": 0.07,
+    "h": 1.81
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 5.47,
+    "w": 0.56,
+    "h": 0.44,
+    "paras": [
+     [
+      {
+       "t": "03",
+       "sz": 14.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 5.94,
+    "w": 3.47,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "AI as a User",
+       "sz": 24.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.53,
+    "t": 5.44,
+    "w": 0.02,
+    "h": 1.47
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.72,
+    "t": 5.44,
+    "w": 7.86,
+    "h": 1.47,
+    "paras": [
+     [
+      {
+       "t": "AI consumes and produces information through your system. It calls your APIs, reads your docs, and acts on your data. ",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 11,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 0.04
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.42,
+    "t": 0.19,
+    "w": 9.17,
+    "h": 0.52,
+    "paras": [
+     [
+      {
+       "t": "Three Roles for AI in Software",
+       "sz": 27.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.42,
+    "t": 1.04,
+    "w": 9.17,
+    "h": 1.35
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.42,
+    "t": 1.04,
+    "w": 0.05,
+    "h": 1.35
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.62,
+    "t": 1.19,
+    "w": 0.42,
+    "h": 0.33,
+    "paras": [
+     [
+      {
+       "t": "01",
+       "sz": 13.5,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.62,
+    "t": 1.54,
+    "w": 2.6,
+    "h": 0.38,
+    "paras": [
+     [
+      {
+       "t": "AI as a ",
+       "sz": null,
+       "b": true
+      },
+      {
+       "t": "Component",
+       "sz": 24.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.4,
+    "t": 1.17,
+    "w": 0.02,
+    "h": 1.1
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.54,
+    "t": 1.17,
+    "w": 5.9,
+    "h": 1.1,
+    "paras": [
+     [
+      {
+       "t": "< == Focus of this class",
+       "sz": 24.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 0.42,
+    "t": 2.5,
+    "w": 9.17,
+    "h": 1.35,
+    "group": true
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 3.33,
+    "w": 12.22,
+    "h": 1.81
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 3.33,
+    "w": 0.07,
+    "h": 1.81
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 3.53,
+    "w": 0.56,
+    "h": 0.44,
+    "paras": [
+     [
+      {
+       "t": "02",
+       "sz": 13.5,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 4.0,
+    "w": 3.47,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "AI as a Coding Agent",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.53,
+    "t": 3.5,
+    "w": 0.02,
+    "h": 1.47
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 0.42,
+    "t": 3.96,
+    "w": 9.17,
+    "h": 1.35,
+    "group": true
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 5.28,
+    "w": 12.22,
+    "h": 1.81
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 5.28,
+    "w": 0.07,
+    "h": 1.81
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 5.47,
+    "w": 0.56,
+    "h": 0.44,
+    "paras": [
+     [
+      {
+       "t": "03",
+       "sz": 13.5,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.83,
+    "t": 5.94,
+    "w": 3.47,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "AI as a User",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.53,
+    "t": 5.44,
+    "w": 0.02,
+    "h": 1.47
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.77,
+    "t": 2.68,
+    "w": 5.9,
+    "h": 1.1,
+    "paras": [
+     [
+      {
+       "t": "Not in scope – but makes eval even more important: ",
+       "sz": null,
+       "b": true
+      }
+     ],
+     [
+      {
+       "t": "we iterate more rapidly – if we have good eval signals",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.77,
+    "t": 4.06,
+    "w": 5.9,
+    "h": 1.1,
+    "paras": [
+     [
+      {
+       "t": "Not in scope ",
+       "sz": null,
+       "b": true
+      },
+      {
+       "t": "– but makes eval even more important:",
+       "sz": null,
+       "b": true
+      }
+     ],
+     [
+      {
+       "t": "We can test and collect feedback from our “end users”",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 12,
+  "shapes": [
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.4,
+    "t": 0.15,
+    "w": 9.17,
+    "h": 0.44,
+    "paras": [
+     [
+      {
+       "t": "When Do You Need AI as a Component in your System?",
+       "sz": 24.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 0.94,
+    "w": 9.02,
+    "h": 1.46
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.42,
+    "t": 0.94,
+    "w": 0.05,
+    "h": 1.46
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.58,
+    "t": 1.06,
+    "w": 2.5,
+    "h": 0.38,
+    "paras": [
+     [
+      {
+       "t": "No AI ",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.58,
+    "t": 1.42,
+    "w": 2.5,
+    "h": 0.29,
+    "paras": [
+     [
+      {
+       "t": "Fully specifiable",
+       "sz": 16.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.58,
+    "t": 1.75,
+    "w": 2.5,
+    "h": 0.54
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.37,
+    "t": 1.02,
+    "w": 6.21,
+    "h": 1.29,
+    "paras": [
+     [
+      {
+       "t": "  Behavior is specified, reviewed, and approved",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  Outputs are deterministic and testable",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  You want guarantees. ",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  ",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": "eg",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": ": Billing logic, form validation,  access control",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.12,
+    "t": 1.04,
+    "w": 0.02,
+    "h": 1.25
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 0.42,
+    "t": 2.48,
+    "w": 9.17,
+    "h": 1.46,
+    "group": true
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 3.31,
+    "w": 12.22,
+    "h": 1.94
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 3.31,
+    "w": 0.07,
+    "h": 1.94
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.78,
+    "t": 3.47,
+    "w": 3.33,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "AI as a Convenience",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.78,
+    "t": 3.94,
+    "w": 3.47,
+    "h": 0.72,
+    "paras": [
+     [
+      {
+       "t": "Easier in English. ",
+       "sz": 16.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "A NEW CATEGORY!!",
+       "sz": 16.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.78,
+    "t": 4.39,
+    "w": 3.33,
+    "h": 0.72
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.49,
+    "t": 3.42,
+    "w": 8.28,
+    "h": 1.72,
+    "paras": [
+     [
+      {
+       "t": "  The behavior can be fully written down as rules",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  But a prompt is simpler than writing code",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  English becomes the implementation language",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  Outputs are known — you can still test correctness",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.17,
+    "t": 3.44,
+    "w": 0.02,
+    "h": 1.67
+   },
+   {
+    "type": "GROUP (6)",
+    "l": 0.42,
+    "t": 4.02,
+    "w": 9.17,
+    "h": 1.46,
+    "group": true
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 5.36,
+    "w": 12.22,
+    "h": 1.94
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.56,
+    "t": 5.36,
+    "w": 0.07,
+    "h": 1.94
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.78,
+    "t": 5.53,
+    "w": 3.33,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "AI as a System Component",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.77,
+    "t": 6.38,
+    "w": 3.33,
+    "h": 0.39,
+    "paras": [
+     [
+      {
+       "t": "Hard to specify. ",
+       "sz": 16.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.78,
+    "t": 6.44,
+    "w": 3.33,
+    "h": 0.72
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.49,
+    "t": 5.47,
+    "w": 8.28,
+    "h": 1.72,
+    "paras": [
+     [
+      {
+       "t": "  Behavior is too complex or contextual for rules",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  Hard to write conventional tests — no expected output",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "  The value comes precisely from what’s hard to specify",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": " ",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": "E.g.: summarization, entity extraction, open-ended Q&A",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.17,
+    "t": 5.5,
+    "w": 0.02,
+    "h": 1.67
+   }
+  ]
+ },
+ {
+  "n": 13,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.1,
+    "t": 0.45,
+    "w": 7.92,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "“Software is changing, again”",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": " – Andrej ",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "Karpathy",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 0.23,
+    "t": 1.06,
+    "w": 9.11,
+    "h": 4.57,
+    "img": "s13_4.wmf"
+   }
+  ]
+ },
+ {
+  "n": 14,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.63,
+    "t": 4.17,
+    "w": 5.34,
+    "h": 0.61,
+    "paras": [
+     [
+      {
+       "t": "Evaluating Software 1.0",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.74,
+    "t": 0.5,
+    "w": 5.23,
+    "h": 3.38
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.74,
+    "t": 4.8,
+    "w": 5.23,
+    "h": 0.26
+   }
+  ]
+ },
+ {
+  "n": 15,
+  "shapes": [
+   {
+    "type": "TABLE (19)",
+    "l": 0.34,
+    "t": 0.2,
+    "w": 9.45,
+    "h": 5.35,
+    "table": [
+     [
+      "",
+      "Software 1.0",
+      "Software 2.0",
+      "Software 3.0"
+     ],
+     [
+      "What constitutes progress? \nWhat’s an Iteration (sprint)",
+      "Features + bug fixes",
+      "Improve model quality",
+      "?"
+     ],
+     [
+      "How do we define and measure  quality?",
+      "Feature importance\nClosed defects",
+      "Science +\ncustomer value \nBut, somewhat arbitrary",
+      "?"
+     ],
+     [
+      "Who (which personas / profile) achieves and measures progress?",
+      "Dev eng \nEarlier, QA eng",
+      "ML Eng / \ndata scientists",
+      "?"
+     ],
+     [
+      "Which engineering processes and practices do teams follow? ",
+      "Established practices. \nReview / apprv\nClear RACI",
+      "Varied practices.\nLess control\nClear RACI",
+      "?"
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 6.14,
+    "t": 1.01,
+    "w": 1.8,
+    "h": 0.57,
+    "paras": [
+     [
+      {
+       "t": "Improve AI agent quality + latency",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.72,
+    "t": 3.36,
+    "w": 3.69,
+    "h": 0.61,
+    "paras": [
+     [
+      {
+       "t": "Dev: SW ",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": "eng",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": ", PMs, process owners",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.74,
+    "t": 3.66,
+    "w": 3.69,
+    "h": 0.34,
+    "paras": [
+     [
+      {
+       "t": "Eval: wide range of people and roles",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.73,
+    "t": 4.53,
+    "w": 4.03,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Practices for dev, review, code ",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": "mgmt",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": ", docs, … still to emerge",
+       "sz": 14.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Unclear RACI",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.76,
+    "t": 2.13,
+    "w": 3.57,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Scorecard. ",
+       "sz": 14.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Varying degree of maturity in measurement",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.15,
+    "t": 0.8,
+    "w": 5.61,
+    "h": 4.74
+   }
+  ]
+ },
+ {
+  "n": 16,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.38,
+    "t": 0.3,
+    "w": 4.11,
+    "h": 0.55,
+    "paras": [
+     [
+      {
+       "t": "Host health anomaly score",
+       "sz": null,
+       "b": true
+      },
+      {
+       "t": " in monitoring",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.62,
+    "t": 0.7,
+    "w": 5.0,
+    "h": 4.66,
+    "img": "s16_5.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.38,
+    "t": 1.86,
+    "w": 4.11,
+    "h": 2.36,
+    "paras": [
+     [
+      {
+       "t": "Measured of distance from origin in ",
+       "sz": 20.0,
+       "b": false
+      },
+      {
+       "t": "the space",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "cpu",
+       "sz": 20.0,
+       "b": false
+      },
+      {
+       "t": " deviation / ",
+       "sz": 20.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "memory deviation ",
+       "sz": 20.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": " ",
+       "sz": 20.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 17,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.38,
+    "t": 0.3,
+    "w": 8.1,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "host health / anomaly score",
+       "sz": null,
+       "b": true
+      },
+      {
+       "t": " in monitoring (observability, AIOps).",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.38,
+    "t": 1.68,
+    "w": 9.48,
+    "h": 2.26,
+    "paras": [
+     [
+      {
+       "t": "def",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " deviation_score(cpu_dev: float, mem_dev: float) -> float:",
+       "sz": 16.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "if",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "not",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "0.0",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " <= cpu_dev <= ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "1.0",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": ":",
+       "sz": 16.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "\traise",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " ValueError(",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "f",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "\"cpu_dev must be in [0, 1], got ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "{cpu_dev}",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "\"",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": ")",
+       "sz": 16.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "if",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "not",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "0.0",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " <= mem_dev <= ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "1.0",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": ":",
+       "sz": 16.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "\traise",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " ValueError(",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "f",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "\"mem_dev must be in [0, 1], got ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "{mem_dev}",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "\"",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": ")",
+       "sz": 16.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "return",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " (cpu_dev**",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "2",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": " + mem_dev**",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "2",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": ") ** ",
+       "sz": 16.0,
+       "b": false
+      },
+      {
+       "t": "0.5 # square root",
+       "sz": 16.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 18,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.71,
+    "t": 0.12,
+    "w": 5.18,
+    "h": 5.38,
+    "img": "s18_6.png"
+   }
+  ]
+ },
+ {
+  "n": 19,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.57,
+    "t": 0.13,
+    "w": 5.33,
+    "h": 5.37,
+    "img": "s19_7.png"
+   }
+  ]
+ },
+ {
+  "n": 20,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 3.62,
+    "t": 0.04,
+    "w": 6.28,
+    "h": 5.42,
+    "img": "s20_8.png"
+   }
+  ]
+ },
+ {
+  "n": 21,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.63,
+    "t": 3.44,
+    "w": 6.04,
+    "h": 1.16,
+    "paras": [
+     [
+      {
+       "t": "Evaluating Software 2.0: ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "The Example of Machine Learning Classifiers",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.74,
+    "t": 4.8,
+    "w": 5.23,
+    "h": 0.26
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.74,
+    "t": 0.5,
+    "w": 5.23,
+    "h": 3.38
+   }
+  ]
+ },
+ {
+  "n": 22,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.46,
+    "t": 0.31,
+    "w": 8.1,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Working examples and lab /1:",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": "Ticket routing to groups",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.44,
+    "t": 1.48,
+    "w": 7.39,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "A ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "classification",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": " task: classify into ONE of these 5 classes:",
+       "sz": 18.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "account,  order,  refund,  payment, delivery",
+       "sz": null,
+       "b": true
+      },
+      {
+       "t": ".",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.46,
+    "t": 4.68,
+    "w": 4.76,
+    "h": 0.78,
+    "paras": [
+     [
+      {
+       "t": "Source: ",
+       "sz": 12.0,
+       "b": false
+      },
+      {
+       "t": "Bitext Customer Support",
+       "sz": 12.0,
+       "b": true
+      },
+      {
+       "t": " dataset on ",
+       "sz": 12.0,
+       "b": null
+      },
+      {
+       "t": "HuggingFace",
+       "sz": 12.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.46,
+    "t": 3.53,
+    "w": 3.34,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "how do I get a refund for my last payment?",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.38,
+    "t": 3.44,
+    "w": 1.91,
+    "h": 0.9,
+    "paras": [
+     [
+      {
+       "t": "ML-based Category",
+       "sz": 18.0,
+       "b": false
+      }
+     ],
+     [
+      {
+       "t": "Classifier",
+       "sz": 18.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "LINE (9)",
+    "l": 3.8,
+    "t": 3.89,
+    "w": 0.57,
+    "h": 0.0
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 6.99,
+    "t": 3.7,
+    "w": 1.45,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "Refund",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "LINE (9)",
+    "l": 6.28,
+    "t": 3.89,
+    "w": 0.71,
+    "h": 0.01
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 1.46,
+    "t": 3.14,
+    "w": 0.06,
+    "h": 1.08
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 1.46,
+    "t": 2.86,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "input",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 7.17,
+    "t": 2.86,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "output",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.64,
+    "t": 2.86,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "function",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 23,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Working examples and lab / 2: ",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": "Sentiment classification",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.55,
+    "t": 1.41,
+    "w": 4.26,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "A binary ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "classification",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": " task:",
+       "sz": 18.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Positive or Negative",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.46,
+    "t": 4.68,
+    "w": 4.15,
+    "h": 0.78,
+    "paras": [
+     [
+      {
+       "t": "Source: ",
+       "sz": 12.0,
+       "b": false
+      },
+      {
+       "t": "Rotten tomatoes",
+       "sz": 12.0,
+       "b": true
+      },
+      {
+       "t": " dataset ",
+       "sz": 12.0,
+       "b": null
+      },
+      {
+       "t": "on ",
+       "sz": 12.0,
+       "b": null
+      },
+      {
+       "t": "HuggingFace",
+       "sz": 12.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.37,
+    "t": 3.62,
+    "w": 3.34,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "the plot is predictable and the jokes fall flat",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.29,
+    "t": 3.52,
+    "w": 1.91,
+    "h": 0.9,
+    "paras": [
+     [
+      {
+       "t": "ML-based Sentiment Classifier",
+       "sz": 18.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "LINE (9)",
+    "l": 3.72,
+    "t": 3.97,
+    "w": 0.57,
+    "h": 0.0
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 6.91,
+    "t": 3.78,
+    "w": 1.45,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "NEGATIVE",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "LINE (9)",
+    "l": 6.19,
+    "t": 3.97,
+    "w": 0.71,
+    "h": 0.01
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 1.37,
+    "t": 2.91,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "input",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 7.08,
+    "t": 2.91,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "output",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.54,
+    "t": 2.91,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "function",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 24,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Why do we need ML or Gen AI/LLM?",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 1.34,
+    "w": 8.1,
+    "h": 2.21,
+    "paras": [
+     [
+      {
+       "t": "In the context of classification, we often use ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "Machine Learning",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": " ML to denote the process of learning a function (model) from data, by example",
+       "sz": 18.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "(as opposed to having us humans write the function)",
+       "sz": 16.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.14,
+    "t": 4.42,
+    "w": 1.89,
+    "h": 0.51,
+    "paras": [
+     [
+      {
+       "t": "f ( p₁, p₂, …, pₙ )",
+       "sz": 20.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.25,
+    "t": 4.12,
+    "w": 2.86,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "“How do I reset my password?”",
+       "sz": 13.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.73,
+    "t": 4.11,
+    "w": 1.72,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "pred:  Account",
+       "sz": 14.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.25,
+    "t": 4.49,
+    "w": 2.18,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "“I want my money back for this order”",
+       "sz": 13.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.73,
+    "t": 4.5,
+    "w": 1.72,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "pred:  Delivery",
+       "sz": 14.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.25,
+    "t": 5.15,
+    "w": 2.86,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "“Where is my package?”",
+       "sz": 13.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.73,
+    "t": 5.14,
+    "w": 1.72,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "pred:  Account",
+       "sz": 14.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.25,
+    "t": 3.47,
+    "w": 1.77,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "Input dataset",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.64,
+    "t": 3.35,
+    "w": 1.63,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "Function output",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 7.61,
+    "t": 3.36,
+    "w": 2.08,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "Ground truth",
+       "sz": null,
+       "b": true
+      },
+      {
+       "t": "  output",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 7.79,
+    "t": 4.09,
+    "w": 1.72,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "Account",
+       "sz": 14.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 7.79,
+    "t": 4.49,
+    "w": 1.72,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "Refund",
+       "sz": 14.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 7.79,
+    "t": 5.15,
+    "w": 1.72,
+    "h": 0.31,
+    "paras": [
+     [
+      {
+       "t": "Delivery",
+       "sz": 14.0,
+       "b": false
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 3.44,
+    "t": 3.34,
+    "w": 1.63,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "Learned Function",
+       "sz": null,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 3.29,
+    "t": 5.03,
+    "w": 0.51,
+    "h": 0.51,
+    "img": "s24_9.png"
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.27,
+    "t": 5.03,
+    "w": 0.51,
+    "h": 0.51,
+    "img": "s24_10.png"
+   }
+  ]
+ },
+ {
+  "n": 25,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.9,
+    "t": 4.66,
+    "w": 5.7,
+    "h": 0.46,
+    "paras": [
+     [
+      {
+       "t": "To the playground!",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.9,
+    "t": 0.5,
+    "w": 6.69,
+    "h": 3.31
+   }
+  ]
+ },
+ {
+  "n": 26,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "[Flow shown in the playground]",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 1.81,
+    "w": 8.1,
+    "h": 2.21,
+    "paras": [
+     [
+      {
+       "t": "Browse a dataset, explore the data",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "\t\tObserve how distributed the labels are. ",
+       "sz": 14.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "See how an ML model behaves: try it out yourself",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Show that ML treats inputs as points in a hyperspace ",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "\t\t(see where your input went)",
+       "sz": 16.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Observe which metrics we choose",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Show that in general we do not see the space. We see a sample",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 27,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.9,
+    "t": 4.66,
+    "w": 6.15,
+    "h": 0.46,
+    "paras": [
+     [
+      {
+       "t": "Understanding, Estimating and reporting on ",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": "Sampling Noise ",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.9,
+    "t": 0.5,
+    "w": 5.7,
+    "h": 3.38
+   }
+  ]
+ },
+ {
+  "n": 28,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.29,
+    "t": 2.25,
+    "w": 3.48,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "We wish we knew the model behavior on the entire space, for every possible input",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.38,
+    "t": 0.0,
+    "w": 5.62,
+    "h": 5.62,
+    "img": "s28_11.png"
+   }
+  ]
+ },
+ {
+  "n": 29,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.29,
+    "t": 2.25,
+    "w": 4.13,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "But we don’t.",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "We have “true” classes only for a ",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "sample",
+       "sz": 24.0,
+       "b": true
+      },
+      {
+       "t": " of the input",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.56,
+    "t": 0.0,
+    "w": 5.62,
+    "h": 5.62,
+    "img": "s29_12.png"
+   }
+  ]
+ },
+ {
+  "n": 30,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.83,
+    "t": 2.65,
+    "w": 0.33,
+    "h": 0.33
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 0.55,
+    "t": 1.02,
+    "w": 8.5,
+    "h": 4.11,
+    "img": "s30_13.png"
+   }
+  ]
+ },
+ {
+  "n": 31,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.29,
+    "t": 2.25,
+    "w": 4.59,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "So, when we get an accuracy measure, what do we really know about our system?",
+       "sz": 24.0,
+       "b": null
+      },
+      {
+       "t": "Are we willing to stand behind this number and vouch for it?",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.88,
+    "t": 0.63,
+    "w": 4.83,
+    "h": 3.49,
+    "img": "s31_14.png"
+   }
+  ]
+ },
+ {
+  "n": 32,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 0.28,
+    "w": 8.1,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "First, two big assumptions ",
+       "sz": null,
+       "b": null
+      },
+      {
+       "t": "(we will remove them later)",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.55,
+    "t": 1.81,
+    "w": 9.16,
+    "h": 2.73,
+    "paras": [
+     [
+      {
+       "t": "your data sample ",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "resembles",
+       "sz": 20.0,
+       "b": null
+      },
+      {
+       "t": "* the kind of data you will find in production",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "You have never used this sample to eval your model M before",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "The sample data is labeled correctly",
+       "sz": 20.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "These assumptions are rarely true – if they are not true, your uncertainty grows, your confidence on the reliability of results goes down",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 1.41,
+    "t": 5.02,
+    "w": 8.52,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "* We will define what “resembles” mean formally later in the course",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 33,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.29,
+    "t": 0.24,
+    "w": 4.59,
+    "h": 2.25,
+    "paras": [
+     [
+      {
+       "t": "Under these assumptions, what we can say in this example is:",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 5.44,
+    "t": 0.3,
+    "w": 3.29,
+    "h": 1.64,
+    "img": "s33_15.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.29,
+    "t": 2.03,
+    "w": 8.91,
+    "h": 1.01,
+    "paras": [
+     [
+      {
+       "t": "The accuracy we'd see in production is above 70% ",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "(“almost certainly” here means ~88% certain)",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 3.86,
+    "t": 3.43,
+    "w": 5.8,
+    "h": 1.11,
+    "img": "s33_16.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 4.26,
+    "t": 4.84,
+    "w": 5.0,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "This is where the actual accuracy is likely to be (this is 95% of the “probability mass” resides)",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "LINE (9)",
+    "l": 7.53,
+    "t": 4.27,
+    "w": 0.26,
+    "h": 0.53
+   }
+  ]
+ },
+ {
+  "n": 34,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.26,
+    "t": 1.69,
+    "w": 4.59,
+    "h": 2.25,
+    "paras": [
+     [
+      {
+       "t": "Given a new problem",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 6.03,
+    "t": 0.3,
+    "w": 3.29,
+    "h": 1.64,
+    "img": "s34_17.png"
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 5.87,
+    "t": 3.41,
+    "w": 3.13,
+    "h": 1.07,
+    "img": "s34_18.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.26,
+    "t": 2.32,
+    "w": 5.77,
+    "h": 1.31,
+    "paras": [
+     [
+      {
+       "t": "1. How do we estimate this sampling uncertainty?",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "2. How do we reduce it",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "3. How to report on it",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 35,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.24,
+    "t": 0.41,
+    "w": 4.59,
+    "h": 2.25,
+    "paras": [
+     [
+      {
+       "t": "Given a new problem",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.46,
+    "t": 2.13,
+    "w": 3.13,
+    "h": 1.07,
+    "img": "s35_19.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.24,
+    "t": 1.05,
+    "w": 6.58,
+    "h": 1.31,
+    "paras": [
+     [
+      {
+       "t": "1. ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "How do we estimate this sampling uncertainty?",
+       "sz": 18.0,
+       "b": true
+      },
+      {
+       "t": "2. How do we reduce it",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "3. How to report on it",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 2.5,
+    "t": 3.88,
+    "w": 5.0,
+    "h": 0.71,
+    "paras": [
+     [
+      {
+       "t": "Use ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "this calculator",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": " ",
+       "sz": 18.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "(we learn later about how that works)",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 36,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.24,
+    "t": 0.41,
+    "w": 4.59,
+    "h": 2.25,
+    "paras": [
+     [
+      {
+       "t": "Given a new problem",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 4.46,
+    "t": 2.13,
+    "w": 3.13,
+    "h": 1.07,
+    "img": "s36_20.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.24,
+    "t": 1.05,
+    "w": 6.58,
+    "h": 1.31,
+    "paras": [
+     [
+      {
+       "t": "1. How do we estimate this sampling uncertainty?",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "2. ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "How do we reduce it?",
+       "sz": 18.0,
+       "b": true
+      },
+      {
+       "t": "3. How to report on it",
+       "sz": 18.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.49,
+    "t": 3.88,
+    "w": 9.19,
+    "h": 1.51,
+    "paras": [
+     [
+      {
+       "t": "Larger samples reduce uncertainty",
+       "sz": 18.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Higher accuracies also reduce uncertainty",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Again: Use ",
+       "sz": 16.0,
+       "b": null
+      },
+      {
+       "t": "this calculator",
+       "sz": 16.0,
+       "b": null
+      },
+      {
+       "t": " and see these examples to understand why and how the same sample size can produce different “uncertainty” windows depending on model accuracy ",
+       "sz": 16.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "(we learn later about how that works)",
+       "sz": 16.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 37,
+  "shapes": [
+   {
+    "type": "PLACEHOLDER (14)",
+    "l": 0.24,
+    "t": 0.41,
+    "w": 4.59,
+    "h": 2.25,
+    "paras": [
+     [
+      {
+       "t": "Given a new problem",
+       "sz": 24.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 6.38,
+    "t": 1.3,
+    "w": 3.13,
+    "h": 1.07,
+    "img": "s37_21.png"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.24,
+    "t": 1.05,
+    "w": 6.58,
+    "h": 1.31,
+    "paras": [
+     [
+      {
+       "t": "1. How do we estimate this sampling uncertainty?",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "2. How do we reduce it?",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "3. ",
+       "sz": 18.0,
+       "b": null
+      },
+      {
+       "t": "How to report on it?",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.07,
+    "t": 3.88,
+    "w": 9.53,
+    "h": 1.92,
+    "paras": [
+     [
+      {
+       "t": "Never just the number",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Depending on the audience:",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "The interval in which you are 90 or 95% confident the accuracy will be in, or",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "How sure we are that accuracy > X%, or",
+       "sz": null,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "The bare numbers",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 4.53,
+    "t": 2.31,
+    "w": 5.06,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Any measurement, without knowledge of the uncertainty, is meaningless.",
+       "sz": 20.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 38,
+  "shapes": [
+   {
+    "type": "TABLE (19)",
+    "l": 0.34,
+    "t": 0.2,
+    "w": 9.45,
+    "h": 5.35,
+    "table": [
+     [
+      "",
+      "Software 1.0",
+      "Software 2.0",
+      "Software 3.0"
+     ],
+     [
+      "What constitutes progress? \nWhat’s an Iteration (sprint)",
+      "Features + bug fixes",
+      "Improve model quality",
+      "?"
+     ],
+     [
+      "How do we define and measure  quality?",
+      "Feature importance\nClosed defects",
+      "Science +\ncustomer value \nBut, somewhat arbitrary",
+      "?"
+     ],
+     [
+      "Who (which personas / profile) achieves and measures progress?",
+      "Dev eng \nQA eng",
+      "ML Eng / \ndata scientists",
+      "?"
+     ],
+     [
+      "Which engineering processes and practices do teams follow? ",
+      "Established practices. \nReview / apprv\nClear RACI",
+      "Varied practices.\nLess control\nClear RACI",
+      "?"
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 6.14,
+    "t": 1.01,
+    "w": 1.8,
+    "h": 0.57,
+    "paras": [
+     [
+      {
+       "t": "Improve AI agent quality + latency",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.72,
+    "t": 3.36,
+    "w": 3.69,
+    "h": 0.61,
+    "paras": [
+     [
+      {
+       "t": "Dev: SW ",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": "eng",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": ", PMs, process owners",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.74,
+    "t": 3.66,
+    "w": 3.69,
+    "h": 0.34,
+    "paras": [
+     [
+      {
+       "t": "Eval: wide range of people and roles",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.73,
+    "t": 4.53,
+    "w": 4.03,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Practices for dev, review, code ",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": "mgmt",
+       "sz": 14.0,
+       "b": null
+      },
+      {
+       "t": ", docs, … still to emerge",
+       "sz": 14.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Unclear RACI",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 5.76,
+    "t": 2.13,
+    "w": 3.57,
+    "h": 0.85,
+    "paras": [
+     [
+      {
+       "t": "Scorecard. ",
+       "sz": 14.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "Varying degree of maturity in measurement",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.72,
+    "t": 0.8,
+    "w": 4.04,
+    "h": 4.74
+   }
+  ]
+ },
+ {
+  "n": 39,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 0.35,
+    "w": 8.4,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "What You Will Learn",
+       "sz": 36.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.69,
+    "t": 1.53,
+    "w": 0.5,
+    "h": 0.5
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.69,
+    "t": 1.53,
+    "w": 0.5,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "01",
+       "sz": 13.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.29,
+    "t": 1.58,
+    "w": 3.22,
+    "h": 0.58,
+    "paras": [
+     [
+      {
+       "t": "Read any AI number as an estimate",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.69,
+    "t": 2.85,
+    "w": 0.5,
+    "h": 0.5
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.69,
+    "t": 2.85,
+    "w": 0.5,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "02",
+       "sz": 13.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.29,
+    "t": 2.9,
+    "w": 4.17,
+    "h": 0.58,
+    "paras": [
+     [
+      {
+       "t": "Build a test set you can trust",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.69,
+    "t": 4.17,
+    "w": 0.5,
+    "h": 0.5
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.69,
+    "t": 4.17,
+    "w": 0.5,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "03",
+       "sz": 13.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.29,
+    "t": 4.22,
+    "w": 4.17,
+    "h": 0.58,
+    "paras": [
+     [
+      {
+       "t": "Tell a real improvement from noise",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.49,
+    "t": 1.53,
+    "w": 0.5,
+    "h": 0.5
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.49,
+    "t": 1.53,
+    "w": 0.5,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "04",
+       "sz": 13.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 6.08,
+    "t": 1.58,
+    "w": 3.75,
+    "h": 0.58,
+    "paras": [
+     [
+      {
+       "t": "Report uncertainty honestly",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.49,
+    "t": 2.85,
+    "w": 0.5,
+    "h": 0.5
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.49,
+    "t": 2.85,
+    "w": 0.5,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "05",
+       "sz": 13.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 6.08,
+    "t": 2.9,
+    "w": 3.75,
+    "h": 0.58,
+    "paras": [
+     [
+      {
+       "t": "Separate signal from hype",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.49,
+    "t": 4.17,
+    "w": 0.5,
+    "h": 0.5
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.49,
+    "t": 4.17,
+    "w": 0.5,
+    "h": 0.5,
+    "paras": [
+     [
+      {
+       "t": "06",
+       "sz": 13.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 6.08,
+    "t": 4.22,
+    "w": 3.75,
+    "h": 0.58,
+    "paras": [
+     [
+      {
+       "t": "Ask the question that exposes a weak eval",
+       "sz": 18.0,
+       "b": true
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 40,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 0.4,
+    "w": 8.4,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "Course Philosophy",
+       "sz": 36.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 1.4,
+    "w": 8.4,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 1.4,
+    "w": 0.08,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.2,
+    "t": 1.5,
+    "w": 7.7,
+    "h": 0.6,
+    "paras": [
+     [
+      {
+       "t": "Hands-on. Feel it, don’t just hear it.",
+       "sz": 15.0,
+       "b": true
+      }
+     ],
+     [
+      {
+       "t": "Every lesson has an interactive playground — no install, no code.",
+       "sz": 12.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 2.4,
+    "w": 8.4,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 2.4,
+    "w": 0.08,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.2,
+    "t": 2.5,
+    "w": 7.7,
+    "h": 0.6,
+    "paras": [
+     [
+      {
+       "t": "Become hard to fool",
+       "sz": 15.0,
+       "b": true
+      }
+     ],
+     [
+      {
+       "t": "The aim isn’t to learn statistics — it’s calibrated judgment about AI evidence.",
+       "sz": 12.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 3.4,
+    "w": 8.4,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 3.4,
+    "w": 0.08,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.2,
+    "t": 3.5,
+    "w": 7.7,
+    "h": 0.6,
+    "paras": [
+     [
+      {
+       "t": "Evaluation before optimization",
+       "sz": 15.0,
+       "b": true
+      }
+     ],
+     [
+      {
+       "t": "You can't improve what you can't measure.",
+       "sz": 12.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 4.4,
+    "w": 8.4,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 4.4,
+    "w": 0.08,
+    "h": 0.8
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 1.2,
+    "t": 4.65,
+    "w": 7.7,
+    "h": 0.45,
+    "paras": [
+     [
+      {
+       "t": "Understand, report, and reduce uncertainty",
+       "sz": 15.0,
+       "b": true
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 41,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 0.35,
+    "w": 8.4,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "Course Structure",
+       "sz": 36.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.8,
+    "t": 1.0,
+    "w": 8.4,
+    "h": 0.4,
+    "paras": [
+     [
+      {
+       "t": "8 lessons · one source of uncertainty each · understand · report · reduce",
+       "sz": 14.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.5,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 3.2
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.5,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 0.06
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.65,
+    "t": 1.9,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Part 1",
+       "sz": 11.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.65,
+    "t": 2.25,
+    "w": 1.85,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "Foundations",
+       "sz": 15.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.65,
+    "t": 3.0,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Lessons 1–3",
+       "sz": 10.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.65,
+    "t": 3.4,
+    "w": 1.85,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "What “eval” is; assessing one run;",
+       "sz": 11.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "proportions, probabilities, beliefs",
+       "sz": 11.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 2.85,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 3.2
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 2.85,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 0.06
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.0,
+    "t": 1.9,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Part 2",
+       "sz": 11.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.0,
+    "t": 2.25,
+    "w": 1.85,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "Overfitting & Judges",
+       "sz": 15.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.0,
+    "t": 3.0,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Lessons 4–6",
+       "sz": 10.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 3.0,
+    "t": 3.4,
+    "w": 1.85,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Why re-running biases results;",
+       "sz": 11.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "subjective judges, noisy truth",
+       "sz": 11.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.2,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 3.2
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.2,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 0.06
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.35,
+    "t": 1.9,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Part 3",
+       "sz": 11.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.35,
+    "t": 2.25,
+    "w": 1.85,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "Compounding",
+       "sz": 15.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.35,
+    "t": 3.0,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Lesson 7",
+       "sz": 10.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 5.35,
+    "t": 3.4,
+    "w": 1.85,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Drift and extra uncertainties —",
+       "sz": 11.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "and why they stack up",
+       "sz": 11.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.55,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 3.2
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.55,
+    "t": 1.7,
+    "w": 2.15,
+    "h": 0.06
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.7,
+    "t": 1.9,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Part 4",
+       "sz": 11.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.7,
+    "t": 2.25,
+    "w": 1.85,
+    "h": 0.7,
+    "paras": [
+     [
+      {
+       "t": "Capstone",
+       "sz": 15.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.7,
+    "t": 3.0,
+    "w": 1.85,
+    "h": 0.3,
+    "paras": [
+     [
+      {
+       "t": "Lesson 8",
+       "sz": 10.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 7.7,
+    "t": 3.4,
+    "w": 1.85,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Design a reliable experiment,",
+       "sz": 11.0,
+       "b": null
+      }
+     ],
+     [
+      {
+       "t": "end to end: question → decision",
+       "sz": 11.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 42,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 5.57,
+    "w": 10.0,
+    "h": 0.06
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.56,
+    "t": 1.67,
+    "w": 8.89,
+    "h": 1.11,
+    "paras": [
+     [
+      {
+       "t": "Let’s Measure.",
+       "sz": 52.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.56,
+    "t": 2.85,
+    "w": 8.89,
+    "h": 0.42,
+    "paras": [
+     [
+      {
+       "t": "Don’t take the number at face value. Understand it, report it, reduce it.",
+       "sz": null,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.56,
+    "t": 3.89,
+    "w": 8.89,
+    "h": 0.33,
+    "paras": [
+     [
+      {
+       "t": "Fabio Casati",
+       "sz": 14.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.56,
+    "t": 4.25,
+    "w": 8.89,
+    "h": 0.28,
+    "paras": [
+     [
+      {
+       "t": "fabio.casati@unitn.it",
+       "sz": 12.0,
+       "b": null
+      }
+     ]
+    ]
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.56,
+    "t": 4.56,
+    "w": 8.89,
+    "h": 0.25,
+    "paras": [
+     [
+      {
+       "t": "linkedin.com/in/sphoebs  ·  x.com/sphoebs",
+       "sz": 11.0,
+       "b": null
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 43,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Pick a metric — and read it per class",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 3.78,
+    "t": 1.55,
+    "w": 2.45,
+    "h": 2.5,
+    "img": "ERR \"no relationship with key 'rId2'\""
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.2,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Five categories, two classifiers, one 5×5 confusion matrix. The diagonal is what's right; zoom into any class for its precision and recall.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 44,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "One number hides a per-class story",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 2.5,
+    "t": 1.55,
+    "w": 5.0,
+    "h": 2.5,
+    "img": "ERR \"no relationship with key 'rId2'\""
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.2,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Overall accuracy looks fine — but per class it is uneven. Always look under the headline.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 45,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "The jaggedness is real",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 2.84,
+    "t": 1.55,
+    "w": 4.33,
+    "h": 2.5,
+    "img": "ERR \"no relationship with key 'rId2'\""
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.2,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Each dot is a ticket, coloured right/wrong. Right and wrong interlock — no clean boundary — and that doesn't vanish with more data.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 46,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "We only see the points we labelled",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 2.42,
+    "t": 1.55,
+    "w": 5.16,
+    "h": 2.7,
+    "img": "ERR \"no relationship with key 'rId2'\""
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.4,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "We imagine a smooth competence surface; really we light only our test points and infer the rest of the room.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 47,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Re-draw the test set and the score moves",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 2.75,
+    "t": 1.55,
+    "w": 4.49,
+    "h": 2.5,
+    "img": "ERR \"no relationship with key 'rId2'\""
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.2,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Same fixed model, 2,000 random test sets of 50 — only the draw changed. 78% is one draw: quote n, and a range.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 48,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "From one result to a credible range",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 2.86,
+    "t": 1.55,
+    "w": 4.28,
+    "h": 2.5,
+    "img": "ERR \"no relationship with key 'rId2'\""
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.2,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Report n, the 95% credible interval, and P(accuracy > X). The interval narrows as n grows — that is the value of a bigger test set.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "n": 49,
+  "shapes": [
+   {
+    "type": "AUTO_SHAPE (1)",
+    "l": 0.0,
+    "t": 0.0,
+    "w": 10.0,
+    "h": 5.62
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 0.45,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Accuracy can flatter a do-nothing model",
+       "sz": 32.0,
+       "b": true
+      }
+     ]
+    ]
+   },
+   {
+    "type": "PICTURE (13)",
+    "l": 2.61,
+    "t": 1.55,
+    "w": 4.78,
+    "h": 2.5,
+    "img": "ERR no embedded image"
+   },
+   {
+    "type": "TEXT_BOX (17)",
+    "l": 0.6,
+    "t": 4.2,
+    "w": 8.8,
+    "h": 1.2,
+    "paras": [
+     [
+      {
+       "t": "Skew the test set so one class dominates. A majority-only baseline gains accuracy while its macro-recall stays near 1/5 — a preview of L4.",
+       "sz": 22.0,
+       "b": false
+      }
+     ]
+    ]
+   }
+  ]
+ }
+]

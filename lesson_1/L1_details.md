@@ -45,7 +45,7 @@ The uncertainty this lesson handles: **sampling noise** — a score is an estima
 
 - Uncertainty calculator — `accuracy_estimator.html` (counts in → plausible range out; never call it "Beta")
 - `sampling_noise.html`
-- Multi-label classifier playground — per-label confusion, thresholds `[NEW]`
+- Multi-class classifier playground — 5×5 confusion, per-class precision/recall, class-imbalance demo `[NEW]`
 - Ask the Playground `[NEW]`
 
 ## Content notes
@@ -57,51 +57,6 @@ The uncertainty this lesson handles: **sampling noise** — a score is an estima
 
 
 
-## Playground for lesson 1
-
-Three text-classification datasets, three flavors of "real classification work" — students always work on **subsamples**, never the full set.
-
-**Dataset 1 — Bitext Customer Support** (`bitext/Bitext-customer-support-llm-chatbot-training-dataset` on HuggingFace) — real customer-support utterances with 27 intent labels (billing, refund, cancellation, delivery, account, …). Multi-class. Pulled via `datasets.load_dataset(...)` in one line.
-
-**Dataset 2 — GoEmotions** (`go_emotions` on HuggingFace) — 58K Reddit comments with 27 emotions + neutral. Truly multi-label, naturally heavy-tailed (joy ~30%, grief ~0.2%). Demonstrates per-label variance and rare-label instability.
-
-**Dataset 3 — Synthetic ITSM tickets** (generated for the course, committed to the repo) — ~1K LLM-generated tickets tagged with `[billing, urgent, refund, account, complaint, hardware, software, network, security, login]`. Multi-label with **controllable skew** — lets us dial the class imbalance for the majority-tag demo.
-
-### Classifiers — two per dataset, side by side
-
-- **Regular**: TF-IDF (or sentence-embeddings) + LogisticRegression in a one-vs-rest multi-label setup.
-- **LLM (few-shot)**: 2–3 labeled examples per call, prompt as a Jinja2 template in `prompts/`, model & API key from `.env`. **Predictions pre-computed and committed** so the lab browses without live API calls; a `--live` code path re-runs for those who want to.
-
-### What we run inside the lab
-
-1. Pick a dataset → run both classifiers on a **subsample** → show per-label precision/recall/F1 + micro/macro averages. The headline number hides the rare-label story.
-2. **Resample many times** → plot the spread of each metric across subsamples. Rare labels wobble much more than common ones — the L1 sampling-noise punchline.
-3. **Skew slider** (synthetic dataset only) → dial label imbalance up; watch a trivial "predict the common tags" baseline catch up on subset-accuracy but collapse on rare-label F1.
-
-### Two paths, one lab
-
-- **HTML** (`index.html`) — interactive widgets over the pre-computed predictions. No Python required.
-- **Jupyter notebook** (`notebook.ipynb`) — the code that produces the HTML; students can re-run, plug in their own dataset, or swap classifiers.
-
-### Folder layout
-
-```
-playground/lesson_1/
-  notebook.ipynb         # code-savvy path
-  index.html             # no-code path
-  datasets/
-    bitext.csv           # cached pull
-    goemotions.csv       # cached pull
-    synthetic_itsm.csv   # generated & committed
-  prompts/
-    multilabel_classify.j2
-  predictions/
-    tfidf_logreg_<dataset>.json
-    llm_fewshot_<dataset>.json
-  .env.example
-```
-
-
 
 
 ## To discuss
@@ -111,5 +66,7 @@ playground/lesson_1/
 
 # Notes
 
-Scope: classification — including multi-label, where a single instance can carry multiple tags. Customer-support tagging as the running example.
+Scope: classification — multi-class, where each instance is assigned exactly one of N classes. Customer-support ticket routing as the running example. We keep accuracy cleanly binary per example.
+
+We explicitly **call out, but do not cover, two extensions** here: **multi-label** classification (a single instance can carry several tags, each its own yes/no property) and **non-classification** tasks (generation, extraction, agent trajectories). Both arrive in later lessons; L1 stays multi-class so the sampling-noise story is uncluttered.
 

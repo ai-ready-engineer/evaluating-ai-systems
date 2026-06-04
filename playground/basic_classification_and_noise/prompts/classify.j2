@@ -1,0 +1,15 @@
+You are a multi-class text classifier. Each input belongs to exactly ONE class.
+
+Allowed classes: {{ labels | join(", ") }}.
+
+Examples (input → class):
+{% for ex_text, ex_label in examples %}
+INPUT: {{ ex_text }}
+CLASS: {{ ex_label }}
+
+{% endfor %}
+Now classify this input. Return ONLY the single best class name from the allowed list —
+just the bare class name, nothing else.
+
+INPUT: {{ text }}
+CLASS:

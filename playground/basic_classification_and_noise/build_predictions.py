@@ -1,13 +1,15 @@
 """Precompute classifier predictions for the L1 no-code (HTML) path.
 
-For each dataset: train TF-IDF once on a disjoint split, run the LLM in batches over a
-held-out 1000-point test pool, and write predictions/<dataset>.json (per item: text,
-ground truth, both classifiers' predictions). Run once — live — and commit the JSON;
-the HTML then browses it offline and only "pretends" to classify.
+Single-label datasets (Bitext multi-class, Rotten Tomatoes binary): for each, train TF-IDF once
+on a disjoint split, run the LLM in batches over a held-out 1000-point test pool, and write
+predictions/<dataset>.json (per item: text, ground-truth class, both classifiers' predicted
+class). Run once — live — and commit the JSON; the HTML then browses it offline and only
+"pretends" to classify.
 
     python build_predictions.py                 # all datasets
     python build_predictions.py bitext          # one dataset
     python build_predictions.py --limit 40      # tiny pool, for a quick live sanity check
+    python build_predictions.py --bundle        # just re-bundle existing JSON into data.js
 
 Reads .env (LIVE, OPENROUTER_*) the same way the notebook does.
 """
@@ -22,18 +24,19 @@ import lab
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "predictions"
-POOL = 1000          # held-out test points per dataset
+POOL = 1000          # held-out test points
 MIN_TRAIN = 200      # sanity floor for the training split
 
-# Per-dataset classifier config. Bitext is deliberately weakened (few labelled examples + a
-# tiny, low-capacity vectorizer) so the trained model is honestly imperfect (~75%) and its
-# score carries real uncertainty. GoEmotions / Synthetic stay full-strength.
+# Bitext is deliberately weakened (few labelled examples + a tiny, low-capacity vectorizer)
+# so the trained model is honestly imperfect (~75%) and its score carries real uncertainty.
 DATASETS = {
-    "bitext":     dict(loader=lambda: lab.load_bitext(n=2000), multilabel=False,
-                       train_cap=100,
-                       tfidf=dict(max_features=50, ngram_range=(1, 1), min_df=1, C=0.6)),
-    "goemotions": dict(loader=lambda: lab.load_goemotions(n=2000), multilabel=True),
-    "synthetic":  dict(loader=lab.load_synthetic_itsm,          multilabel=True),
+    "bitext": dict(loader=lambda: lab.load_bitext(n=2000),
+                   train_cap=100,
+                   tfidf=dict(max_features=50, ngram_range=(1, 1), min_df=1, C=0.6)),
+    # Binary sentiment. Sentiment is harder, so a modest vocab keeps it honestly imperfect.
+    "rotten_tomatoes": dict(loader=lambda: lab.load_rotten_tomatoes(n=2000),
+                            train_cap=300,
+                            tfidf=dict(max_features=400, ngram_range=(1, 2), min_df=2, C=1.0)),
 }
 
 
@@ -49,16 +52,15 @@ def build(name, cfg, pool=POOL, reuse_llm=False):
     if cfg.get("train_cap"):
         train = train.iloc[:cfg["train_cap"]].reset_index(drop=True)
     labels = sorted(lab.label_set_of(df))
-    multilabel = cfg["multilabel"]
 
-    # Traditional classifier: trained once on the disjoint train split.
-    # Single-label datasets use argmax (always one class, never abstains).
-    tfidf = lab.TfidfLogRegClassifier(single_label=not multilabel, **cfg.get("tfidf", {})).fit(
+    # Traditional classifier: trained once on the disjoint train split (argmax, one class each).
+    tfidf = lab.TfidfLogRegClassifier(**cfg.get("tfidf", {})).fit(
         train["text"].tolist(), train["labels"].tolist())
     tfidf_pred = tfidf.predict(test["text"].tolist())
 
     # LLM few-shot: 3 labelled examples from train, then batched over the test pool.
-    examples = list(zip(train["text"].iloc[:3].tolist(), train["labels"].iloc[:3].tolist()))
+    examples = list(zip(train["text"].iloc[:3].tolist(),
+                        [lab.label_of(l) for l in train["labels"].iloc[:3].tolist()]))
     if reuse_llm:
         prev = {it["text"]: it["llm"] for it in json.loads((OUT / f"{name}.json").read_text())["items"]}
         llm_pred = [prev.get(t, []) for t in test["text"].tolist()]
@@ -67,8 +69,7 @@ def build(name, cfg, pool=POOL, reuse_llm=False):
     else:
         print(f"{name}: training on {len(train)}, classifying {len(test)} with LLM "
               f"(LIVE={lab.os.getenv('LIVE')})...")
-        llm_pred = lab.classify_llm_batched(test["text"].tolist(), labels, examples,
-                                            multilabel=multilabel, batch_size=20)
+        llm_pred = lab.classify_llm_batched(test["text"].tolist(), labels, examples, batch_size=20)
 
     items = [{
         "text":  test["text"].iloc[i],
@@ -79,7 +80,7 @@ def build(name, cfg, pool=POOL, reuse_llm=False):
 
     out = {
         "dataset": name,
-        "multilabel": multilabel,
+        "multilabel": False,
         "labels": labels,
         "train_size": len(train),
         "n": len(items),
@@ -88,8 +89,7 @@ def build(name, cfg, pool=POOL, reuse_llm=False):
     OUT.mkdir(exist_ok=True)
     path = OUT / f"{name}.json"
     path.write_text(json.dumps(out))
-    print(f"{name}: wrote {len(items)} items, {len(labels)} labels, "
-          f"multilabel={multilabel} -> {path.relative_to(HERE)}")
+    print(f"{name}: wrote {len(items)} items, {len(labels)} classes -> {path.relative_to(HERE)}")
 
 
 def bundle():

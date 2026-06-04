@@ -1,0 +1,17 @@
+You are a multi-class text classifier. Classify EACH numbered input below into exactly ONE class.
+
+Allowed classes: {{ labels | join(", ") }}.
+Use ONLY classes from the allowed list — never invent one, and always pick exactly one.
+
+Examples (input → class):
+{% for ex_text, ex_label in examples %}
+INPUT: {{ ex_text }}
+CLASS: {{ ex_label }}
+{% endfor %}
+Now classify these {{ texts | length }} inputs:
+{% for t in texts %}
+{{ loop.index0 }}. {{ t }}
+{% endfor %}
+
+Return ONLY a JSON array with exactly {{ texts | length }} elements, in order. Element i is
+the single class-name string for input i. No other text.
