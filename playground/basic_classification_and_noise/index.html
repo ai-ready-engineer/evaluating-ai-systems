@@ -364,14 +364,6 @@
       <p>The whole pool of <b>${d.n}</b> cases is the <b>population</b>. If we could label <em>every possible input</em>, we'd know the model's true competence everywhere — the surface below. We never can: in practice we only ever see a <b>sample</b> we draw and label, and every number we report is read off that one draw.</p>
 
       <div class="surface" id="surfbox">
-        <div class="head">
-          <div><h4>The competence surface — what we never see (the whole population)</h4></div>
-          <div><span class="seg-label">Feature space</span>
-            <div class="seg" id="surfview"><button data-v="sem" class="${st.view==='sem'?'on':''}">Semantic</button><button data-v="lex" class="${st.view==='lex'?'on':''}">Lexical (TF-IDF)</button></div></div>
-        </div>
-        <canvas id="surf" width="480" height="480"></canvas>
-        <p class="cap" id="surfcap"></p>
-
         <div class="surf-know">
           <h3 class="surf-know-title">But we can't see the surface, we only see a sample</h3>
           <p class="surf-intro">We can't see the entire accuracy surface, we do not know the true label for every input — so, we <b>sample</b> and label a sample. In the playground we assume we have picked N random inputs and we have obtained somehow the correct class labels for them. If you click the button we will pretend we have picked such N random input records or documents, and labeled them:</p>
@@ -406,6 +398,14 @@
             <p class="surf-caveat">Remember that in many use cases you can't just keep drawing samples — finding samples and labeling them correctly takes time and is not always feasible.</p>
           </div>
         </div>
+
+        <div class="head">
+          <div><h4>The competence surface — what we never see (the whole population)</h4></div>
+          <div><span class="seg-label">Feature space</span>
+            <div class="seg" id="surfview"><button data-v="sem" class="${st.view==='sem'?'on':''}">Semantic</button><button data-v="lex" class="${st.view==='lex'?'on':''}">Lexical (TF-IDF)</button></div></div>
+        </div>
+        <canvas id="surf" width="480" height="480"></canvas>
+        <p class="cap" id="surfcap"></p>
       </div>`;
 
     // population-vs-sample surface handlers
