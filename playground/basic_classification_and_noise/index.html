@@ -653,8 +653,7 @@ CLASS:`;
           (j.pos? `<div class="scores">▼ placed on the map below, on its most similar example</div>`
                 : `<div class="scores">(couldn't place on the map — text shares no words with the examples)</div>`);
         if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
-          renderScatter();
-          document.getElementById('scatterbox').scrollIntoView({behavior:'smooth', block:'nearest'}); }
+          renderScatter(); }
         else { st.typed=null; renderScatter(); }
       }catch(e){
         note.textContent='';
