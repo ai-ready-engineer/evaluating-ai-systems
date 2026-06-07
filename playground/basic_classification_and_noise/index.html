@@ -941,7 +941,7 @@ CLASS:`;
       [0,0.25,0.5,0.75,1].map(t=>`<line x1="${bx(t)}" y1="34" x2="${bx(t)}" y2="39" stroke="#9ca3af" stroke-width="1"/><text x="${bx(t)}" y="64" font-size="11" fill="#6b7280" text-anchor="middle">${t*100}%</text>`).join('');
     document.getElementById('calc-svg').innerHTML=s;
     const fixed=[0.80,0.90,0.95,0.99];
-    const pRows=fixed.map(t=>`<tr><td>Chance the true accuracy is above ${(t*100).toFixed(0)}%</td><td class="num"><b>${(pAbove(t)*100).toFixed(1)}%</b></td></tr>`).join('')
+    const pRows=fixed.map(t=>`<tr><td>Belief that the true accuracy is above ${(t*100).toFixed(0)}%</td><td class="num"><b>${(pAbove(t)*100).toFixed(1)}%</b></td></tr>`).join('')
       + `<tr class="sel"><td>Chance it clears your bar (${(X*100).toFixed(0)}%)</td><td class="num"><b>${(pAbove(X)*100).toFixed(1)}%</b></td></tr>`;
     document.getElementById('calc-readout').innerHTML = `
       <div style="margin-bottom:.5rem"><b>${k} correct / ${w} wrong</b> (tested ${n}) → measured accuracy <b>${pct(mean)}</b></div>
