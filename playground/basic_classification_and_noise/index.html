@@ -367,7 +367,7 @@
         <div class="head">
           <div><h4>The competence surface — what we never see (the whole population)</h4></div>
           <div><span class="seg-label">Feature space</span>
-            <div class="seg" id="surfview"><button data-v="sem" class="${st.view==='sem'?'on':''}">Semantic (LSA)</button><button data-v="lex" class="${st.view==='lex'?'on':''}">Lexical (TF-IDF)</button></div></div>
+            <div class="seg" id="surfview"><button data-v="sem" class="${st.view==='sem'?'on':''}">Semantic</button><button data-v="lex" class="${st.view==='lex'?'on':''}">Lexical (TF-IDF)</button></div></div>
         </div>
         <canvas id="surf" width="480" height="480"></canvas>
         <p class="cap" id="surfcap"></p>
@@ -580,7 +580,7 @@ CLASS:`;
               <span><span class="dot" style="background:#111"></span>your typed text</span>
               <span class="note">hover a dot for its text + prediction</span></div></div>
           <div><span class="seg-label">Feature space</span>
-            <div class="seg" id="viewseg"><button data-v="sem" class="${st.view==='sem'?'on':''}">Semantic (LSA)</button><button data-v="lex" class="${st.view==='lex'?'on':''}">Lexical (TF-IDF)</button></div></div>
+            <div class="seg" id="viewseg"><button data-v="sem" class="${st.view==='sem'?'on':''}">Semantic</button><button data-v="lex" class="${st.view==='lex'?'on':''}">Lexical (TF-IDF)</button></div></div>
         </div>
         <svg id="scatter" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"></svg>
         <p class="cap" id="scatcap"></p>
@@ -833,7 +833,7 @@ CLASS:`;
       `<text x="50" y="99.6" font-size="2.4" fill="#9ca3af" text-anchor="middle">dim 1 (t-SNE — no units)</text>`+
       `<text x="0.8" y="50" font-size="2.4" fill="#9ca3af" text-anchor="middle" transform="rotate(-90 0.8 50)">dim 2</text>`;
     svg.innerHTML=grid+base+ring+mark;
-    const sn=sR+sW, space=view==='sem'?'semantic (LSA) space':'lexical TF-IDF space';
+    const sn=sR+sW, space=view==='sem'?'semantic space':'lexical TF-IDF space';
     document.getElementById('scatcap').innerHTML =
       `Every dot is one of the ${d.n} test cases, placed by similarity in <b>${space}</b>, coloured by whether <b>${meta.short}</b> got it right (hover a dot for its text + prediction). `+
       (st.typed ? `The black ● is <b>your text</b>, dropped on its most similar example → predicted <b>${esc(st.typed.label)}</b>. ` : ``)+
