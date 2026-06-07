@@ -564,7 +564,7 @@ CLASS:`;
     const head = clf==='llm' ? llmPromptPanel(d) : `
       <div class="trybox">
         <h4>Try it — classify your own text</h4>
-        <textarea id="tryinput" rows="2" placeholder="${curDS==='bitext'?'e.g. I want to change the card I pay with':'e.g. a stirring, funny and transporting film'}">${curDS==='bitext'?'i want to change the card i pay with':''}</textarea>
+        <textarea id="tryinput" rows="2" placeholder="${curDS==='bitext'?'e.g. I want to change the card I pay with':'e.g. a stirring, funny and transporting film'}">${curDS==='bitext'?'i want to change the card i pay with':'a stirring, funny and transporting film'}</textarea>
         <div class="row"><button id="trybtn">Classify with ${meta.btn}</button><span class="note" id="trynote"></span></div>
         <div id="tryout"></div>
       </div>`;
