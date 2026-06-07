@@ -649,7 +649,7 @@ CLASS:`;
         const probs=_ex.map(([k,e])=>[k, e/_Z]).sort((a,b)=>b[1]-a[1]);
         out.innerHTML = `<div class="tryres">Predicted: <b style="color:${meta.color}">${esc(j.label)}</b>`+
           (clf==='llm' && j.live===false ? ` <span class="note">(mock — set LIVE=true in .env for the real LLM)</span>`:'')+`</div>`+
-          (probs.length? `<div class="scores">probability: ${probs.map(([k,p])=>`${esc(k)} ${p.toFixed(2)}`).join(' · ')}</div>`:'')+
+          (probs.length? `<div class="scores">probability: ${probs.map(([k,p])=>`${esc(k)} ${(p*100).toFixed(0)}%`).join(' · ')}</div>`:'')+
           (j.pos? `<div class="scores">▼ placed on the map below, on its most similar example</div>`
                 : `<div class="scores">(couldn't place on the map — text shares no words with the examples)</div>`);
         if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
