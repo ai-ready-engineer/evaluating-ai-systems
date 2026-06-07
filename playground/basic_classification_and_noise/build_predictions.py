@@ -33,10 +33,11 @@ DATASETS = {
     "bitext": dict(loader=lambda: lab.load_bitext(n=2000),
                    train_cap=100,
                    tfidf=dict(max_features=50, ngram_range=(1, 1), min_df=1, C=0.6)),
-    # Binary sentiment. Sentiment is harder, so a modest vocab keeps it honestly imperfect.
+    # Binary sentiment. Bumped from a 300-row / 400-word setup (~58%, embarrassingly poor) to a
+    # larger but still honestly-imperfect model (~66%) that no longer rides spurious bigrams.
     "rotten_tomatoes": dict(loader=lambda: lab.load_rotten_tomatoes(n=2000),
-                            train_cap=300,
-                            tfidf=dict(max_features=400, ngram_range=(1, 2), min_df=2, C=1.0)),
+                            train_cap=1000,
+                            tfidf=dict(max_features=1500, ngram_range=(1, 2), min_df=2, C=1.0)),
 }
 
 

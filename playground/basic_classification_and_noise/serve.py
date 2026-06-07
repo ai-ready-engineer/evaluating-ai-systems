@@ -38,9 +38,9 @@ DATASET_LOADERS = {
 # Match build_predictions.py so the live model behaves like the precomputed one.
 TFIDF_CFG = {
     "bitext": dict(max_features=50, ngram_range=(1, 1), min_df=1, C=0.6),
-    "rotten_tomatoes": dict(max_features=400, ngram_range=(1, 2), min_df=2, C=1.0),
+    "rotten_tomatoes": dict(max_features=1500, ngram_range=(1, 2), min_df=2, C=1.0),
 }
-TRAIN_CAP = {"bitext": 100, "rotten_tomatoes": 300}
+TRAIN_CAP = {"bitext": 100, "rotten_tomatoes": 1000}
 POOL = 1000
 
 _MODELS = {}
