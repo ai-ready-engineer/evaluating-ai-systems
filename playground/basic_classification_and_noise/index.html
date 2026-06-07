@@ -793,13 +793,14 @@ CLASS:`;
           const lo=betaQuantile(0.025,a,b), hi=betaQuantile(0.975,a,b), acc=sR/sn;
           const pgt=t=>pct(1-betai(a,b,t));
           const bx=v=>(40+Math.max(0,Math.min(1,v))*340).toFixed(1);   // 0..1 → x across a 0–100% axis
+          const loX=+bx(lo), hiX=+bx(hi), lblNear=(hiX-loX)<44;   // narrow band → splay the two % labels
           const ci=`<svg viewBox="0 0 400 70" class="ci-bar" preserveAspectRatio="xMidYMid meet">
             <line x1="${bx(0)}" y1="34" x2="${bx(1)}" y2="34" stroke="#cbd5e1" stroke-width="2"/>
             <rect x="${bx(lo)}" y="24" width="${(bx(hi)-bx(lo)).toFixed(1)}" height="20" rx="3" fill="${meta.color}" opacity="0.25"/>
             <line x1="${bx(lo)}" y1="20" x2="${bx(lo)}" y2="48" stroke="${meta.color}" stroke-width="2"/>
             <line x1="${bx(hi)}" y1="20" x2="${bx(hi)}" y2="48" stroke="${meta.color}" stroke-width="2"/>
-            <text x="${bx(lo)}" y="15" font-size="12" fill="${meta.color}" text-anchor="middle" font-weight="700">${pct(lo)}</text>
-            <text x="${bx(hi)}" y="15" font-size="12" fill="${meta.color}" text-anchor="middle" font-weight="700">${pct(hi)}</text>
+            <text x="${lblNear?(loX-3).toFixed(1):bx(lo)}" y="15" font-size="12" fill="${meta.color}" text-anchor="${lblNear?'end':'middle'}" font-weight="700">${pct(lo)}</text>
+            <text x="${lblNear?(hiX+3).toFixed(1):bx(hi)}" y="15" font-size="12" fill="${meta.color}" text-anchor="${lblNear?'start':'middle'}" font-weight="700">${pct(hi)}</text>
             <line x1="${bx(acc)}" y1="18" x2="${bx(acc)}" y2="50" stroke="#111" stroke-width="2.5"/>
             ${[0,0.25,0.5,0.75,1].map(t=>`<line x1="${bx(t)}" y1="34" x2="${bx(t)}" y2="39" stroke="#9ca3af" stroke-width="1"/><text x="${bx(t)}" y="64" font-size="11" fill="#6b7280" text-anchor="middle">${t*100}%</text>`).join('')}
           </svg>`;
@@ -931,12 +932,13 @@ CLASS:`;
     const pAbove=t=>1-betai(a,b,t);
     // simple 0–100% interval bar: shaded 95% range + a line at the measured accuracy
     const C='#2563eb', bx=v=>(30+Math.max(0,Math.min(1,v))*340).toFixed(1);
+    const loX=+bx(lo), hiX=+bx(hi), lblNear=(hiX-loX)<44;   // narrow band → splay the two % labels so they don't overlap
     let s=`<line x1="${bx(0)}" y1="34" x2="${bx(1)}" y2="34" stroke="#cbd5e1" stroke-width="2"/>`+
       `<rect x="${bx(lo)}" y="24" width="${(bx(hi)-bx(lo)).toFixed(1)}" height="20" rx="3" fill="${C}" opacity="0.22"/>`+
       `<line x1="${bx(lo)}" y1="20" x2="${bx(lo)}" y2="48" stroke="${C}" stroke-width="2"/>`+
       `<line x1="${bx(hi)}" y1="20" x2="${bx(hi)}" y2="48" stroke="${C}" stroke-width="2"/>`+
-      `<text x="${bx(lo)}" y="15" font-size="12" fill="${C}" text-anchor="middle" font-weight="700">${pct(lo)}</text>`+
-      `<text x="${bx(hi)}" y="15" font-size="12" fill="${C}" text-anchor="middle" font-weight="700">${pct(hi)}</text>`+
+      `<text x="${lblNear?(loX-3).toFixed(1):bx(lo)}" y="15" font-size="12" fill="${C}" text-anchor="${lblNear?'end':'middle'}" font-weight="700">${pct(lo)}</text>`+
+      `<text x="${lblNear?(hiX+3).toFixed(1):bx(hi)}" y="15" font-size="12" fill="${C}" text-anchor="${lblNear?'start':'middle'}" font-weight="700">${pct(hi)}</text>`+
       `<line x1="${bx(mean)}" y1="18" x2="${bx(mean)}" y2="50" stroke="#111" stroke-width="2.5"/>`+
       [0,0.25,0.5,0.75,1].map(t=>`<line x1="${bx(t)}" y1="34" x2="${bx(t)}" y2="39" stroke="#9ca3af" stroke-width="1"/><text x="${bx(t)}" y="64" font-size="11" fill="#6b7280" text-anchor="middle">${t*100}%</text>`).join('');
     document.getElementById('calc-svg').innerHTML=s;
