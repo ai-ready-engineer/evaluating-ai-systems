@@ -387,7 +387,6 @@
             <div class="row"><button id="surftrybtn">Place my sentence</button><span class="note" id="surftrynote"></span></div>
             <div class="surf-egs"><span class="note">Not sure what to type? Pick one:</span>${(EXAMPLES[curDS]||[]).map(s=>`<button type="button" class="eg" data-eg="${esc(s)}">${esc(s)}</button>`).join('')}</div>
           </div>
-          <div class="surfclaims" id="surfclaims"></div>
           <div class="surf-redraw">
             <p>What if you had picked and labeled a different sample, of a different size? Try your luck here:</p>
             <div class="surf-sample">
@@ -406,6 +405,7 @@
         </div>
         <canvas id="surf" width="480" height="480"></canvas>
         <p class="cap" id="surfcap"></p>
+        <div class="surfclaims" id="surfclaims"></div>
       </div>`;
 
     // population-vs-sample surface handlers
