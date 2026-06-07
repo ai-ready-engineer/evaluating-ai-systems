@@ -767,11 +767,21 @@ CLASS:`;
       let typedNote='';
       if(st.typed && st.typed[st.view]){
         const c=st.typed[st.view], x=c[0]*Wk, y=(1-c[1])*Hk;
+        // It was placed on its most-similar labelled example; a typed sentence has no ground truth of
+        // its own, so we judge "correct" against THAT example's true class (peeking at the proxy).
+        const nb=d.items.find(it=> it.lex && it.sem
+          && Math.abs(it.lex[0]-st.typed.lex[0])<1e-6 && Math.abs(it.lex[1]-st.typed.lex[1])<1e-6
+          && Math.abs(it.sem[0]-st.typed.sem[0])<1e-6 && Math.abs(it.sem[1]-st.typed.sem[1])<1e-6);
+        const tok = nb ? (lab1(nb)===st.typed.label) : null;
+        const fill = tok===null ? '#fff' : (tok ? '#15803d' : '#b91c1c');
         kc.beginPath(); kc.arc(x,y,9,0,7); kc.lineWidth=2.5; kc.strokeStyle='#fff'; kc.stroke();
-        kc.beginPath(); kc.arc(x,y,3.5,0,7); kc.fillStyle='#fff'; kc.fill();
+        kc.beginPath(); kc.arc(x,y,4,0,7); kc.fillStyle=fill; kc.fill();
         kc.font='600 14px Jost, sans-serif'; kc.fillStyle='#fff'; kc.textBaseline='middle';
         kc.fillText('your text', x+14, y);
-        typedNote = ` Your sentence landed where the marked ◯ is — predicted <b>${esc(st.typed.label)}</b>.`;
+        typedNote = ` Your sentence landed where the marked ◯ is — predicted <b>${esc(st.typed.label)}</b>`+
+          (tok===null ? `.`
+            : tok ? ` — <b style="color:#86efac">correct</b> vs its nearest labelled example (<b>${esc(lab1(nb))}</b>).`
+                  : ` — <b style="color:#fca5a5">wrong</b>: its nearest labelled example is actually <b>${esc(lab1(nb))}</b>.`);
       }
       document.getElementById('surfknowcap').innerHTML = `An <b>empty space</b> — no competence painted anywhere, because we don't know it. All we truly have are the <b>${sn} points we sampled</b> (<b style="color:#86efac">${sR} right</b> / <b style="color:#fca5a5">${sW} wrong</b>${sn?` → ${pct(sR/sn)}`:''}). Everywhere else is dark. Draw again to sample a different set.${typedNote}`;
       const note=document.getElementById('surfsamplenote'); if(note) note.innerHTML = `<b>${sn}</b> sampled · <b>${sR} right / ${sW} wrong</b>${sn?` → ${pct(sR/sn)}`:''}`;
