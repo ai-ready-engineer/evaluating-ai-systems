@@ -564,7 +564,7 @@ CLASS:`;
     const head = clf==='llm' ? llmPromptPanel(d) : `
       <div class="trybox">
         <h4>Try it — classify your own text</h4>
-        <textarea id="tryinput" rows="2" placeholder="${curDS==='bitext'?'e.g. I want to change the card I pay with':'e.g. a stirring, funny and transporting film'}"></textarea>
+        <textarea id="tryinput" rows="2" placeholder="${curDS==='bitext'?'e.g. I want to change the card I pay with':'e.g. a stirring, funny and transporting film'}">${curDS==='bitext'?'i want to change the card i pay with':''}</textarea>
         <div class="row"><button id="trybtn">Classify with ${meta.btn}</button><span class="note" id="trynote"></span></div>
         <div id="tryout"></div>
       </div>`;
@@ -643,10 +643,13 @@ CLASS:`;
           body:JSON.stringify({dataset:curDS, model:clf, text})});
         const j=await r.json(); note.textContent='';
         if(j.error){ out.innerHTML=`<p class="note">${esc(j.error)}</p>`; return; }
-        const ranked=Object.entries(j.scores||{}).sort((a,b)=>b[1]-a[1]);
+        // decision-function scores → probabilities (softmax == predict_proba for this multinomial LR)
+        const _se=Object.entries(j.scores||{}), _mx=Math.max(..._se.map(([,v])=>v));
+        const _ex=_se.map(([k,v])=>[k, Math.exp(v-_mx)]), _Z=_ex.reduce((s,[,e])=>s+e,0)||1;
+        const probs=_ex.map(([k,e])=>[k, e/_Z]).sort((a,b)=>b[1]-a[1]);
         out.innerHTML = `<div class="tryres">Predicted: <b style="color:${meta.color}">${esc(j.label)}</b>`+
           (clf==='llm' && j.live===false ? ` <span class="note">(mock — set LIVE=true in .env for the real LLM)</span>`:'')+`</div>`+
-          (ranked.length? `<div class="scores">scores: ${ranked.map(([k,v])=>`${esc(k)} ${v.toFixed(2)}`).join(' · ')}</div>`:'')+
+          (probs.length? `<div class="scores">probability: ${probs.map(([k,p])=>`${esc(k)} ${p.toFixed(2)}`).join(' · ')}</div>`:'')+
           (j.pos? `<div class="scores">▼ placed on the map below, on its most similar example</div>`
                 : `<div class="scores">(couldn't place on the map — text shares no words with the examples)</div>`);
         if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
