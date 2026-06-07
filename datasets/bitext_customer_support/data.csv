@@ -103,7 +103,7 @@ editing details on {{Account Category}} account,ACCOUNT
 I have to see the allowed payment modalities,PAYMENT
 i expecdt a refund of {{Refund Amount}} dollars,REFUND
 help to notify of errors with online payments,PAYMENT
-I'd like to update the fucking data on my user profile,ACCOUNT
+I'd like to update the data on my user profile,ACCOUNT
 is it possible to report an error with registrations,ACCOUNT
 help using the standard account,ACCOUNT
 editing data on pro account,ACCOUNT
@@ -296,7 +296,7 @@ I want assistance changing to the standard account,ACCOUNT
 want assistance seeing the delivery options,DELIVERY
 modify {{Account Category}} account,ACCOUNT
 help with canceling purchase {{Order Number}},ORDER
-I try to reset the fucking key of my profile,ACCOUNT
+I try to reset the key of my profile,ACCOUNT
 correcting details on {{Account Type}} account,ACCOUNT
 new gold account for wife,ACCOUNT
 changing data on {{Account Category}}  account,ACCOUNT
@@ -339,7 +339,7 @@ how can i buy a few of ur item,ORDER
 I do not know what to do to acquire several damn products,ORDER
 I don't know how I can inform of problems with payments,PAYMENT
 i need help seeing if there are any news on the rebate,REFUND
-want help to  notify of a fucking error with payments,PAYMENT
+want help to  notify of a error with payments,PAYMENT
 I need assistance checking the methods for shipment,DELIVERY
 how can I check how soon can I expect the parcel?,DELIVERY
 "I have lost my account access key, I need help to reset it",ACCOUNT
@@ -608,7 +608,7 @@ nee to locate purchase {{Order Number}} help me,ORDER
 is it possible to notify of errors with payments?,PAYMENT
 problems with cancelling order {{Order Number}},ORDER
 help switching an article of order {{Order Number}},ORDER
-how can I see what fucking shipment options are available?,DELIVERY
+how can I see what shipment options are available?,DELIVERY
 how do I change some products of order {{Order Number}}?,ORDER
 can uhelp me see the goddamn ETA of order {{Order Number}},ORDER
 I am trying to see the current status of the rebate,REFUND
@@ -688,7 +688,7 @@ can you help me see purchase {{Order Number}} status?,ORDER
 how to change to the {{Account Type}} account,ACCOUNT
 I am trying to receive a reimbursement,REFUND
 I do not know how I can list the accepted payment modalitiws,PAYMENT
-I am trying to see how soon can I expect my fucking product,DELIVERY
+I am trying to see how soon can I expect my product,DELIVERY
 problems with {{Account Type}} account deletions,ACCOUNT
 create new platinum account for daughter,ACCOUNT
 I'm trying to swap a  product of order {{Order Number}},ORDER
@@ -900,7 +900,7 @@ i dont know what to do to obtain rebates of money,REFUND
 i have got to notify of problems with an signup,ACCOUNT
 I'm  trying to notify of errors with registrations,ACCOUNT
 I don't know what I need to do to reset my account  password,ACCOUNT
-can you help me report fucking errors with payment?,PAYMENT
+can you help me report errors with payment?,PAYMENT
 "I need to retrieve my user PIN, could you help me?",ACCOUNT
 check allowed payment modalities,PAYMENT
 want help to inform of errors wwith registrations,ACCOUNT
@@ -939,7 +939,7 @@ I expect a reufnd of {{Currency Symbol}}{{Refund Amount}},REFUND
 need help asking for a reimbursement ofmy money,REFUND
 could I report a signup issue?,ACCOUNT
 correct details on freemium account,ACCOUNT
-check in what situations can I request a fucking refund,REFUND
+check in what situations can I request a refund,REFUND
 "I cannot remember my PIN, help me recovering it",ACCOUNT
 i expect a refund of {{Refund Amount}} dollars,REFUND
 how to use the freemium account?,ACCOUNT
@@ -987,8 +987,8 @@ I do not know how to check the status of order {{Order Number}},ORDER
 swap several items of order {{Order Number}},ORDER
 is it possible to create a standard account,ACCOUNT
 help to cancel order {{Order Number}},ORDER
-I cannot add a fucking product to order {{Order Number}},ORDER
-I try to see how soon can I expect my fucking package,DELIVERY
+I cannot add a product to order {{Order Number}},ORDER
+I try to see how soon can I expect my package,DELIVERY
 where to recover the key of my profile?,ACCOUNT
 how to check the eta of order {{Order Number}},ORDER
 can  ya help me checking when my package is gonna arrive,DELIVERY
@@ -1119,7 +1119,7 @@ want help to see the available payment modalities,PAYMENT
 status of order {{Order Number}},ORDER
 can you help me demand refunds ?,REFUND
 rebating {{Refund Amount}} dollars,REFUND
-want help to report fucking sign-up errors,ACCOUNT
+want help to report sign-up errors,ACCOUNT
 help checking the status of the refund,REFUND
 I need assistance to notify of problems with a sign-up,ACCOUNT
 is it possible to earn several products?,ORDER
@@ -1398,7 +1398,7 @@ I do not know how I can see what options for delivery I have,DELIVERY
 I have to see in which cases can I ask to be refunded,REFUND
 want assistance to solve a payment problem,PAYMENT
 want assistance solving troubles with online payment,PAYMENT
-I try to delete a fucking standard account,ACCOUNT
+I try to delete a standard account,ACCOUNT
 I want help seeing your payment methods,PAYMENT
 is it possible to request a refund of my money?,REFUND
 i try to check how long it takes forf my product to arrive,DELIVERY
@@ -1448,7 +1448,7 @@ update information on pro account,ACCOUNT
 I want to report an error with payment,PAYMENT
 "I expect a refund of {{Currency Symbol}}{{Refund Amount}}, has it been processed already?",REFUND
 how can I use the {{Account Category}} account?,ACCOUNT
-where to see how soon can I expect the fucking article?,DELIVERY
+where to see how soon can I expect the article?,DELIVERY
 assistance to see your money back guarantee,REFUND
 I do not know how to inform of troubles with payments,PAYMENT
 I want assistance seeing your payment options,PAYMENT
@@ -1467,7 +1467,7 @@ i need assistance to see how soon can i expect the order,DELIVERY
 I do not know what I need to do to receive reimbursemenrs,REFUND
 I want help canceling order {{Order Number}},ORDER
 "I ain't registered yet, I need to create a damn pro account",ACCOUNT
-need help to deete a fucking item from order {{Order Number}},ORDER
+need help to deete a item from order {{Order Number}},ORDER
 I don't know how I can get a reimbursement of my money,REFUND
 where do i receive a rewfund of money,REFUND
 help to check how soon can I expect the purchase,DELIVERY
@@ -1527,7 +1527,7 @@ can ya help me notify of registration errors,ACCOUNT
 I do not know how I can reoprt signup errors,ACCOUNT
 d uship to {{Delivery City}},DELIVERY
 "I need to see the delivery methods, how to do it?",DELIVERY
-I do not know how to cancel the fucking standard account,ACCOUNT
+I do not know how to cancel the standard account,ACCOUNT
 i catn add something to purchase {{Order Number}},ORDER
 "I have got to change to the freemium account, help me",ACCOUNT
 switch to platinum account,ACCOUNT
@@ -1537,7 +1537,7 @@ in which cases can I request refunds?,REFUND
 i dont know how to see how soon can i expect my item,DELIVERY
 i dont know how to request a refund,REFUND
 can i change some products of order {{Order Number}},ORDER
-can I see how soon can I expect the fucking item?,DELIVERY
+can I see how soon can I expect the item?,DELIVERY
 I want assistance solving troubles with online payment,PAYMENT
 can ushow me in which situations can i ask for refunds,REFUND
 I have an issue with the online registration,ACCOUNT
@@ -1620,7 +1620,7 @@ want assistance cancelling my pro account,ACCOUNT
 I'm waiting for a goddamn compensation of {{Refund Amount}} dollars,REFUND
 wannha add a goddamn item to order {{Order Number}},ORDER
 can you show me the ETA of purchase {{Order Number}}?,ORDER
-assistance to create another fucking freemium account,ACCOUNT
+assistance to create another freemium account,ACCOUNT
 i have to modify purchase {{Order Number}} help me,ORDER
 I need to recover my user account access key,ACCOUNT
 can uhelp me to swap something of order {{Order Number}},ORDER
@@ -1802,7 +1802,7 @@ i want help to notify of a problem with sign-up,ACCOUNT
 "I would like to see my compensation status, how do I do it?",REFUND
 I need to switch some items of purchase {{Order Number}},ORDER
 correct details on {{Account Type}} account,ACCOUNT
-help informing of a fucking payment problem,PAYMENT
+help informing of a payment problem,PAYMENT
 problem with a pro account removal,ACCOUNT
 need to acquire several of ur article,ORDER
 how could I check what shipping options are available?,DELIVERY
@@ -1887,7 +1887,7 @@ can ya help me to switch to the {{Account Type}} account,ACCOUNT
 need help to rport issues with goddamn sign-up,ACCOUNT
 i need assistance to reset my pwd,ACCOUNT
 I do not know how to get a restitution of money,REFUND
-I need help checking what fucking shipping options I have,DELIVERY
+I need help checking what shipping options I have,DELIVERY
 using pro accouny,ACCOUNT
 I do not know how to order some products,ORDER
 how do I check your money back policy ?,REFUND
