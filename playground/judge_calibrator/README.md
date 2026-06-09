@@ -1,62 +1,89 @@
 # judge_calibrator — "Pick your Judge"
 
-L2 lab. The same frozen AI answers, scored by different judges over different data — and
-the headline accuracy moves. The point is to *feel* how **sensitive** a reported number is
-to how the judge is worded and which data you happened to score.
+L2 lab. In L1 the judge was perfect; here it isn't. The student turns a **bias** dial and a
+**noise** dial over a frozen pool of answers with a *known* true score, watches the measured
+number shift and wobble off the truth, and then **bootstraps** the result to see what each
+defect does to the estimate.
 
-**Source of uncertainty in focus:** variance around a score — the judge is part of the
+**Source of uncertainty in focus:** bias and noise around a score — the judge is part of the
 measurement instrument, not an objective oracle. Distinct from L1's sampling noise (picking
-different cases); here the wobble comes from the judge prompt and the slice.
+different cases); here the offset and the wobble come from the judge itself.
 
-## The idea
+## The one idea: bias ≠ noise
 
-You need a judge even when you *have* ground truth: exact string match marks plainly-correct
-free-text answers wrong ("Paris, the City of Light", "approximately 300,000 km/s"). Once you
-reach for a judge, two situations appear:
+- **Bias is systematic.** A consistently generous or harsh judge shifts every score the same
+  direction. It moves the *centre* of your measurement off the truth, and **more data does not
+  fix it** — it just tightens a confident interval around the wrong value.
+- **Noise is random.** An inconsistent judge (temperature, an ambiguous rubric, a different
+  annotator) scores the same answer differently on re-run. It **widens** the spread, and it
+  *does* average out with more judgments.
 
-- **Case 1 — ground truth exists, but it's hard to compare.** The judge is a smarter
-  comparator against a known reference (the QA set).
-- **Case 2 — no ground truth at all.** The judge *is* the definition of "good"; nothing to
-  compare against (drafted customer-support replies). All you can observe is judges
-  disagreeing with each other.
+The payoff is the **bootstrap** — the general-purpose successor to L1's Beta interval (it works
+for any score: binary, ordinal, continuous). Resample the scored test set with replacement,
+recompute the mean thousands of times, read off the 95% interval. The sharp beat: **noise widens
+the interval; bias slides it off the truth — and the bootstrap can't see the bias.** A biased
+judge hands you a tight, confident interval centred on the wrong answer.
+
+## Why a graded score (not pass/fail)
+
+The judge gives a graded quality score (0–100), not a binary stamp. This is both truer to gen-AI
+answers (which sit on a spectrum) and necessary statistically: a binary judge's pass-rate
+variance is pinned by its mean, so judge noise gets absorbed and does *not* widen a single run's
+interval. A graded score lets noise add genuine variance (`Var ≈ σ²/n`), so the "noise widens the
+interval" beat is both visible and honest.
+
+## The HTML simulator (`index.html`)
+
+No-code, fully offline, no dependencies. A frozen pool of 40 (question, answer) pairs, each with
+a known true quality; the pool's true mean is **70/100** by construction. Controls:
+
+- **Bias** ∈ [−25, +25] pts — harsher ↔ more generous. A pure centre-shift.
+- **Noise** (σ) ∈ [0, 30] pts — perfectly consistent ↔ very inconsistent. A pure spread.
+- **Test-set size** ∈ [20, 500] — watch the asymmetry vs. `n`: more data narrows the interval
+  around the noise-blurred mean, but the bias offset stays (and the interval excludes the truth
+  more decisively).
+- **Re-judge** — re-roll the noise and redraw the test set; the number jumps under noise, stays
+  put under bias.
+
+A per-row table shows each answer's true quality next to the judge's rating; a bootstrap panel
+draws the distribution of the mean with the 95% interval, the true-70 line, and a coverage
+readout.
+
+## The notebook (`notebook.ipynb`) — real LLM judges
+
+The HTML is an abstract, fully controllable simulator; the notebook grounds the same three beats
+on real judges over real answers:
+
+1. **The exact-match trap → bias.** Programmatic exact-match vs. a lenient LLM judge on free-text
+   QA answers; exact-match's systematic under-counting *is* a negative bias, and the gap is the
+   bias made visible.
+2. **Re-run noise.** One LLM judge, one answer, K calls at `temperature>0`; the per-example score
+   spread is the judge's own noise.
+3. **Bootstrap the estimate.** From one scored pass, bootstrap the answers for a 95% interval on
+   the mean score (the code behind the HTML panel); optionally compare a generous vs. a harsh
+   rubric to watch the interval *shift*, not just widen.
 
 ## What's inside
 
-- `lab.py` — judge runners (programmatic + LLM) and dataset/answer loaders, with a
+- `index.html` — the two-dial simulator + bootstrap (no-code path).
+- `notebook.ipynb` — real LLM judges + bootstrap on real answers (code path).
+- `lab.py` — judge runners (programmatic + LLM), loaders, and a bootstrap helper, with a
   deterministic mock fallback when `LIVE != true`.
-- `notebook.ipynb` — the lab: the exact-match trap, the case-1 sensitivity grid, case-2
-  no-ground-truth disagreement, and an optional re-run-noise view.
-- `index.html` — no-code path: turn the dials (judge × slice) over the pre-computed scores.
-- `prompts/` — judge rubrics and the reply-generation prompt, as Jinja2 templates.
-- `answers/` — pre-computed AI answers/replies, committed so the lab runs offline.
+- `prompts/` — judge rubrics (strict / lenient / scale 1–5, plus a no-ground-truth quality
+  rubric) and the reply-generation prompt, as Jinja2 templates.
+- `answers/` — pre-computed AI answers/replies with true-quality labels, committed so the lab
+  runs offline.
 - `.env.example` — copy to `.env` and add an API key to run the LLM live (`LIVE=true`).
 
 ## Datasets
 
 From `../../datasets/`:
-- **QA set (case 1)** — small factual short-answer data: question, gold answer, free-text AI
-  answer. Default a slice of TriviaQA (swappable for SQuAD / NQ-open). The paraphrases and
-  added units are what make exact match fail.
-- **`bitext_customer_support` (case 2)** — reused from L1; the AI drafts a reply to each
-  message and there is no reference reply, so only a rubric judge can score it.
-
-## Judges
-
-- **Programmatic baseline** — exact match / regex / schema check. Works on the easy case-1
-  rows, fails on paraphrase, and *cannot run at all* on case 2.
-- **LLM judges** — `strict` (binary, exact), `lenient` (binary, accepts paraphrase),
-  `scale_1_5` (ordinal), plus reworded-but-equivalent rubric variants for case 1 and a
-  quality rubric for case 2. Same task, different temperament and wording.
-
-## What it shows
-
-1. **The exact-match trap** — ground truth is present, yet the naive comparator already lies.
-2. **The sensitivity grid (case 1)** — score the same answers across judge prompts × data
-   slices; the accuracy spreads across both axes. Same system, different number.
-3. **No ground truth (case 2)** — rubric judges land far apart on the same reply, and nothing
-   in the data can adjudicate between them.
-4. **Re-run noise (optional)** — one judge at `temperature>0` wobbles with prompt and data
-   fixed. Secondary; the prompt × data sensitivity is the headline.
+- **QA set** — small factual short-answer data: question, gold answer, free-text AI answer
+  (TriviaQA slice; swappable for SQuAD / NQ-open). Paraphrases and added units are what make
+  exact match under-count.
+- **`bitext_customer_support`** — reused from L1 for the no-ground-truth variant: the AI drafts a
+  reply with no reference, so only a rubric judge can score it and inter-judge disagreement is the
+  only signal.
 
 ## Running
 
@@ -67,6 +94,6 @@ cp .env.example .env
 jupyter notebook notebook.ipynb
 ```
 
-Without API keys the lab uses the committed pre-computed answers and a deterministic mock
-judge, so the exact-match trap and the sensitivity grid still run. Re-run noise (Demo 4) and
-re-generating answers need a live LLM with `LIVE=true`.
+The HTML needs nothing — open `index.html` in a browser. Without API keys the notebook uses the
+committed answers and a deterministic mock judge; re-run noise and re-generating answers need a
+live LLM with `LIVE=true`.

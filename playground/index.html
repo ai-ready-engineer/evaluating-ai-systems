@@ -60,6 +60,13 @@
       padding-bottom: 0.4rem;
       border-bottom: 1px solid var(--border);
     }
+    .section-note {
+      color: var(--text-dim);
+      font-size: 0.78rem;
+      line-height: 1.5;
+      margin: -0.3rem 0 1rem;
+      max-width: 700px;
+    }
 
     .card-grid {
       display: grid;
@@ -94,6 +101,14 @@
       border-radius: 4px;
       padding: 0.15rem 0.4rem;
       margin-bottom: 0.5rem;
+    }
+    .card .kicker {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--text-dim);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.35rem;
     }
 
     .card h3 {
@@ -184,145 +199,179 @@
       </div>
     </nav>
     <h1>AI Evaluation Playgrounds</h1>
-    <div class="subtitle">Sources of Uncertainty in AI Evaluation</div>
+    <div class="subtitle">One hands-on lab per lesson</div>
     <div class="intro">
-      Interactive labs for AI-Ready Engineers.
-      Each playground lets you <strong>feel</strong> a source of uncertainty firsthand, then shows you how to <strong>fix</strong> it.
-      Unified setup: an AI system scored 1&ndash;5 by an LLM judge on four metrics (Correctness, Helpfulness, Tone, Completeness).
+      Interactive labs for AI-Ready Engineers, organized to <strong>follow the eight lessons</strong>.
+      Each lesson has one headline playground that lets you <strong>feel</strong> its source of uncertainty
+      firsthand, then shows you how to <strong>reduce</strong> it. Below the lessons are the
+      <strong>foundations</strong> (general stats primers and extra source-of-uncertainty labs) and the
+      <strong>Python notebooks</strong> that run live LLM calls.
     </div>
 
-    <div class="section-label">Statistics Foundations</div>
+    <div class="section-label">The Eight Lessons</div>
     <div class="card-grid">
 
-      <a class="card" href="convolution_of_independent_random_variables.html">
-        <h3>N Coin Flips</h3>
-        <p>Watch the bell curve emerge as you increase the number of coin flips. A visual introduction to the Central Limit Theorem and convolution of independent random variables.</p>
-        <span class="tag tag-stats">CLT</span>
+      <a class="card" href="basic_classification_and_noise/">
+        <span class="num">Lesson 1</span>
+        <span class="kicker">&ldquo;Eval&rdquo; is now an Experiment</span>
+        <h3>Basic classification + noise</h3>
+        <p>Two classifiers &mdash; a trained TF-IDF model and a gen-AI model &mdash; over real datasets. Set a test-set size, spin the wheel, and watch accuracy, the confusion matrix, and a Beta credible interval move. A score is one draw.</p>
         <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">sampling noise</span>
       </a>
 
-      <a class="card" href="bootstrap_lab.html">
-        <h3>Bootstrap Lab</h3>
-        <p>Hands-on bootstrapping: resample from your data, build sampling distributions, compute confidence intervals, and test whether two samples differ. The foundation for many of the uncertainty fixes above.</p>
-        <span class="tag tag-stats">bootstrap</span>
+      <a class="card" href="judge_calibrator/">
+        <span class="num">Lesson 2</span>
+        <span class="kicker">Assessing one &ldquo;run&rdquo; of an Agent &middot; Part I</span>
+        <h3>Pick your Judge</h3>
+        <p>A frozen pool of answers with a known true score, scored by a judge with two dials: <strong>bias</strong> (systematic) and <strong>noise</strong> (random). Bootstrap the result &mdash; noise widens the interval, bias slides it off the truth, and the interval can&rsquo;t see the bias.</p>
         <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">bias vs noise</span>
       </a>
 
-      <a class="card" href="distribution_explorer.html">
-        <h3>Distribution Explorer</h3>
-        <p>Explore common probability distributions interactively. Adjust parameters and see how the shape changes.</p>
+      <a class="card" href="distribution_explorer/">
+        <span class="num">Lesson 3</span>
+        <span class="kicker">Proportions, Probabilities, Beliefs</span>
+        <h3>Bias&ndash;Variance&ndash;Noise Explorer</h3>
+        <p>Pull apart the three things that move a measurement &mdash; a systematic offset, spread, and random noise. Adjust the distributions and watch the shape, the mean, and the uncertainty change.</p>
+        <span class="tag tag-interactive">interactive</span>
         <span class="tag tag-stats">distributions</span>
-        <span class="tag tag-interactive">interactive</span>
       </a>
 
-    </div>
-
-    <div class="section-label">Sources of Uncertainty</div>
-    <div class="card-grid">
-
-      <a class="card" href="sampling_noise.html">
-        <span class="num">#1</span>
-        <h3>Sampling Noise</h3>
-        <p>Run the same evaluation twice &mdash; get different numbers. Set true scores, pick a sample size, and watch the scorecard wobble. Then tame it with beta posteriors, bootstrap CIs, and confidence intervals.</p>
-        <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-key">more data helps</span>
-      </a>
-
-      <a class="card" href="accuracy_estimator.html">
-        <h3>Model Accuracy Estimator</h3>
-        <p>Enter successes out of n trials and get a posterior over accuracy: point estimate, mode, and 95% credible interval. Powered by the Beta distribution with selectable priors.</p>
-        <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-stats">beta posterior</span>
-      </a>
-
-      <a class="card" href="sampling_bias.html">
-        <span class="num">#2</span>
-        <h3>Sampling Bias</h3>
-        <p>Your test set is 70% English but production is 40%. The scorecard looks great &mdash; until you see what users actually experience. Explore biased vs. representative sampling with adjustable language mixes.</p>
-        <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-key">more data doesn't help</span>
-      </a>
-
-      <a class="card" href="multiple_hypothesis_testing.html">
-        <span class="num">#4</span>
-        <h3>Multiple Hypothesis Testing</h3>
-        <p>You test 10 prompt variants. The winner scores 4.3. Ship it? All variants had the same true score &mdash; the "winner" was just the luckiest. See how selection bias grows with N.</p>
+      <a class="card" href="multiple_hypothesis_testing/">
+        <span class="num">Lesson 4</span>
+        <span class="kicker">Closed-Book Overfitting</span>
+        <h3>Lucky-Winner Finder</h3>
+        <p>You test 10 prompt variants. The winner scores 4.3 &mdash; ship it? All variants had the same true score; the &ldquo;winner&rdquo; was just the luckiest. See how selection bias grows with the number of things you try.</p>
         <span class="tag tag-interactive">interactive</span>
         <span class="tag tag-stats">selection bias</span>
       </a>
 
-      <a class="card" href="domain_variance.html">
-        <span class="num">#5</span>
-        <h3>Variance Across Domains</h3>
-        <p>Aggregate says 4.0. But Client A sees 4.5 and Client B sees 3.0. The aggregate hides the story. Includes a Simpson's Paradox demo where the "winning" system actually loses everywhere.</p>
+      <a class="card" href="holdout_simulator/">
+        <span class="num">Lesson 5</span>
+        <span class="kicker">Open-Book Overfitting</span>
+        <h3>Holdout Simulator</h3>
+        <p>Iterate on a prompt against a dev set and watch the score climb across versions &mdash; then check the held-out set and see the gap. The difference between fitting the data and fitting the world.</p>
         <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-key">property of the world</span>
+        <span class="tag tag-key">process discipline</span>
       </a>
 
-      <a class="card" href="metric_choice.html">
-        <span class="num">#6</span>
-        <h3>Choice of Metric</h3>
-        <p>Mean says A wins. Threshold rate says B wins. Worst-case says B wins clearly. The winner changes with every tab click. The data didn't change &mdash; the question did.</p>
+      <a class="card" href="judge_audit/">
+        <span class="num">Lesson 6</span>
+        <span class="kicker">Subjectivity &amp; Noise in Judges and Ground Truth</span>
+        <h3>Judge Auditor</h3>
+        <p>Audit an LLM judge against trusted human labels: measure agreement, surface systematic bias, and see how a subjective rubric shifts the score &mdash; before you trust the judge to grade anything.</p>
         <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-key">design decision</span>
+        <span class="tag tag-key">judge of judges</span>
       </a>
 
-      <a class="card" href="temporal_drift.html">
-        <span class="num">#7</span>
-        <h3>Temporal Drift</h3>
-        <p>Your January eval says nothing about April. Simulate 12 months of gradual degradation and sudden shocks. See how long it takes to notice without continuous monitoring.</p>
+      <a class="card" href="temporal_drift/">
+        <span class="num">Lesson 7</span>
+        <span class="kicker">Additional sources of error &mdash; and why they compound</span>
+        <h3>Temporal Drift Lab</h3>
+        <p>Your January eval says nothing about April. Simulate 12 months of gradual degradation and sudden shocks, and see how long it takes to notice without continuous monitoring. Pairs with the compounding visualizer below.</p>
         <span class="tag tag-interactive">interactive</span>
         <span class="tag tag-key">fresh data over time</span>
       </a>
 
-      <a class="card" href="llm_evolution.html">
-        <span class="num">#9</span>
-        <h3>LLM Evolution</h3>
-        <p>GPT-4: 97.6% &rarr; 2.4% in 3 months. Same prompt. Same task. The model changed under you. Real documented cases + simulated version timeline.</p>
-        <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-key">version discipline</span>
-      </a>
-
-      <a class="card" href="judges_and_compounding.html">
-        <span class="num">&#10038;</span>
-        <h3>Judges &amp; Compounding</h3>
-        <p>Every source applies again at the judge level. See how judge noise widens CIs, judge bias shifts scores, and stacking uncertainties makes measurements unreliable.</p>
-        <span class="tag tag-interactive">interactive</span>
-        <span class="tag tag-key">cross-cutting</span>
-      </a>
-
-    </div>
-
-
-    <div class="section-label">Course-Wide Tools</div>
-    <div class="card-grid">
-
       <a class="card" href="experiment_report/">
-        <span class="num">L8</span>
+        <span class="num">Lesson 8</span>
+        <span class="kicker">Designing Reliable Experiments</span>
         <h3>Experiment-Report Evaluator</h3>
-        <p>Submit an eval write-up and check whether the evidence supports the decision. Used in the capstone to turn a measured result into a ship, canary, or iterate recommendation.</p>
+        <p>Submit an eval write-up and check whether the evidence supports the decision. The capstone tool that turns a measured result into a ship, canary, or iterate recommendation.</p>
         <span class="tag tag-interactive">interactive</span>
         <span class="tag tag-key">capstone</span>
       </a>
 
     </div>
 
+    <div class="section-label">Foundations &amp; Extra Tools</div>
+    <div class="section-note">
+      General-purpose stats primers and the extra source-of-uncertainty labs. Use them alongside any lesson.
+    </div>
+    <div class="card-grid">
+
+      <a class="card" href="convolution_of_independent_random_variables/">
+        <h3>N Coin Flips</h3>
+        <p>Watch the bell curve emerge as you add coin flips &mdash; a visual introduction to the Central Limit Theorem and the convolution of independent random variables.</p>
+        <span class="tag tag-stats">CLT</span>
+        <span class="tag tag-interactive">interactive</span>
+      </a>
+
+      <a class="card" href="bootstrap_lab/">
+        <h3>Bootstrap Lab</h3>
+        <p>Hands-on bootstrapping: resample your data, build sampling distributions, compute confidence intervals, and test whether two samples differ. The engine behind many of the uncertainty fixes.</p>
+        <span class="tag tag-stats">bootstrap</span>
+        <span class="tag tag-interactive">interactive</span>
+      </a>
+
+      <a class="card" href="accuracy_estimator/">
+        <h3>Model Accuracy Estimator</h3>
+        <p>Enter successes out of n trials and get a posterior over accuracy: point estimate, mode, and 95% credible interval. Powered by the Beta distribution with selectable priors. (The L1 uncertainty calculator.)</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-stats">beta posterior</span>
+      </a>
+
+      <a class="card" href="sampling_noise/">
+        <h3>Sampling Noise</h3>
+        <p>Run the same evaluation twice &mdash; get different numbers. Set true scores, pick a sample size, and watch the scorecard wobble. Then tame it with beta posteriors, bootstrap CIs, and confidence intervals.</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">more data helps</span>
+      </a>
+
+      <a class="card" href="sampling_bias/">
+        <h3>Sampling Bias</h3>
+        <p>Your test set is 70% English but production is 40%. The scorecard looks great &mdash; until you see what users actually experience. Explore biased vs. representative sampling with adjustable mixes.</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">more data doesn&rsquo;t help</span>
+      </a>
+
+      <a class="card" href="domain_variance/">
+        <h3>Variance Across Domains</h3>
+        <p>Aggregate says 4.0, but Client A sees 4.5 and Client B sees 3.0 &mdash; the aggregate hides the story. Includes a Simpson&rsquo;s Paradox demo where the &ldquo;winning&rdquo; system actually loses everywhere.</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">property of the world</span>
+      </a>
+
+      <a class="card" href="metric_choice/">
+        <h3>Choice of Metric</h3>
+        <p>Mean says A wins. Threshold rate says B wins. Worst-case says B wins clearly. The winner changes with every tab click &mdash; the data didn&rsquo;t change, the question did.</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">design decision</span>
+      </a>
+
+      <a class="card" href="llm_evolution/">
+        <h3>LLM Evolution</h3>
+        <p>GPT-4: 97.6% &rarr; 2.4% in 3 months. Same prompt, same task &mdash; the model changed under you. Real documented cases plus a simulated version timeline.</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">version discipline</span>
+      </a>
+
+      <a class="card" href="judges_and_compounding/">
+        <h3>Judges &amp; Compounding</h3>
+        <p>Every source applies again at the judge level. See how judge noise widens CIs, judge bias shifts scores, and stacking uncertainties makes a measurement unreliable. (The L7 compounding visualizer.)</p>
+        <span class="tag tag-interactive">interactive</span>
+        <span class="tag tag-key">cross-cutting</span>
+      </a>
+
+    </div>
 
     <div class="section-label">Python Notebooks (Live LLM Calls)</div>
+    <div class="section-note">
+      Take-home notebooks that hit a real LLM API. They go deeper on the overfitting lessons (L4&ndash;L5).
+    </div>
     <div class="card-grid">
 
       <a class="card" href="https://github.com/reliableai/ai-design-2026-pub/blob/main/labs/session8_evals_as_estimation/08_automating_improvement/overfitting_lab.py" target="_blank" rel="noopener">
-        <span class="num">#3</span>
         <h3>Overfitting</h3>
-        <p>Iterate on a judge prompt: watch dev score climb across 4 versions, then see the held-out gap. The gut punch. Uses synthetic customer support data + real OpenAI API calls.</p>
+        <p>Iterate on a judge prompt: watch the dev score climb across 4 versions, then see the held-out gap. The gut punch. Synthetic customer-support data + real OpenAI API calls.</p>
         <span class="tag tag-data">python notebook</span>
         <span class="tag tag-key">process discipline</span>
       </a>
 
       <a class="card" href="https://github.com/reliableai/ai-design-2026-pub/blob/main/labs/session8_evals_as_estimation/08_automating_improvement/prompt_brittleness_lab.py" target="_blank" rel="noopener">
-        <span class="num">#8</span>
         <h3>Prompt Brittleness</h3>
-        <p>7 "semantically equivalent" prompt variants — reorder examples, change delimiters, rephrase rubric. Same data, same model. Watch scores swing wildly.</p>
+        <p>7 &ldquo;semantically equivalent&rdquo; prompt variants &mdash; reorder examples, change delimiters, rephrase the rubric. Same data, same model. Watch the scores swing wildly.</p>
         <span class="tag tag-data">python notebook</span>
         <span class="tag tag-key">robustness testing</span>
       </a>
