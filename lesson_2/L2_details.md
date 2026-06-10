@@ -102,7 +102,7 @@ cached for L1. No more.
 ### Folder layout
 
 ```
-playground/judge_noise_and_bias/
+playground/llm_as_a_judge/
   notebook.ipynb           # code path
   index.html               # no-code path
   lab.py                   # judge runners + loaders

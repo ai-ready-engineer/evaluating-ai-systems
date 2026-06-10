@@ -4,7 +4,7 @@ L1 lab. A trained ML classifier (TF-IDF) evaluated on two **single-label** datas
 customer-support tickets (**multi-class**, one of five categories) and Rotten Tomatoes review
 sentiment (**binary**, POSITIVE/NEGATIVE). The focus is **how to read a single score honestly**.
 
-The **gen-AI (few-shot LLM) classifier moved to the L2 lab** (`../judge_noise_and_bias/`,
+The **gen-AI (few-shot LLM) classifier moved to the L2 lab** (`../llm_as_a_judge/`,
 *Judge that classifies* tab); old `#…/genai` links redirect there. Its predictions are still
 **built here** (`build_predictions.py` writes both `tfidf` and `llm` into `predictions/data.js`)
 and the L2 page loads that bundle.

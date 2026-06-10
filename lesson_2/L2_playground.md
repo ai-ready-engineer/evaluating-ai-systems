@@ -133,7 +133,7 @@ inter-judge disagreement is the only signal).
 ## Folder layout
 
 ```
-playground/judge_noise_and_bias/
+playground/llm_as_a_judge/
   index.html               # no-code path — the two-dial simulator + bootstrap
   notebook.ipynb           # code path — real LLM judges + bootstrap on real answers
   lab.py                   # judge runners (programmatic + LLM) + loaders + bootstrap helper

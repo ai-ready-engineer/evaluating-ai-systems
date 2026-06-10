@@ -53,7 +53,7 @@ This playground shows
 2. Understand the uncertainty around our experiment results, where does it come from, and how to report it
 
 We have one dataset, and our goal is to test a "traditional" trained classifier. (The gen-AI
-classifier originally shown here moved to the L2 lab, `judge_noise_and_bias/` — its predictions
+classifier originally shown here moved to the L2 lab, `llm_as_a_judge/` — its predictions
 are still built and bundled in this folder.)
 
 **1. Describe the dataset** — source, what's being classified (one of 5 categories, multi-class).

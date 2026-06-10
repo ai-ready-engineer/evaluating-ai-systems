@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM as a Judge — judge noise &amp; bias (L2 lab)</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root{
+      --true:  #0f766e;   /* the truth we are trying to measure */
+      --meas:  #b45309;   /* what the judge measured */
+      --bias:  #7c3aed;   /* bias = systematic */
+      --noise: #2563eb;   /* noise = random */
+      --good:  #15803d;
+      --bad:   #b91c1c;
+      --grid:  #e5e7eb;
+      --muted: #64748b;
+    }
+    .panel{ background:#fff; border:1px solid var(--grid); border-radius:12px; padding:1.15rem 1.3rem; margin:1rem 0; }
+    .panel h3{ margin:.1rem 0 .6rem; font-size:1.05rem; }
+
+    /* concept cards: bias vs noise */
+    .concept{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0; }
+    @media (max-width:680px){ .concept{ grid-template-columns:1fr; } }
+    .concept .card{ border:1px solid var(--grid); border-radius:10px; padding:1rem 1.1rem; background:#fff; }
+    .concept .card .tag{ display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+      padding:.18rem .5rem; border-radius:999px; color:#fff; margin-bottom:.5rem; }
+    .concept .card.b .tag{ background:var(--bias); }
+    .concept .card.n .tag{ background:var(--noise); }
+    .concept .card.gt .tag{ background:var(--true); }
+    .concept .card.nogt .tag{ background:var(--meas); }
+    .concept .card p{ margin:.4rem 0; font-size:.92rem; }
+    .concept .card .forwhom{ font-size:.82rem; color:var(--muted); margin:.5rem 0 0; }
+
+    /* tab bar for the two judge types */
+    .tabbar{ display:flex; gap:.4rem; border-bottom:2px solid var(--grid); margin:1.6rem 0 0; flex-wrap:wrap; }
+    .tabbar button{ font:inherit; font-weight:600; font-size:1rem; border:none; background:none; cursor:pointer;
+      padding:.7rem 1.1rem; color:var(--muted); border-bottom:3px solid transparent; margin-bottom:-2px; text-align:left; }
+    .tabbar button .sub{ display:block; font-size:.74rem; font-weight:500; color:var(--muted); }
+    .tabbar button.active{ color:#111; border-bottom-color:#111; }
+    .tabpane{ display:none; }
+    .tabpane.active{ display:block; }
+
+    /* controls */
+    .dials{ display:grid; grid-template-columns:1fr 1fr; gap:1.4rem 2rem; align-items:start; }
+    @media (max-width:680px){ .dials{ grid-template-columns:1fr; } }
+    .dial label{ display:flex; justify-content:space-between; font-weight:600; font-size:.85rem; margin-bottom:.35rem; }
+    .dial .val{ font-variant-numeric:tabular-nums; color:var(--muted); font-weight:600; }
+    .dial input[type=range]{ width:100%; }
+    .dial .ends{ display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); margin-top:.1rem; }
+    .dial.bias label span.name{ color:var(--bias); }
+    .dial.noise label span.name{ color:var(--noise); }
+    .btnrow{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:1.1rem; }
+    .btn{ font:inherit; font-weight:600; border-radius:8px; padding:.55rem 1.1rem; cursor:pointer; border:1px solid #111; }
+    .btn.primary{ background:#111; color:#fff; }
+    .btn.ghost{ background:#fff; color:#111; }
+    .btn:active{ transform:translateY(1px); }
+
+    /* readouts */
+    .readouts{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1rem 0; }
+    @media (max-width:680px){ .readouts{ grid-template-columns:1fr; } }
+    .ro{ border:1px solid var(--grid); border-radius:10px; padding:.9rem 1rem; background:#fff; }
+    .ro .k{ font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+    .ro .v{ font-size:2.2rem; font-weight:800; line-height:1.05; font-variant-numeric:tabular-nums; }
+    .ro .v small{ font-size:1rem; font-weight:600; color:var(--muted); }
+    .ro.t .v{ color:var(--true); }
+    .ro.m .v{ color:var(--meas); }
+    .ro.g .v{ color:var(--bias); }
+    .ro .sub{ font-size:.78rem; color:var(--muted); margin-top:.15rem; }
+
+    canvas{ width:100%; max-width:100%; display:block; }
+    .cilabel{ font-size:.9rem; margin:.6rem 0 0; }
+    .cov{ font-weight:700; }
+    .cov.ok{ color:var(--good); }
+    .cov.miss{ color:var(--bad); }
+
+    /* items / example tables */
+    table.items{ width:100%; border-collapse:collapse; font-size:.85rem; margin:.6rem 0 0; }
+    table.items th, table.items td{ padding:.35rem .55rem; border-bottom:1px solid var(--grid); text-align:left; vertical-align:middle; }
+    table.items th{ font-size:.7rem; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+    .truth{ font-size:.85rem; color:var(--muted); white-space:nowrap; }
+    .bar{ position:relative; height:.62rem; width:120px; background:#eef2f7; border-radius:999px; overflow:hidden; display:inline-block; vertical-align:middle; }
+    .bar > i{ position:absolute; left:0; top:0; bottom:0; border-radius:999px; }
+    .bar.truebar > i{ background:#94a3b8; }
+    .bar.scorebar > i{ background:var(--meas); }
+    .scoreval{ font-variant-numeric:tabular-nums; font-weight:600; margin-left:.4rem; }
+    .legend{ display:flex; gap:1.2rem; flex-wrap:wrap; font-size:.8rem; color:var(--muted); margin:.6rem 0 0; }
+    .sw{ display:inline-block; width:.8rem; height:.8rem; border-radius:2px; vertical-align:-1px; margin-right:.3rem; }
+
+    /* classification labels + verdict marks */
+    .lab{ display:inline-block; padding:.1rem .5rem; border-radius:6px; font-size:.78rem; font-weight:700; background:#eef2f7; color:#334155; white-space:nowrap; }
+    .mark{ font-weight:800; }
+    .mark.ok{ color:var(--good); }
+    .mark.bad{ color:var(--bad); }
+    tr.changed td{ background:#fff7ed; }
+    .flip{ font-size:.72rem; color:var(--meas); font-weight:700; margin-left:.3rem; }
+
+    /* gen-AI classifier demo (moved from the L1 lab) */
+    .dsrow{ display:flex; gap:.5rem; margin:.2rem 0 .8rem; flex-wrap:wrap; }
+    .dsrow button{ font:inherit; font-weight:600; border:1px solid var(--grid); background:#fff;
+      border-radius:8px; padding:.4rem .9rem; cursor:pointer; color:var(--muted); }
+    .dsrow button.on{ border-color:#111; color:#111; }
+    .genai-controls{ display:flex; gap:.9rem; align-items:center; flex-wrap:wrap; margin:.4rem 0 .9rem; }
+    .genai-controls label{ font-size:.85rem; font-weight:600; }
+    .genai-controls input{ width:5.5rem; font:inherit; padding:.3rem .4rem; border:1px solid var(--grid); border-radius:6px; margin-left:.4rem; }
+    .gnote{ font-size:.8rem; color:var(--muted); }
+    .genai-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:start; }
+    @media (max-width:680px){ .genai-grid{ grid-template-columns:1fr; } }
+    .gacc{ font-size:2rem; font-weight:800; color:var(--meas); font-variant-numeric:tabular-nums; }
+    .gacc small{ font-size:.95rem; font-weight:600; color:var(--muted); }
+    table.pcm{ border-collapse:collapse; font-size:.82rem; margin-top:.4rem; }
+    table.pcm th, table.pcm td{ padding:.25rem .55rem; border-bottom:1px solid var(--grid); text-align:left; }
+    table.pcm th{ font-size:.68rem; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+    table.pcm td.num, table.pcm th.num{ text-align:right; font-variant-numeric:tabular-nums; }
+    table.cmx{ border-collapse:collapse; font-size:.78rem; }
+    table.cmx th, table.cmx td{ border:1px solid var(--grid); padding:.25rem .5rem; text-align:center; font-variant-numeric:tabular-nums; }
+    table.cmx th{ color:var(--muted); font-weight:600; }
+    table.cmx td.diag{ background:#ecfdf5; font-weight:700; }
+    pre.gprompt{ background:#f8fafc; border:1px solid var(--grid); border-radius:8px; padding:.7rem .8rem;
+      font-size:.78rem; line-height:1.45; overflow:auto; white-space:pre-wrap; margin:.5rem 0 0; }
+    details.gp summary{ cursor:pointer; font-weight:600; font-size:.9rem; margin:.2rem 0; }
+
+    /* mini reliability diagram */
+    .relwrap{ display:grid; grid-template-columns:340px 1fr; gap:1.2rem; align-items:center; }
+    @media (max-width:680px){ .relwrap{ grid-template-columns:1fr; } }
+    .ece{ font-size:1.6rem; font-weight:800; font-variant-numeric:tabular-nums; }
+  </style>
+</head>
+<body>
+<main>
+  <a class="nav-back" href="../">← All playgrounds</a>
+
+  <div class="hero">
+    <h1>LLM as a Judge</h1>
+    <p class="subtitle">L2 lab · an LLM can <em>be</em> the thing that judges your AI's answers — classifying them or scoring them. In L1 the judge was perfect; a real judge has two defects, <strong>bias</strong> and <strong>noise</strong>.</p>
+    <p class="hero-meta">Uncertainty dimension: judge noise &amp; bias.</p>
+  </div>
+
+  <section class="lab-section">
+    <h2>Where L1 left off</h2>
+    <p>
+      Lesson&nbsp;1 made two quiet assumptions: there is a <strong>perfect ground truth</strong>, and we can
+      <strong>compare the AI's answer to it perfectly</strong>. The only uncertainty was <em>which cases</em> landed in
+      your test set (sampling noise). This lesson removes the second assumption. The thing that judges an answer is
+      itself an <strong>instrument</strong>, and instruments are imperfect in two distinct ways.
+    </p>
+
+    <div class="concept">
+      <div class="card b">
+        <span class="tag">Bias — systematic</span>
+        <p>The judge is consistently off in one direction — a classifier that keeps reaching for the same wrong label, or
+           a scorer that rates everything a few points high.</p>
+        <p><strong>Effect:</strong> your measurement is <em>shifted</em> off the truth. More data does <em>not</em> fix it
+           — it just makes you confidently wrong.</p>
+      </div>
+      <div class="card n">
+        <span class="tag">Noise — random</span>
+        <p>The judge is inconsistent: re-run it (temperature, an ambiguous rubric, a different annotator) and the same
+           answer gets a different label, or a different score.</p>
+        <p><strong>Effect:</strong> your measurement <em>wobbles</em>. It averages out with more judgments — but on a
+           finite test set it <em>widens</em> the spread you must report.</p>
+      </div>
+    </div>
+
+    <p>We start with the simplest LLM judge — one that <em>classifies</em> — then add the two defects, then move to
+       judges that <em>score</em>. Pick a tab:</p>
+  </section>
+
+  <div class="tabbar" role="tablist">
+    <button id="tabbtn-classifier" class="active" data-tab="classifier" role="tab">The LLM judge, classifying<span class="sub">the simple case — straight from L1</span></button>
+    <button id="tabbtn-classify" data-tab="classify" role="tab">Labels: noise &amp; bias<span class="sub">ground truth vs none · calibration</span></button>
+    <button id="tabbtn-score" data-tab="score" role="tab">Judge that scores<span class="sub">hands you a number (0–100)</span></button>
+  </div>
+
+  <!-- ===================== CLASSIFIER TAB (the simple LLM judge, from L1) ===================== -->
+  <div class="tabpane active" id="tab-classifier">
+
+    <section class="lab-section">
+      <h2>An LLM as a classifier</h2>
+      <p>
+        An LLM can <strong>classify</strong>, exactly like the trained models in L1 — read a piece of text and emit one
+        label (<code>POSITIVE</code> / <code>NEGATIVE</code>, or one of several categories). No training: a prompt with
+        the allowed classes and a few labelled examples. This demo moved here from the L1 lab — same datasets, real
+        precomputed LLM predictions; spin freely, no API calls.
+      </p>
+      <p>Because we hold the true labels, we can measure the LLM exactly like L1 measured the trained model: accuracy,
+         per-class precision/recall, the confusion matrix. And the confusion matrix shows the <em>direction</em> of the
+         misses — the <span style="color:var(--bias);font-weight:700">bias</span> — visible only because we have
+         ground truth.</p>
+
+      <div class="panel" id="genaiPanel" style="padding-top:.7rem">
+        <h3>Gen-AI classifier on the L1 datasets</h3>
+        <div class="dsrow" id="gdsrow"></div>
+        <details class="gp">
+          <summary>How the LLM is prompted (few-shot)</summary>
+          <pre class="gprompt" id="gprompt"></pre>
+        </details>
+        <div class="genai-controls">
+          <label>Test-set size <input type="number" id="gsize" min="10" value="100"></label>
+          <button class="btn primary" id="gspin">🎲 Spin the wheel</button>
+          <span class="gnote" id="gnote"></span>
+        </div>
+        <div class="genai-grid">
+          <div id="gmetrics"></div>
+          <div id="gcm"></div>
+        </div>
+        <h4 style="margin:1.1rem 0 .1rem">Where it goes wrong — misses from this draw</h4>
+        <table class="items">
+          <thead><tr><th>Text</th><th>True label</th><th>LLM's label</th></tr></thead>
+          <tbody id="gmiss"></tbody>
+        </table>
+        <p class="note" id="gmissnote" style="margin:.6rem 0 0"></p>
+      </div>
+
+      <div class="takeaway">
+        <strong>Spin a few times.</strong> The accuracy wobbles — that's L1's sampling noise, still here. But watch
+        the confusion matrix: the same off-diagonal cells stay heavy draw after draw. That persistent lean is
+        <span style="color:var(--bias)">bias</span>, and it took ground truth to see it. The next tab digs into
+        exactly that — what you can and cannot see, with and without ground truth.
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== CLASSIFY TAB (labels: noise & bias, calibration) ===================== -->
+  <div class="tabpane" id="tab-classify">
+
+    <section class="lab-section">
+      <h2>The catch: how do you know the judge's labels are right?</h2>
+      <p>
+        The first tab could measure the LLM judge only because the L1 datasets come with <strong>gold labels</strong>.
+        In real judging work that's the exception, and everything depends on which side of it you're on.
+      </p>
+
+      <div class="concept">
+        <div class="card gt">
+          <span class="tag">Ground truth available</span>
+          <p>You hold trusted labels. You can measure the judge directly — its accuracy, and crucially its
+             <strong>bias</strong>: does it systematically lean toward one label?</p>
+          <p class="forwhom">This is the first tab's setting — gold labels exist, so every judge error is visible.</p>
+        </div>
+        <div class="card nogt">
+          <span class="tag">No ground truth</span>
+          <p>Fresh data nobody labeled. You can run the judge, but you can't tell if a label is <em>right</em> — only
+             whether the judge is <strong>consistent</strong> on re-runs (that's its noise).</p>
+          <p class="forwhom">To see or fix <strong>bias</strong> you must <strong>calibrate</strong> against a small
+             trusted slice. With zero labels, bias is invisible.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>Without ground truth — a fresh, unlabeled batch</h2>
+      <p>New tickets just arrived. Nobody has labeled them. The judge assigns a category — but there is no truth column to
+         check it against. Hit <strong>Re-judge</strong>: the ambiguous tickets flip. That flipping is the judge's
+         <span style="color:var(--noise);font-weight:700">noise</span> — and it's <em>all</em> you can see here.</p>
+
+      <div class="panel" style="padding-top:.7rem">
+        <h3>Incoming tickets — no gold labels</h3>
+        <table class="items">
+          <thead><tr><th>Ticket</th><th>True label</th><th>Judge's label</th></tr></thead>
+          <tbody id="unlabBody"></tbody>
+        </table>
+        <div class="btnrow">
+          <button class="btn primary" id="rejudgeCls">Re-judge ↻</button>
+        </div>
+        <p class="note" style="margin:.7rem 0 0">The shaded rows changed on the last re-judge. You can measure how
+          <em>consistent</em> the judge is (noise), but with no truth you <strong>cannot</strong> tell whether it's
+          systematically wrong (bias). To get at bias you'd hand-label a small slice and
+          <strong>calibrate</strong> against it.</p>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>"Calibration" means two different things</h2>
+      <p>When there's no ground truth, the fix is <em>calibration</em> — but that word points at two genuinely different
+         procedures depending on whether you're calibrating a classic ML classifier or an LLM judge.</p>
+
+      <div class="concept">
+        <div class="card">
+          <span class="tag" style="background:var(--noise)">ML classifier → probability calibration</span>
+          <p>Most ML classifiers output a <strong>probability per class</strong>. "Calibrated" means the probabilities
+             match reality: of the cases it calls <strong>80%</strong> POSITIVE, about 80% really are. You check it with a
+             <strong>reliability diagram</strong> and <strong>ECE</strong>, and fix it with Platt / isotonic / temperature
+             scaling.</p>
+        </div>
+        <div class="card">
+          <span class="tag" style="background:var(--bias)">LLM judge → tune the judge</span>
+          <p>You rarely get trustworthy per-class probabilities from an LLM (logprobs aren't always exposed, and a
+             verbalized "I'm 90% sure" is badly miscalibrated). So "calibrating" an LLM judge usually means something
+             else: <strong>tuning it to agree</strong> with a trusted slice — mostly by working the
+             <strong>prompt / rubric</strong> (sharper criteria, few-shot anchor examples), plus model choice and
+             self-consistency. You still need a small labeled set to tune against.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>A worked example: does &ldquo;95% sure&rdquo; mean 95% right?</h3>
+        <p style="margin:.2rem 0 .4rem">Take the L1-style sentiment classifier and <strong>1,000 test reviews</strong>.
+           Group its predictions by the confidence it <em>stated</em>, then check how many in each group were
+           <em>actually</em> right:</p>
+        <table class="pcm">
+          <thead><tr><th>Classifier said</th><th class="num">Cases</th><th class="num">Actually correct</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td>&ldquo;~55% sure&rdquo;</td><td class="num">80</td><td class="num">52%</td><td style="color:var(--good)">honest</td></tr>
+            <tr><td>&ldquo;~65% sure&rdquo;</td><td class="num">110</td><td class="num">61%</td><td style="color:var(--good)">honest</td></tr>
+            <tr><td>&ldquo;~75% sure&rdquo;</td><td class="num">160</td><td class="num">72%</td><td style="color:var(--good)">honest</td></tr>
+            <tr><td>&ldquo;~85% sure&rdquo;</td><td class="num">250</td><td class="num">78%</td><td style="color:var(--meas);font-weight:600">overconfident</td></tr>
+            <tr style="background:#fff7ed"><td><strong>&ldquo;~95% sure&rdquo;</strong></td><td class="num"><strong>400</strong></td><td class="num"><strong>84%</strong></td><td style="color:var(--meas);font-weight:700">overconfident</td></tr>
+          </tbody>
+        </table>
+        <p style="margin:.7rem 0 0">Honest in the middle, overconfident exactly where it sounds most sure — and the 95%
+           bucket is where most predictions live (400 of 1,000). The case-weighted average of the confidence-vs-reality
+           gap gives <strong>ECE &asymp; 7 points</strong>. The confidence <em>is</em> information — but only after this
+           check. This is the example from the L2 deck; the simulator below lets you bend the same curve yourself.</p>
+      </div>
+
+      <div class="panel">
+        <h3>See what probability calibration means</h3>
+        <div class="relwrap">
+          <canvas id="relCanvas" width="340" height="300"></canvas>
+          <div>
+            <p style="margin:.2rem 0 .7rem">Each dot: of the cases the classifier <em>stated</em> were <span class="truth">p</span>
+               likely positive, how many actually were. On the dashed diagonal = perfectly calibrated. Slide the judge from
+               under- to over-confident and watch the curve bow off the diagonal.</p>
+            <div class="dial">
+              <label>Judge confidence <span class="val" id="relDistortVal">calibrated</span></label>
+              <input type="range" id="relDistort" min="-1" max="1" step="0.05" value="0">
+              <div class="ends"><span>← under-confident</span><span>over-confident →</span></div>
+            </div>
+            <p style="margin:1rem 0 0">Expected Calibration Error (ECE): <span class="ece" id="eceVal">0.0%</span></p>
+          </div>
+        </div>
+        <p class="note" style="margin:.8rem 0 0">This whole picture needs probabilities <em>and</em> labels. An LLM judge
+           that just says "<span class="lab">POSITIVE</span>" gives you neither a probability nor a guarantee — which is
+           why its "calibration" lives in the prompt, not in a scaling formula.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== SCORE TAB ===================== -->
+  <div class="tabpane" id="tab-score">
+
+    <section class="lab-section">
+      <h2>The judge gives a number — a scorecard</h2>
+      <p>
+        Gen-AI answers are rarely just right or wrong ("Paris" vs. "Paris, the City of Light" vs. "a city in France"). So
+        a scoring judge rates quality on a scale, often across several dimensions — a <strong>scorecard</strong>:
+      </p>
+
+      <div class="panel" style="padding-top:.7rem">
+        <h3>What a scorecard looks like</h3>
+        <table class="items">
+          <thead><tr><th>Answer (to "Summarize the refund policy")</th><th>Correctness</th><th>Completeness</th><th>Fluency</th><th>Overall</th></tr></thead>
+          <tbody>
+            <tr><td>Accurate, covers all cases, well written</td><td>92</td><td>88</td><td>95</td><td><strong>91</strong></td></tr>
+            <tr><td>Right facts but skips the 30-day window</td><td>90</td><td>55</td><td>90</td><td><strong>74</strong></td></tr>
+            <tr><td>Fluent but states the wrong refund window</td><td>40</td><td>70</td><td>92</td><td><strong>61</strong></td></tr>
+            <tr><td>Correct gist, terse and a bit garbled</td><td>80</td><td>72</td><td>45</td><td><strong>69</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin:.7rem 0 0">The simulator below collapses the scorecard to one <strong>overall
+           quality (0–100)</strong> so the bias-vs-noise story stays clean — but every dimension carries its own bias and
+           noise in exactly the same way.</p>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>The simulator</h2>
+      <p>
+        Below is a frozen pool of AI answers, each with a <em>known</em> true quality (we get to peek — you never do in real
+        life). The system's <strong>true mean score is 70 / 100</strong>. A judge now rates the answers. You set how
+        <span style="color:var(--bias);font-weight:700">biased</span> and how
+        <span style="color:var(--noise);font-weight:700">noisy</span> that judge is.
+      </p>
+
+      <div class="panel">
+        <h3>Judge dials</h3>
+        <div class="dials">
+          <div class="dial bias">
+            <label><span class="name">Bias</span> <span class="val" id="biasVal">0</span></label>
+            <input type="range" id="bias" min="-25" max="25" step="1" value="0">
+            <div class="ends"><span>← harsher (rates good answers low)</span><span>more generous (rates weak high) →</span></div>
+          </div>
+          <div class="dial noise">
+            <label><span class="name">Noise</span> <span class="val" id="noiseVal">8</span></label>
+            <input type="range" id="noise" min="0" max="30" step="1" value="8">
+            <div class="ends"><span>perfectly consistent</span><span>very inconsistent</span></div>
+          </div>
+          <div class="dial">
+            <label>Test-set size <span class="val" id="nVal">100</span></label>
+            <input type="range" id="n" min="20" max="500" step="10" value="100">
+            <div class="ends"><span>20</span><span>500</span></div>
+          </div>
+          <div class="dial" style="display:flex;align-items:flex-end">
+            <div class="btnrow" style="margin:0">
+              <button class="btn primary" id="rejudge">Re-judge ↻</button>
+              <button class="btn ghost" id="reset">Reset dials</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="readouts">
+        <div class="ro t"><div class="k">True mean score</div><div class="v">70<small>/100</small></div><div class="sub">fixed — what we want to know</div></div>
+        <div class="ro m"><div class="k">Measured (this run)</div><div class="v" id="measV">–</div><div class="sub" id="measSub">judge's mean rating on the test set</div></div>
+        <div class="ro g"><div class="k">Gap = measured − true</div><div class="v" id="gapV">–</div><div class="sub" id="gapSub">the bias you'd never see</div></div>
+      </div>
+
+      <div class="takeaway">
+        <strong>Try this:</strong> set noise to 0 and slide <span style="color:var(--bias)">bias</span> — the measured score
+        slides off 70 and <em>stays</em> there however many times you re-judge. Now set bias to 0 and raise
+        <span style="color:var(--noise)">noise</span>, then hit <em>Re-judge</em> a few times — the number jitters around 70
+        but keeps returning to it. Bias moves the center; noise moves each draw.
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>What the judge did to each answer</h2>
+      <p>A sample of the pool. The grey bar is each answer's <em>true</em> quality; the amber bar is the
+         <em>judge's</em> rating. Bias slides every amber bar the same way; noise jitters each one independently.</p>
+      <div class="panel" style="padding-top:.6rem">
+        <table class="items">
+          <thead><tr><th>Question</th><th>AI answer</th><th>True quality</th><th>Judge's score</th></tr></thead>
+          <tbody id="itemsBody"></tbody>
+        </table>
+        <div class="legend">
+          <span><span class="sw" style="background:#94a3b8"></span>true quality</span>
+          <span><span class="sw" style="background:var(--meas)"></span>judge's rating (bias + noise applied)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <h2>Bootstrap: how sure are you about that number?</h2>
+      <p>
+        You ran the judge once and got a single mean score. How much would it move if your test set had been a different
+        draw, and the noisy judge had rated differently? <strong>Bootstrap</strong> answers that without any formula:
+        resample the test set <em>with replacement</em> thousands of times, re-score each resample, and look at the spread
+        of the results. (It's the model-free cousin of L1's Beta interval, and it works for any score — binary, 1–5, or
+        continuous.)
+      </p>
+      <div class="panel">
+        <canvas id="hist" width="900" height="300"></canvas>
+        <div class="legend">
+          <span><span class="sw" style="background:var(--noise)"></span>bootstrap distribution of the measured score</span>
+          <span><span class="sw" style="background:var(--meas)"></span>this run's measurement</span>
+          <span><span class="sw" style="background:var(--true)"></span>true mean score (70)</span>
+        </div>
+        <p class="cilabel" id="ciLabel">–</p>
+        <p class="cilabel" id="covLabel">–</p>
+      </div>
+
+      <div class="takeaway">
+        <strong>The asymmetry that matters.</strong> Raise <span style="color:var(--noise)">noise</span> → the bootstrap
+        distribution gets <em>wider</em>: noise is honest, it shows up as a bigger interval you can report and then shrink
+        (average more judgments, tighten the rubric, drop the temperature). Slide
+        <span style="color:var(--bias)">bias</span> → the whole distribution <em>shifts away</em> from the green truth line,
+        and the interval can sit entirely in the wrong place. The bootstrap only resamples what the judge <em>said</em>, so
+        <strong>it cannot see the bias</strong> — it hands you a tight, confident interval around the wrong answer. Now push
+        <em>test-set size</em> up with bias on: the interval gets <em>narrower</em> and excludes the truth even more
+        decisively. More data cures noise; it cannot cure bias.
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== shared closing ===================== -->
+  <section class="lab-section">
+    <h2>The L2 takeaway</h2>
+    <ol>
+      <li><strong>Bias and noise are different defects.</strong> Noise is random and averages out; bias is systematic and
+        persists. Telling them apart is the first move.</li>
+      <li><strong>Both widen your real uncertainty — differently.</strong> Noise widens the interval you can measure.
+        Bias adds an offset your interval can't even see, so the truth may lie outside a confident-looking CI.</li>
+      <li><strong>They call for different fixes.</strong> Reduce <em>noise</em> by averaging repeats, lowering temperature,
+        and writing a crisper rubric. Reduce <em>bias</em> only by auditing the judge against trusted labels — calibrating
+        a "judge of judges" (the thread we pick up in L6).</li>
+      <li><strong>Label or number, the same two defects apply.</strong> And with no ground truth you can only see
+        <em>noise</em> (re-run consistency) — measuring <em>bias</em> always needs a trusted slice to calibrate against.</li>
+    </ol>
+    <p class="note">Next: the code path (<code>notebook.ipynb</code>) reproduces these numbers on real LLM judges and lets
+       you point the bootstrap at your own scored answers.</p>
+  </section>
+</main>
+
+<!-- real LLM predictions from the L1 lab bundle (built there by build_predictions.py);
+     timestamped so regenerated predictions always load (no stale browser cache) -->
+<script>document.write('<scr' + 'ipt src="../basic_classification_and_noise/predictions/data.js?v=' + Date.now() + '"><\/scr' + 'ipt>');</script>
+<script>
+// ===========================================================================
+// Tab switching. Hash-routable: #classifier / #classify / #score.
+// ===========================================================================
+const TABS = ["classifier","classify","score"];
+function showTab(name){
+  if(!TABS.includes(name)) name = "classifier";
+  TABS.forEach(t=>{
+    document.getElementById("tab-"+t).classList.toggle("active", t===name);
+    document.getElementById("tabbtn-"+t).classList.toggle("active", t===name);
+  });
+  if(name==="score") render();             // (re)layout the canvas now that it's visible
+  if(history.replaceState) history.replaceState(null,"","#"+name);
+}
+document.querySelectorAll(".tabbar button").forEach(b=>
+  b.addEventListener("click", ()=>showTab(b.dataset.tab)));
+
+// ===========================================================================
+// CLASSIFY tab — part 1: the gen-AI classifier demo (moved from the L1 lab).
+// Real precomputed LLM predictions from ../basic_classification_and_noise/
+// predictions/data.js: items have {text, truth:[..], llm:[..]}.
+// ===========================================================================
+const L1DATA = window.L1_PREDICTIONS || {};
+const GEN_ORDER = ["bitext","rotten_tomatoes"];
+const GEN_TITLE = {bitext:"Bitext — support tickets (5 classes)",
+                   rotten_tomatoes:"Rotten Tomatoes — sentiment (binary)"};
+const escH = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const pctG = x => isNaN(x) ? "—" : (100*x).toFixed(1)+"%";
+const labOf = it => it.truth[0]||"∅";
+const llmOf = it => it.llm[0]||"∅";
+
+let gds = GEN_ORDER.find(k=>L1DATA[k]);
+let gIdx = [];
+
+function gSample(n, size){
+  const idx=[...Array(n).keys()];
+  for(let i=n-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [idx[i],idx[j]]=[idx[j],idx[i]]; }
+  return idx.slice(0, Math.min(size,n));
+}
+
+function gEval(sample, labels){
+  let correct=0; const cm={}; labels.forEach(a=>{ cm[a]={}; });
+  sample.forEach(it=>{ const t=labOf(it), p=llmOf(it); if(t===p)correct++; cm[t]=cm[t]||{}; cm[t][p]=(cm[t][p]||0)+1; });
+  const per=labels.map(l=>{
+    let TP=0,FP=0,FN=0,sup=0;
+    sample.forEach(it=>{ const t=labOf(it), p=llmOf(it); if(t===l)sup++;
+      if(p===l&&t===l)TP++; else if(p===l)FP++; else if(t===l)FN++; });
+    return {l, sup, prec:(TP+FP)?TP/(TP+FP):NaN, rec:(TP+FN)?TP/(TP+FN):NaN};
+  });
+  return {n:sample.length, correct, acc:correct/sample.length, cm, per};
+}
+
+function gCmTable(cm, labels){
+  const abbr = s => s.length>10 ? s.slice(0,9)+"…" : s;
+  const head = "<tr><th>actual ＼ pred</th>"+labels.map(l=>`<th title="${escH(l)}">${escH(abbr(l))}</th>`).join("")+"</tr>";
+  const rows = labels.map(a=>{
+    const tds = labels.map(p=>{ const v=(cm[a]&&cm[a][p])||0; return `<td${a===p?' class="diag"':''}>${v||""}</td>`; }).join("");
+    return `<tr><th title="${escH(a)}">${escH(abbr(a))}</th>${tds}</tr>`;
+  }).join("");
+  return `<h4 style="margin:.1rem 0 .3rem">Confusion matrix</h4><table class="cmx">${head}${rows}</table>`;
+}
+
+function gPromptText(d){
+  const shots=d.items.slice(0,3).map(it=>`INPUT: ${it.text}\nCLASS: ${labOf(it)}`).join("\n\n");
+  return `You are a text classifier. Read the input and reply with EXACTLY ONE class.
+
+Allowed classes: ${d.labels.join(", ")}.
+Rule: pick one class from the list — never invent a new one.
+
+Here are some labelled examples:
+${shots}
+
+Now classify this input. Reply with only the class name:
+INPUT: {{ the text to classify }}
+CLASS:`;
+}
+
+function renderGen(){
+  const panel=document.getElementById("genaiPanel");
+  if(!gds){
+    panel.innerHTML = `<h3>Gen-AI classifier on the L1 datasets</h3>
+      <p class="note" style="color:var(--bad);font-weight:600">Could not load the prediction bundle
+      (../basic_classification_and_noise/predictions/data.js). The demo needs the L1 lab's precomputed
+      LLM predictions — rebuild them with build_predictions.py in that folder.</p>`;
+    return;
+  }
+  const d=L1DATA[gds];
+  // dataset toggle
+  document.getElementById("gdsrow").innerHTML = GEN_ORDER.map(k=>
+    `<button data-ds="${k}" class="${k===gds?"on":""}" ${L1DATA[k]?"":"disabled"}>${GEN_TITLE[k]}</button>`).join("");
+  document.querySelectorAll("#gdsrow button").forEach(b=>
+    b.onclick=()=>{ gds=b.dataset.ds; gIdx=[]; renderGen(); });
+  document.getElementById("gprompt").textContent = gPromptText(d);
+
+  const size=Math.max(10, Math.min(d.n, parseInt(document.getElementById("gsize").value)||100));
+  if(gIdx.length!==size) gIdx=gSample(d.n, size);
+  const sample=gIdx.map(i=>d.items[i]);
+  const m=gEval(sample, d.labels);
+  document.getElementById("gnote").innerHTML = `sampled <b>${m.n}</b> of ${d.n} cases`;
+
+  const perRows=m.per.map(r=>
+    `<tr><td>${escH(r.l)}</td><td class="num">${r.sup}</td><td class="num">${pctG(r.prec)}</td><td class="num">${pctG(r.rec)}</td></tr>`).join("");
+  document.getElementById("gmetrics").innerHTML = `
+    <div class="gacc">${pctG(m.acc)} <small>accuracy (${m.correct}/${m.n})</small></div>
+    <table class="pcm">
+      <tr><th>Class</th><th class="num">n</th><th class="num">Precision</th><th class="num">Recall</th></tr>
+      ${perRows}
+    </table>`;
+  document.getElementById("gcm").innerHTML = gCmTable(m.cm, d.labels);
+
+  // misses from this draw — and the dominant confusion (the lean)
+  const misses=sample.filter(it=>labOf(it)!==llmOf(it));
+  document.getElementById("gmiss").innerHTML = misses.slice(0,6).map(it=>`<tr>
+    <td>${escH(it.text)}</td>
+    <td><span class="lab">${escH(labOf(it))}</span></td>
+    <td><span class="lab">${escH(llmOf(it))}</span> <span class="mark bad">✗</span></td>
+  </tr>`).join("") || `<tr><td colspan="3" class="note">no misses in this draw — spin again</td></tr>`;
+  let leanNote="";
+  if(misses.length){
+    const pairs={};
+    misses.forEach(it=>{ const k=`${labOf(it)} → ${llmOf(it)}`; pairs[k]=(pairs[k]||0)+1; });
+    const top=Object.entries(pairs).sort((a,b)=>b[1]-a[1])[0];
+    leanNote = ` Most common confusion: <b>true ${escH(top[0])}</b> (${top[1]}×) — a lean you can only see because we hold the truth.`;
+  }
+  document.getElementById("gmissnote").innerHTML =
+    `<b>${misses.length}</b> misses in this draw of ${m.n}${misses.length>6?" (showing 6)":""}.${leanNote}`;
+}
+document.getElementById("gspin").addEventListener("click", ()=>{ gIdx=[]; renderGen(); });
+document.getElementById("gsize").addEventListener("change", ()=>{ gIdx=[]; renderGen(); });
+renderGen();
+
+// ===========================================================================
+// CLASSIFY tab — part 2: the no-ground-truth re-judge.
+// no truth: [text, labelA, labelB|null]  — ambiguous rows (with labelB) flip on re-judge.
+// ===========================================================================
+const UNLAB = [
+  ["my card was charged twice for order 4471","PAYMENT","REFUND"],
+  ["where is my parcel? it's 5 days late","DELIVERY",null],
+  ["I want to change the shipping address before it ships","DELIVERY","ORDER"],
+  ["please cancel my subscription and refund this month","REFUND","ACCOUNT"],
+  ["I can't log into my account after the password reset","ACCOUNT",null],
+  ["the item I received is the wrong size — what now?","REFUND","DELIVERY"],
+];
+
+// unlabeled table: track current label per row; re-judge re-rolls the ambiguous ones.
+let unlabState = UNLAB.map(r=>r[1]);          // start on label A
+function renderUnlab(changedSet){
+  document.getElementById("unlabBody").innerHTML = UNLAB.map((r,i)=>{
+    const changed = changedSet && changedSet.has(i);
+    return `<tr class="${changed?"changed":""}">
+      <td>${r[0]}</td>
+      <td><span class="truth">— none —</span></td>
+      <td><span class="lab">${unlabState[i]}</span>${changed?'<span class="flip">↻ flipped</span>':""}</td>
+    </tr>`;
+  }).join("");
+}
+document.getElementById("rejudgeCls").addEventListener("click", ()=>{
+  const changed = new Set();
+  UNLAB.forEach((r,i)=>{
+    if(r[2]==null) return;                    // unambiguous: judge is stable
+    const pick = Math.random()<0.5 ? r[1] : r[2];
+    if(pick!==unlabState[i]){ unlabState[i]=pick; changed.add(i); }
+  });
+  renderUnlab(changed);
+});
+renderUnlab(null);
+
+// ---- mini reliability diagram (probability calibration) ----
+const relCv = document.getElementById("relCanvas");
+const relSlider = document.getElementById("relDistort");
+const relDistortVal = document.getElementById("relDistortVal");
+const eceVal = document.getElementById("eceVal");
+const REL_BINS = 10;
+const binCenters = Array.from({length:REL_BINS},(_,i)=>(i+0.5)/REL_BINS);
+function empAcc(p, gamma){ return Math.pow(p, gamma); }   // gamma>1 over-confident, <1 under-confident
+function drawReliability(){
+  const s = parseFloat(relSlider.value);
+  const gamma = Math.pow(2, s);                            // s in [-1,1]
+  relDistortVal.textContent = Math.abs(s)<0.03 ? "calibrated"
+      : (s>0 ? "over-confident" : "under-confident");
+  let ece=0; for(const p of binCenters) ece += Math.abs(p-empAcc(p,gamma));
+  eceVal.textContent = (100*ece/REL_BINS).toFixed(1)+"%";
+
+  const ctx=relCv.getContext("2d");
+  const cssW=340, cssH=300, dpr=window.devicePixelRatio||1;
+  relCv.width=cssW*dpr; relCv.height=cssH*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,cssW,cssH);
+  const padL=42, padR=12, padT=12, padB=34;
+  const W=cssW-padL-padR, H=cssH-padT-padB;
+  const X=p=>padL+p*W, Y=a=>padT+(1-a)*H;
+  ctx.strokeStyle="#cbd5e1"; ctx.lineWidth=1; ctx.strokeRect(padL,padT,W,H);
+  // perfect-calibration diagonal
+  ctx.strokeStyle="#94a3b8"; ctx.setLineDash([5,4]); ctx.beginPath();
+  ctx.moveTo(X(0),Y(0)); ctx.lineTo(X(1),Y(1)); ctx.stroke(); ctx.setLineDash([]);
+  // the judge's curve
+  ctx.strokeStyle="#2563eb"; ctx.lineWidth=2.5; ctx.beginPath();
+  binCenters.forEach((p,i)=>{ const x=X(p), y=Y(empAcc(p,gamma)); i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+  ctx.stroke();
+  ctx.fillStyle="#2563eb";
+  binCenters.forEach(p=>{ ctx.beginPath(); ctx.arc(X(p),Y(empAcc(p,gamma)),3.2,0,2*Math.PI); ctx.fill(); });
+  // axes labels
+  ctx.fillStyle="#64748b"; ctx.font="11px system-ui,sans-serif";
+  ctx.textAlign="center"; ctx.fillText("judge's stated probability", padL+W/2, cssH-4);
+  for(let t=0;t<=5;t++){ const v=t/5; ctx.fillText(v.toFixed(1), X(v), padT+H+14); }
+  ctx.save(); ctx.translate(12,padT+H/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText("actual accuracy",0,0); ctx.restore();
+  ctx.textAlign="right";
+  for(let t=0;t<=5;t++){ const v=t/5; ctx.fillText(v.toFixed(1), padL-6, Y(v)+3); }
+}
+relSlider.addEventListener("input", drawReliability);
+drawReliability();
+
+// ===========================================================================
+// SCORE tab: the frozen-pool bias/noise simulator + bootstrap.
+// Each answer has a KNOWN true quality q in [0,1].
+// A judge rates it:  rating = clamp(q + bias + noise*z),  z ~ N(0,1).
+//   - bias  shifts every rating the same way  -> systematic offset
+//   - noise adds independent per-rating jitter -> random spread
+// True mean score of the pool = mean(q) = 0.70  (= 70/100), by construction.
+// Working in 0..1 internally; displayed as 0..100.
+// ===========================================================================
+const clamp01 = x => x<0?0 : x>1?1 : x;
+const Q = { great:0.85, good:0.78, weak:0.445, bad:0.30 };
+const POOL = [
+  ["What is the capital of France?","Paris","great"],
+  ["What is the capital of France?","Paris, the City of Light","good"],
+  ["What does CPU stand for?","Central Processing Unit","great"],
+  ["What does CPU stand for?","It stands for the Central Processing Unit.","good"],
+  ["Speed of light in vacuum?","299,792,458 m/s","great"],
+  ["Speed of light in vacuum?","approximately 300,000 km/s","good"],
+  ["Chemical formula for water?","H2O","great"],
+  ["Chemical formula for water?","H₂O — two hydrogens and an oxygen","good"],
+  ["Who wrote Hamlet?","William Shakespeare","great"],
+  ["Who wrote Hamlet?","Shakespeare wrote it","good"],
+  ["Largest planet in the Solar System?","Jupiter","great"],
+  ["Largest planet in the Solar System?","That would be Jupiter, the gas giant.","good"],
+  ["Year WWII ended?","1945","great"],
+  ["Year WWII ended?","It ended in 1945.","good"],
+  ["How many continents are there?","Seven","great"],
+  ["How many continents are there?","There are 7 continents on Earth.","good"],
+  ["Square root of 144?","12","great"],
+  ["Author of 'Pride and Prejudice'?","Jane Austen","great"],
+  ["Symbol for gold on the periodic table?","Au","great"],
+  ["Capital of Japan?","Tokyo","great"],
+  ["Boiling point of water at sea level?","100°C","great"],
+  ["Number of sides on a hexagon?","Six","great"],
+  ["Currency of the United Kingdom?","Pound sterling","great"],
+  ["Planet known as the Red Planet?","Mars","great"],
+  ["Fastest land animal?","The cheetah","great"],
+  ["Who painted the Mona Lisa?","Leonardo da Vinci","great"],
+  ["Capital of Australia?","Canberra","great"],
+  ["Gas plants absorb for photosynthesis?","Carbon dioxide","great"],
+  // wrong but plausible — a generous judge rates these too high
+  ["What is the capital of France?","Marseille, a major French city","weak"],
+  ["Speed of light in vacuum?","about 150,000 km/s","weak"],
+  ["Who wrote Hamlet?","Christopher Marlowe","weak"],
+  ["Largest planet in the Solar System?","Saturn","weak"],
+  ["Year WWII ended?","1946","weak"],
+  ["Square root of 144?","14","weak"],
+  ["Capital of Australia?","Sydney","weak"],
+  ["Symbol for gold on the periodic table?","Ag","weak"],
+  // clearly wrong
+  ["What does CPU stand for?","Central Pizza Unit","bad"],
+  ["Chemical formula for water?","CO2","bad"],
+  ["Capital of Japan?","Berlin","bad"],
+  ["Fastest land animal?","The garden snail","bad"],
+];
+// counts: 20 great + 8 good + 8 weak + 4 bad = 40
+//   mean = (20*.85 + 8*.78 + 8*.445 + 4*.30)/40 = 28/40 = 0.70 exactly
+const ITEMS = POOL.map(r=>({q:r[0], a:r[1], type:r[2], quality:Q[r[2]]}));
+const TRUE_MEAN = ITEMS.reduce((s,it)=>s+it.quality,0)/ITEMS.length; // 0.70
+
+function gauss(){ let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random();
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function rating(quality, bias, sd){ return clamp01(quality + bias + (sd>0? sd*gauss():0)); }
+
+const els = {
+  bias:document.getElementById("bias"), noise:document.getElementById("noise"), n:document.getElementById("n"),
+  biasVal:document.getElementById("biasVal"), noiseVal:document.getElementById("noiseVal"), nVal:document.getElementById("nVal"),
+  measV:document.getElementById("measV"), gapV:document.getElementById("gapV"), gapSub:document.getElementById("gapSub"),
+  itemsBody:document.getElementById("itemsBody"), hist:document.getElementById("hist"),
+  ciLabel:document.getElementById("ciLabel"), covLabel:document.getElementById("covLabel"),
+};
+const pts = x => Math.round(100*x);                 // 0..1 -> 0..100
+
+function drawTestSet(n){ const a=[]; for(let k=0;k<n;k++) a.push(Math.floor(Math.random()*ITEMS.length)); return a; }
+let currentIdx = drawTestSet(100);
+
+function render(){
+  const bias=parseInt(els.bias.value)/100, sd=parseInt(els.noise.value)/100, n=parseInt(els.n.value);
+  els.biasVal.textContent = (bias>0?"+":"") + pts(bias);
+  els.noiseVal.textContent = pts(sd);
+  els.nVal.textContent = n;
+  if(currentIdx.length!==n) currentIdx = drawTestSet(n);
+
+  const ratings = currentIdx.map(i=>rating(ITEMS[i].quality, bias, sd));
+  const measured = ratings.reduce((a,b)=>a+b,0)/ratings.length;
+  els.measV.innerHTML = pts(measured) + "<small>/100</small>";
+  const gap = measured - TRUE_MEAN;
+  els.gapV.textContent = (gap>=0?"+":"") + Math.round(100*gap) + " pts";
+  els.gapSub.textContent = Math.abs(gap)<0.015 ? "≈ on target" : (gap>0? "judge over-rates" : "judge under-rates");
+
+  renderItems(bias, sd);
+  runBootstrap(bias, sd, n, measured);
+}
+
+function renderItems(bias, sd){
+  const rows = ITEMS.slice(0,14).map((it)=>{
+    const r = rating(it.quality, bias, sd);
+    return `<tr>
+      <td>${it.q}</td>
+      <td>${it.a}</td>
+      <td><span class="bar truebar"><i style="width:${(it.quality*100).toFixed(0)}%"></i></span></td>
+      <td><span class="bar scorebar"><i style="width:${(r*100).toFixed(0)}%"></i></span><span class="scoreval">${pts(r)}</span></td>
+    </tr>`;
+  }).join("");
+  els.itemsBody.innerHTML = rows;
+}
+
+function runBootstrap(bias, sd, n, measured){
+  const B=2000;
+  const stats=new Float64Array(B);
+  for(let b=0;b<B;b++){
+    let s=0;
+    for(let k=0;k<n;k++){ const i=currentIdx[Math.floor(Math.random()*n)]; s+=rating(ITEMS[i].quality, bias, sd); }
+    stats[b]=s/n;
+  }
+  const sorted=Array.from(stats).sort((a,b)=>a-b);
+  const lo=sorted[Math.floor(0.025*B)], hi=sorted[Math.floor(0.975*B)];
+  drawHist(sorted, measured, lo, hi);
+
+  els.ciLabel.innerHTML = `95% bootstrap interval: <strong>[${pts(lo)}, ${pts(hi)}]</strong>
+     &nbsp;·&nbsp; width ${Math.round(100*(hi-lo))} pts`;
+  const covers = (TRUE_MEAN>=lo && TRUE_MEAN<=hi);
+  els.covLabel.innerHTML = covers
+    ? `<span class="cov ok">✓ the interval contains the true 70.</span> Your uncertainty is honest here.`
+    : `<span class="cov miss">✗ the interval misses the true 70 entirely.</span> The judge's bias put a confident interval around the wrong answer — and the bootstrap can't tell.`;
+}
+
+function drawHist(sorted, measured, lo, hi){
+  const cv=els.hist, ctx=cv.getContext("2d");
+  const cssW=cv.clientWidth||900, cssH=300, dpr=window.devicePixelRatio||1;
+  cv.width=cssW*dpr; cv.height=cssH*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,cssW,cssH);
+
+  const padL=44, padR=16, padT=14, padB=34;
+  const W=cssW-padL-padR, H=cssH-padT-padB;
+  const x0=0, x1=1;
+  const xs=v=> padL + (v-x0)/(x1-x0)*W;
+
+  const BINS=60; const counts=new Array(BINS).fill(0);
+  for(const v of sorted){ let b=Math.floor((v-x0)/(x1-x0)*BINS); if(b<0)b=0; if(b>=BINS)b=BINS-1; counts[b]++; }
+  const maxC=Math.max(1,...counts);
+
+  ctx.fillStyle="rgba(37,99,235,0.10)";
+  ctx.fillRect(xs(lo), padT, Math.max(1,xs(hi)-xs(lo)), H);
+
+  const bw=W/BINS;
+  ctx.fillStyle="rgba(37,99,235,0.65)";
+  for(let b=0;b<BINS;b++){ if(!counts[b]) continue;
+    const h=counts[b]/maxC*H; ctx.fillRect(padL+b*bw+0.5, padT+H-h, Math.max(0.5,bw-1), h); }
+
+  ctx.strokeStyle="#cbd5e1"; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(padL,padT+H); ctx.lineTo(padL+W,padT+H); ctx.stroke();
+  ctx.fillStyle="#64748b"; ctx.font="12px system-ui,sans-serif"; ctx.textAlign="center";
+  for(let t=0;t<=10;t++){ const v=t/10, xx=xs(v);
+    ctx.beginPath(); ctx.moveTo(xx,padT+H); ctx.lineTo(xx,padT+H+4); ctx.stroke();
+    ctx.fillText((v*100), xx, padT+H+18); }
+
+  vline(ctx, xs(TRUE_MEAN), padT, H, "#0f766e", 2.5, "true 70", "left");
+  vline(ctx, xs(measured), padT, H, "#b45309", 2, "measured", "right");
+}
+function vline(ctx,x,top,H,color,w,label,side){
+  ctx.strokeStyle=color; ctx.lineWidth=w; ctx.setLineDash([5,4]);
+  ctx.beginPath(); ctx.moveTo(x,top); ctx.lineTo(x,top+H); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle=color; ctx.font="bold 12px system-ui,sans-serif";
+  ctx.textAlign = side==="left" ? "right" : "left";
+  ctx.fillText(label, x + (side==="left"? -5 : 5), top+12);
+}
+
+els.bias.addEventListener("input", render);
+els.noise.addEventListener("input", render);
+els.n.addEventListener("input", ()=>{ currentIdx=drawTestSet(parseInt(els.n.value)); render(); });
+document.getElementById("rejudge").addEventListener("click", ()=>{ currentIdx=drawTestSet(parseInt(els.n.value)); render(); });
+document.getElementById("reset").addEventListener("click", ()=>{
+  els.bias.value=0; els.noise.value=8; els.n.value=100; currentIdx=drawTestSet(100); render();
+});
+window.addEventListener("resize", ()=>{ render(); drawReliability(); });
+render();
+
+// open the tab named in the URL hash (default: classify)
+showTab((location.hash||"#classifier").slice(1));
+</script>
+</body>
+</html>

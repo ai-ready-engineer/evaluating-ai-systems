@@ -162,8 +162,8 @@
           </details>
           <details class="objectives">
             <summary>Tools and Playgrounds</summary>
-            <p><strong>Judge noise &amp; bias</strong> (the L2 lab) — two kinds of judge, same two defects. A <strong>classifying</strong> judge gives a label: measure the gen-AI classifier on the L1 datasets (real precomputed LLM predictions — accuracy, confusion matrix, and the persistent lean that is bias), then lose the ground truth and see why "calibration" stops meaning probability calibration and becomes tuning the judge against a trusted slice. A <strong>scoring</strong> judge rates answers 0–100: turn a <strong>bias</strong> dial and a <strong>noise</strong> dial, then bootstrap to see noise <em>widen</em> the interval while bias <em>slides</em> it off the truth (the interval can't even see the bias).</p>
-            <a class="playground-link" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/judge_noise_and_bias/">Open Judge noise &amp; bias →</a>
+            <p><strong>LLM as a Judge</strong> (the L2 lab) — the LLM as the thing that judges your AI's answers; uncertainty dimension: <strong>judge noise &amp; bias</strong>. Start simple: an LLM that <strong>classifies</strong>, straight from L1 (real precomputed LLM predictions — accuracy, confusion matrix, and the persistent lean that is bias). Then lose the ground truth and see why "calibration" stops meaning probability calibration and becomes tuning the judge against a trusted slice. Then the <strong>scoring</strong> judge: turn a <strong>bias</strong> dial and a <strong>noise</strong> dial, bootstrap, and watch noise <em>widen</em> the interval while bias <em>slides</em> it off the truth (the interval can't even see the bias).</p>
+            <a class="playground-link" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/llm_as_a_judge/">Open LLM as a Judge →</a>
           </details>
         </div>
 

@@ -1,4 +1,4 @@
-"""Helper functions for the L2 "Judge noise & bias" lab.
+"""Helper functions for the L2 "LLM as a Judge" lab.
 
 Source of uncertainty in focus: **variance from the scoring instrument itself** — the same
 frozen output, scored twice, can get two answers. The wobble does not come from picking
@@ -330,7 +330,7 @@ def verbosity_bias_curve(df, judge, scores=None, n_bins=4):
 
 
 # --- QA-pairs judge API (the question/ai_answer/reference triples in examples.csv) ---
-# The "Judge noise & bias" demo path used by notebook.ipynb: the same three rubrics
+# The "LLM as a Judge" demo path used by notebook.ipynb: the same three rubrics
 # (strict / lenient / scale_1_5) applied to short QA answers, where the headline number
 # swings with the judge. It sits beside the ITSM judgments API above; the two share the
 # judge names and JUDGE_TO_KIND but use different prompts — the QA prompts take

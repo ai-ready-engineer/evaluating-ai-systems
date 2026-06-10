@@ -208,7 +208,7 @@
         then the <strong>ML classifier</strong> (TF-IDF + Logistic Regression). Predictions and ground truth are
         <em>precomputed</em>, so you can spin freely — no API calls.
         (The <strong>gen-AI classifier</strong> that used to live here has moved to the L2 lab,
-        <a href="../judge_noise_and_bias/#classify">Judge noise &amp; bias</a>.)
+        <a href="../llm_as_a_judge/#classifier">LLM as a Judge</a>.)
       </p>
     </section>
 
@@ -910,7 +910,7 @@ CLASS:`;
   function applyHash(){
     const parts = decodeURIComponent(location.hash.replace(/^#/,'')).split('/');
     // the gen-AI classifier stage moved to the L2 lab — forward old links there
-    if(parts.includes('genai')){ location.replace('../judge_noise_and_bias/#classify'); return; }
+    if(parts.includes('genai')){ location.replace('../llm_as_a_judge/#classifier'); return; }
     if(ORDER.includes(parts[0])) curDS=parts[0];
     // stage may be given as "<dataset>/<stage>" or, for standalone tabs, just "<stage>"
     const stage = STAGES.some(s=>s[0]===parts[1]) ? parts[1]

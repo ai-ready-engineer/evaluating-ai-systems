@@ -1,4 +1,4 @@
-# judge_noise_and_bias — "Judge noise & bias"
+# llm_as_a_judge — "LLM as a Judge"
 
 L2 lab. In L1 the judge was perfect; here it isn't — and it has the same two defects whether it
 **classifies** (hands you a label) or **scores** (hands you a number). The page is split into
@@ -34,22 +34,25 @@ variance is pinned by its mean, so judge noise gets absorbed and does *not* wide
 interval. A graded score lets noise add genuine variance (`Var ≈ σ²/n`), so the "noise widens the
 interval" beat is both visible and honest.
 
-## The HTML page (`index.html`) — two judge types
+## The HTML page (`index.html`) — three tabs
 
-No-code, fully offline, no dependencies. A tab bar splits the page by what the judge outputs;
-both shapes carry the same two defects. Hash-routable: `#classify`, `#score`.
+No-code, fully offline, no dependencies. Topic: **LLM as a judge**; uncertainty dimension:
+**judge noise & bias**. Hash-routable: `#classifier`, `#classify`, `#score`.
 
-**Judge that classifies** (`#classify`) — the judge emits a label. Two regimes: *with ground
-truth* — the interactive **gen-AI classifier demo moved from the L1 lab**: real precomputed
-few-shot-LLM predictions on the two L1 datasets (Bitext multi-class + Rotten Tomatoes binary),
-with the prompt panel, dataset toggle, spin-the-wheel test-set draws, accuracy + per-class
-precision/recall, the confusion matrix (whose persistent off-diagonal lean *is* the bias), and a
-browse-the-misses table. Data comes from `../basic_classification_and_noise/predictions/data.js`
-(still built there by its `build_predictions.py`). Then *no ground truth* — a made-up unlabeled
-ticket batch with a **Re-judge** button: ambiguous rows flip = noise; with no truth column, bias
-is invisible. It closes on the **calibration contrast** — ML *probability calibration* (a small
-live reliability diagram + ECE) vs. an LLM judge, where "calibration" usually means tuning the
-prompt/rubric to agree with a trusted slice.
+**The LLM judge, classifying** (`#classifier`, the default) — the simple case, straight from L1:
+the interactive **gen-AI classifier demo moved from the L1 lab**. Real precomputed few-shot-LLM
+predictions on the two L1 datasets (Bitext multi-class + Rotten Tomatoes binary), with the prompt
+panel, dataset toggle, spin-the-wheel test-set draws, accuracy + per-class precision/recall, the
+confusion matrix (whose persistent off-diagonal lean *is* the bias), and a browse-the-misses
+table. Data comes from `../basic_classification_and_noise/predictions/data.js` (still built
+there by its `build_predictions.py`).
+
+**Labels: noise & bias** (`#classify`) — the catch: ground truth vs none. Concept cards for the
+two regimes, then a made-up unlabeled ticket batch with a **Re-judge** button: ambiguous rows
+flip = noise; with no truth column, bias is invisible. Closes on the **calibration contrast** —
+ML *probability calibration* (a worked 1,000-review example + a small live reliability diagram
+with ECE) vs. an LLM judge, where "calibration" usually means tuning the prompt/rubric to agree
+with a trusted slice.
 
 **Judge that scores** (`#score`) — the judge emits a number (a scorecard: correctness /
 completeness / fluency, collapsed to one overall 0–100 for the simulator). A frozen pool of 40
