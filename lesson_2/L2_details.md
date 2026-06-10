@@ -1,11 +1,22 @@
 ## Playground for lesson 2
 
-Same shape as L1, different axis. L1 froze the model and resampled the **data** to watch
-the score wobble (sampling noise). Here we freeze the AI's answers and vary the **judge
-prompt** and the **data** — and watch the *accuracy* move. The thing the student should
-walk away feeling: a reported accuracy is not a fact about the system; it is **sensitive**
-to how the judge is worded and to which data you happened to score, choices that look
-incidental but aren't.
+> **Framing (current).** The HTML playground is organised around **bias vs noise** in the judge
+> and what each does to the estimate, with the **bootstrap** as the uncertainty payoff. The full,
+> authoritative spec lives in [`L2_playground.md`](L2_playground.md); this section keeps the
+> original case-1 / case-2 rubric-sensitivity material, which now lives in the **notebook (code
+> path)** as the real-data grounding for the simulator's three beats.
+
+Same shape as L1, different axis. L1 froze the model and resampled the **data** to watch the
+score wobble (sampling noise) — and assumed the *comparison* of answer to ground truth was
+perfect. L2 drops that assumption: the **judge** is an instrument with two distinct defects,
+**bias** (systematic — shifts the centre, unfixed by more data) and **noise** (random — widens
+the spread, averages out). The student turns a **bias** dial and a **noise** dial over a frozen
+pool of answers with known true quality, watches the measured score shift and wobble off the true
+70, and then **bootstraps** the result: noise widens the interval; bias slides it off the truth
+and the bootstrap can't see it. The notebook then reproduces these beats on real LLM judges via
+the rubric-sensitivity material below — the thing the student should walk away feeling: a reported
+score is not a fact about the system; it is **sensitive** to how the judge is worded and to which
+data you happened to score, choices that look incidental but aren't.
 
 ### The motivating concept — you need a judge even when you have ground truth
 
@@ -71,8 +82,11 @@ cached for L1. No more.
 
 ### Two paths, one lab
 
-- **HTML** (`index.html`) — turn the dials over the pre-computed scores: pick a judge, pick
-  a slice, watch the grid light up. No Python required.
+- **HTML** (`index.html`) — two judge-type tabs. *Judge that classifies*: the gen-AI classifier
+  demo moved from the L1 lab (real LLM predictions on the L1 datasets: spin-the-wheel, accuracy,
+  confusion matrix = the bias made visible), a no-GT batch, and the ML-vs-LLM **calibration**
+  contrast. *Judge that scores*: turn the bias/noise dials over the frozen pool, then bootstrap.
+  No Python required.
 - **Jupyter notebook** (`notebook.ipynb`) — the code that produces those scores; students
   re-run it, reword a rubric, or point it at their own answers.
 
@@ -88,7 +102,7 @@ cached for L1. No more.
 ### Folder layout
 
 ```
-playground/judge_calibrator/
+playground/judge_noise_and_bias/
   notebook.ipynb           # code path
   index.html               # no-code path
   lab.py                   # judge runners + loaders

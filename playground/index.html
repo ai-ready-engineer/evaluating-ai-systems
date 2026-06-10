@@ -215,16 +215,16 @@
         <span class="num">Lesson 1</span>
         <span class="kicker">&ldquo;Eval&rdquo; is now an Experiment</span>
         <h3>Basic classification + noise</h3>
-        <p>Two classifiers &mdash; a trained TF-IDF model and a gen-AI model &mdash; over real datasets. Set a test-set size, spin the wheel, and watch accuracy, the confusion matrix, and a Beta credible interval move. A score is one draw.</p>
+        <p>A trained ML classifier (TF-IDF) over real datasets. Set a test-set size, spin the wheel, and watch accuracy, the confusion matrix, and a Beta credible interval move. A score is one draw. (The gen-AI classifier moved to the L2 lab.)</p>
         <span class="tag tag-interactive">interactive</span>
         <span class="tag tag-key">sampling noise</span>
       </a>
 
-      <a class="card" href="judge_calibrator/">
+      <a class="card" href="judge_noise_and_bias/">
         <span class="num">Lesson 2</span>
         <span class="kicker">Assessing one &ldquo;run&rdquo; of an Agent &middot; Part I</span>
-        <h3>Pick your Judge</h3>
-        <p>A frozen pool of answers with a known true score, scored by a judge with two dials: <strong>bias</strong> (systematic) and <strong>noise</strong> (random). Bootstrap the result &mdash; noise widens the interval, bias slides it off the truth, and the interval can&rsquo;t see the bias.</p>
+        <h3>Judge noise &amp; bias</h3>
+        <p>Two judge types, same two defects. A <strong>classifying</strong> judge gives a label: measure the gen-AI classifier on the L1 datasets (real LLM predictions, confusion matrix, the lean that is bias) &mdash; then lose the ground truth and switch from probability calibration to tuning the judge. A <strong>scoring</strong> judge rates 0&ndash;100: turn the <strong>bias</strong> and <strong>noise</strong> dials, then bootstrap &mdash; noise widens the interval, bias slides it off the truth.</p>
         <span class="tag tag-interactive">interactive</span>
         <span class="tag tag-key">bias vs noise</span>
       </a>

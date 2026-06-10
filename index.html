@@ -12,7 +12,7 @@
     <div class="hero">
       <h1>Experiment Design and Evaluation of AI Systems</h1>
       <p class="subtitle" style="font-size:1.4rem; line-height:1.5; font-style:italic; color:var(--color-text); margin-top:1.25rem;">Reliable eval means efficient product cycles, informed decisions, better products, happier customers.</p>
-      <p style="margin-top:1.5rem;"><a class="btn" href="https://ai-ready-engineer.github.io/playground/ai-evaluation/">Open the Playground →</a></p>
+      <p style="margin-top:1.5rem;"><a class="btn" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/">Open the Playground →</a></p>
     </div>
 
     <section>
@@ -88,7 +88,7 @@
           <div class="title">"Eval" is now an Experiment</div>
           <p class="description">From traditional software to ML to AI agents — an eval is an <em>experiment</em>, not a <em>check</em>.</p>
           <div style="position:relative; aspect-ratio:16/9; margin:.4rem 0 .8rem; border-radius:10px; overflow:hidden; background:#000;">
-            <iframe src="https://www.youtube-nocookie.com/embed/wMgO8vr9UQk" title="Lesson 1 — “Eval” is now an Experiment"
+            <iframe src="https://www.youtube-nocookie.com/embed/fXogwHlO4B0" title="Lesson 1 — “Eval” is now an Experiment"
               style="position:absolute; inset:0; width:100%; height:100%; border:0;"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -125,7 +125,7 @@
           </details>
           <details class="objectives">
             <summary>Tools and Playgrounds</summary>
-            <p><strong>Basic classification + noise</strong> (the L1 lab) — two classifiers (trained TF-IDF and gen-AI) on three datasets: set a test-set size, spin the wheel, and read per-property accuracy, the confusion matrix, and a Beta credible interval with <code>P(accuracy &gt; X)</code>. Folds in the uncertainty calculator and data-skew (class-imbalance) story.</p>
+            <p><strong>Basic classification + noise</strong> (the L1 lab) — a trained ML classifier (TF-IDF) on two datasets: set a test-set size, spin the wheel, and read per-class accuracy, the confusion matrix, and a Beta credible interval with <code>P(accuracy &gt; X)</code>. Folds in the uncertainty calculator and data-skew (class-imbalance) story. (The gen-AI classifier now lives in the L2 lab.)</p>
             <a class="playground-link" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/basic_classification_and_noise/index.html">Open Basic classification + noise →</a>
           </details>
         </div>
@@ -157,12 +157,12 @@
           </details>
           <details class="objectives">
             <summary>Uncertainty dimension mastered</summary>
-            <p><strong>Variance around a score</strong> — the wobble in the score for a given case, even when the case has a clear answer. The judge — programmatic, LLM, or human — is an instrument with its own noise. Distinct from L1's sampling noise, which comes from picking different cases.</p>
+            <p><strong>Bias and noise around a score</strong> — the judge is an instrument with two defects: <em>noise</em> (random wobble — the same case scored differently on re-run) and <em>bias</em> (a systematic offset that more data can't fix). Both feed into how uncertain a reported number really is. Distinct from L1's sampling noise, which comes from picking different cases.</p>
           </details>
           <details class="objectives">
             <summary>Tools and Playgrounds</summary>
-            <p><strong>Pick your Judge</strong> (<code>judge_calibrator.html</code>) — see how an AI judge can work, and the effect of minor judge changes on the final result.</p>
-            <a class="playground-link" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/judge_calibrator/">Open Pick your Judge →</a>
+            <p><strong>Judge noise &amp; bias</strong> (the L2 lab) — two kinds of judge, same two defects. A <strong>classifying</strong> judge gives a label: measure the gen-AI classifier on the L1 datasets (real precomputed LLM predictions — accuracy, confusion matrix, and the persistent lean that is bias), then lose the ground truth and see why "calibration" stops meaning probability calibration and becomes tuning the judge against a trusted slice. A <strong>scoring</strong> judge rates answers 0–100: turn a <strong>bias</strong> dial and a <strong>noise</strong> dial, then bootstrap to see noise <em>widen</em> the interval while bias <em>slides</em> it off the truth (the interval can't even see the bias).</p>
+            <a class="playground-link" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/judge_noise_and_bias/">Open Judge noise &amp; bias →</a>
           </details>
         </div>
 

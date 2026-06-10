@@ -1,151 +1,159 @@
 # Playground for lesson 2
 
-Same shape as L1, different axis. L1 froze the classifier and resampled the **data** to
-watch the score wobble. Here we freeze the AI's answers and vary the **judge prompt** and
-the **data slice** — and watch the *accuracy* move. The thing the student should walk away
-feeling: a reported accuracy is not a fact about the system; it is **sensitive** to how the
-judge is worded and to which data you happened to score.
+Same shape as L1, different axis. L1 froze the system and resampled the **data** to watch the
+score wobble — its only source of uncertainty was *which cases* landed in the test set. L1 also
+made a second, quieter assumption: that the **comparison** of an AI answer to the truth was
+itself perfect. L2 removes that assumption. The thing that scores an answer — the **judge** — is
+an instrument, and instruments are imperfect in two distinct ways: **bias** (systematic) and
+**noise** (random). The thing the student should walk away feeling: those two defects do
+*different* things to your number, and both must be folded into how uncertain you are about it.
+
+## The one idea: bias ≠ noise
+
+- **Bias is systematic.** A consistently generous or harsh judge shifts every score the same
+  direction. It moves the *centre* of your measurement off the truth, and **more data does not
+  fix it** — it just shrinks your interval around the wrong value.
+- **Noise is random.** An inconsistent judge (temperature, an ambiguous rubric, a different
+  annotator) scores the same answer differently on re-run. It **widens** the spread of your
+  measurement, and it *does* average out with more judgments.
+
+The payoff ties back to L1's uncertainty tool, but with a more general instrument: instead of a
+closed-form Beta interval (which only fits a binomial proportion), we use the **bootstrap** —
+resample the scored test set with replacement, recompute the metric thousands of times, read off
+the spread. Bootstrap works for any score (binary, ordinal 1–5, continuous) and shows the two
+defects cleanly: **noise widens the bootstrap interval; bias slides it off the truth — and the
+bootstrap cannot see the bias.** That last point is the sharpest beat of the lesson: a biased
+judge hands you a *tight, confident* interval centred on the wrong answer.
+
+## Why a graded score (not pass/fail)
+
+Gen-AI answers are rarely cleanly right or wrong — "Paris", "Paris, the City of Light", "a city
+in France" sit on a spectrum — so the judge gives a **graded quality score** (0–100), not a
+binary stamp. This also matters statistically: a *binary* judge's pass-rate variance is pinned by
+its mean (a Bernoulli is fully determined by its mean), so judge noise gets absorbed and does not
+widen a single run's interval. A **graded** score lets judge noise add genuine variance
+(`Var ≈ σ²/n`), so the "noise widens the interval" beat is both visible and honest. This also
+sets up the course's score-types thread (binary / ordinal / continuous) and the syllabus line that
+gen-AI progress is *better/worse*, not *correct/incorrect*.
 
 ## Assets
 
-### Datasets
+### The frozen pool
 
-Kept deliberately small — **one new dataset** plus a set we already cached for L1.
+A small, committed pool of **40 (question, AI answer)** pairs, each carrying a **known true
+quality** in [0, 1] — the thing we pretend to be able to peek at but never can in real life. By
+construction the pool's **true mean score is exactly 70 / 100**. Four answer flavours:
 
-**Dataset 1 — QA short-answer (case 1: ground truth exists, but hard to compare).** A
-factual question-answering set: `question`, `gold` short answer, and a pre-generated
-free-text `ai_answer`. Default a slice of **TriviaQA** (swappable for SQuAD / NQ-open),
-pulled from HuggingFace and cached. The free-text answers are the point — paraphrases
-("Paris, the City of Light"), added units ("approximately 300,000 km/s"), and extra context
-("It stands for Central Processing Unit") are all correct yet none match the gold string.
+- **great** (truly correct, exact phrasing) — quality ≈ .85
+- **good** (truly correct, paraphrased / extra context) — quality ≈ .78 (a *harsh* judge
+  under-rates these — the exact-match trap as a bias, not a hard failure)
+- **weak** (wrong but plausible) — quality ≈ .45 (a *generous* judge over-rates these)
+- **bad** (clearly wrong) — quality ≈ .30
 
-**Dataset 2 — Bitext Customer Support (case 2: no ground truth at all).** Reused from L1.
-For each customer message the AI drafts a **support reply**. There is no reference reply, so
-exact match is not even an option — a rubric judge is the only scorer there is.
+Qualities are kept off the 0/1 ceiling on purpose, so that judge noise — not just the spread of
+true quality across the pool — is what visibly drives the bootstrap width.
 
-### Judges — programmatic baseline + LLM, side by side
+### The judge model
 
-Mirrors L1's "regular vs LLM" pairing, but now the thing under test is the **judge**:
+The judge rates each answer `rating = clamp( quality + bias + noise·z )`, with `z ~ N(0,1)`.
+Two dials expose the two defects independently:
 
-- **Programmatic baseline** — exact match / regex / schema check. Works on the easy case-1
-  rows, fails on paraphrase, and *cannot run at all* on case 2.
-- **LLM judges** — a small family of rubrics, each a Jinja2 template in `prompts/`:
-  - `strict` — binary 0/1, exact-meaning match only
-  - `lenient` — binary 0/1, accepts paraphrase / extra context
-  - `lenient_v2` — a **reworded-but-equivalent** lenient rubric (same intent, different
-    wording) — included specifically to show that *cosmetic* rewording moves the number
-  - `scale_1_5` — ordinal 1–5, binarised at a chosen cut (≥4 vs ≥3 are two different judges)
-  - `reply_quality` — the case-2 rubric (helpful / correct / on-policy), 1–5
+- **Bias** ∈ [−25, +25] points — harsher (←) to more generous (→). A pure centre-shift.
+- **Noise** (σ) ∈ [0, 30] points — perfectly consistent to very inconsistent. A pure spread.
 
-### Preparation
+A third **test-set size** dial (20–500) lets the student watch the bias-vs-noise asymmetry play
+out against `n`: more data narrows the interval around the noise-blurred mean, but the
+bias-induced offset stays put (and the interval excludes the truth *more* decisively).
 
-The "system under test" is frozen, exactly as L1 froze its classifiers. We **pre-generate
-the AI answers once** and commit them — the lab never calls the model at runtime, it just
-reads the stored answers and re-scores them.
+## Content flow for the HTML
 
-- **Case 1:** hold out a fixed pool of **~300 QA items**; generate one free-text AI answer
-  per item. Some are right, some wrong, many right-but-unmatchable.
-- **Case 2:** take **~200 bitext messages**; generate one AI reply each. No reference exists.
+1. **Where L1 left off** — name the two dropped assumptions (perfect ground truth, perfect
+   comparison) and introduce the judge as an instrument with two defects. Two concept cards
+   contrast bias (systematic, shifts the centre, unfixed by data) and noise (random, widens the
+   spread, averages out).
 
-For each (answer × judge prompt) we **pre-compute the judge's score** and store it, so the
-HTML can flip judge and slice instantly. The offline default uses a deterministic mock
-judge; a `LIVE=true` path re-generates answers and re-runs the LLM judges for those who want
-to. Everything lives under `answers/` and is committed.
+2. **The simulator** — the frozen pool with its known true mean of 70. Three readouts: **true
+   mean score** (fixed 70), **measured** (this run's mean rating), and **gap = measured − true**
+   ("the bias you'd never see"). Guided experiment in the takeaway: *noise 0, slide bias* → the
+   number slides off 70 and stays there on every Re-judge; *bias 0, raise noise, Re-judge a few
+   times* → the number jitters around 70 but keeps returning. Bias moves the centre; noise moves
+   each draw.
 
-### Scores are per judge, per slice
+3. **What the judge did to each answer** — a per-row table: each answer's **true quality** (grey
+   bar) beside the **judge's rating** (amber bar + number). Bias slides every amber bar the same
+   way; noise jitters each one independently. Makes the aggregate number concrete.
 
-A **score** is what one judge assigns one answer; the headline number is a judge's
-aggregate over a slice:
+4. **Bootstrap — how sure are you?** — resample the scored test set with replacement (2000×),
+   re-score, and draw the distribution of the mean as a histogram with the **95% interval**
+   shaded, plus the **true-70 line** (green) and **this-run measurement** (amber). A coverage
+   readout states whether the interval actually contains 70. The takeaway names the asymmetry:
+   **raise noise → wider interval** (honest, reportable, shrinkable); **slide bias → interval
+   shifts off the truth** and the bootstrap can't see it; **raise n with bias on → narrower
+   interval that excludes the truth more decisively.** More data cures noise, not bias.
 
-- **Case 1** — each LLM judge's **pass rate** on a slice is an *estimate of the system's
-  accuracy*. Strict, lenient, and the two scale thresholds give **different estimates of the
-  same quantity**. (Optionally, a small hand-labelled "is this answer actually correct?"
-  column lets us ask which judge is closest — the first taste of "judge of judges".)
-- **Case 2** — there is no accuracy. We report each judge's **mean score** and the
-  **disagreement between judges** on the same reply; that disagreement is the entire signal.
+5. **L2 takeaway** — (a) bias and noise are different defects; (b) both widen real uncertainty,
+   differently — noise as measurable width, bias as an invisible offset; (c) different fixes —
+   noise: average repeats, lower temperature, sharpen the rubric; bias: audit the judge against
+   trusted labels (a "judge of judges", picked up in L6).
 
-Score types appear naturally: **binary** (strict / lenient), **ordinal** (1–5), and the
-binarised-ordinal that shows a threshold is itself a judge choice.
+## What we run inside the lab (notebook)
 
-## Content flow for the html
+The HTML is an abstract, fully controllable simulator. The notebook grounds the same three beats
+in **real LLM judges over real answers**, so students see the phenomenon is not an artefact of the
+toy model:
 
-The page opens with the hook, then splits into the two cases as tabs.
+1. **The exact-match trap → bias.** Score free-text QA answers (paraphrases, added units, extra
+   context) with a programmatic exact-match check and with a lenient LLM judge. Exact-match's
+   systematic under-counting *is* a negative bias; the gap between the two scorers is the bias made
+   visible. *(QA answers committed under `answers/`.)*
+2. **Re-run noise.** Hold one LLM judge and one answer fixed; call it K times at `temperature>0`.
+   The per-example score spread is the judge's own noise. Aggregate it to show how a single-run
+   mean is one draw.
+3. **Bootstrap the estimate.** From one scored pass, bootstrap-resample the answers to get the
+   95% interval on the mean score — the code behind the HTML's bootstrap panel — and (optionally)
+   compare a generous vs. a harsh rubric to see the interval *shift*, not just widen.
 
-**0. The exact-match trap (intro, above the tabs).** Show a handful of QA rows with the gold
-answer and the AI's free-text answer, and run the **programmatic exact-match** check live.
-It marks plainly-correct answers wrong. Punchline: ground truth is present, yet the naive
-comparator is already lying — so we need a judge, and a judge is a *choice*.
-
-### Tab A — Case 1: ground truth, hard to compare
-
-**1. Describe the dataset** — source, what "gold" looks like, why free-text answers break
-exact match.
-
-**2. The sensitivity grid** — the centrepiece. Rows = judge prompts (strict / lenient /
-lenient_v2 / scale≥4 / scale≥3), columns = data slices (all / numeric answers / names /
-dates / a couple of random subsamples). Each cell is that judge's pass rate (estimated
-accuracy) on that slice, shown as a heatmap. Read it two ways:
-- **down a column** — same data, change the judge wording → the number moves (and
-  `lenient` vs `lenient_v2` shows even *cosmetic* rewording moves it);
-- **across a row** — same judge, change the slice → the number moves again.
-
-**3. "Same answers, different number" callout** — the frozen answers never changed; only the
-judge and the slice did. Accuracy is a joint property of *(system × judge × data)*, not the
-system alone.
-
-**4. (Optional) Calibrate against humans** — flip on the small hand-labelled correctness
-column and show which judge's pass rate tracks the human truth best. A first "judge of
-judges", kept light.
-
-### Tab B — Case 2: no ground truth
-
-**1. Describe the task** — drafted support replies, no reference reply, so exact match and
-reference metrics are off the table.
-
-**2. Judges disagree** — pick two or three rubric judges; for a chosen reply show each
-judge's 1–5 score side by side, and across the pool show the **inter-judge spread**. There
-is no gold column to adjudicate — the disagreement is irreducible from the data alone.
-
-**3. Callout** — when the judge *is* the definition of "good", your reported quality is only
-as stable as your rubric. Nothing in the dataset can rescue a shaky rubric.
-
-### (Optional) Re-run noise panel
-
-Re-run one judge at `temperature>0` with prompt and data held fixed; the score still
-wobbles. The judge is a noisy instrument too. Kept secondary — the prompt × data sensitivity
-is the headline of L2.
-
-## What we run inside the lab
-
-1. **The exact-match trap** — run the programmatic check over a QA subsample; watch it mark
-   correct answers wrong. Motivation made concrete.
-2. **The sensitivity grid (case 1)** — score the same frozen answers across judge prompts ×
-   data slices; tabulate / plot the accuracy spread across both axes.
-3. **No ground truth (case 2)** — score drafted replies with several rubric judges; plot how
-   far apart they land and that nothing in the data can break the tie.
-4. **(Optional) Re-run noise** — one judge, `temperature>0`, repeated; plot the per-example
-   score spread.
+Datasets stay deliberately small: the QA answers above, plus `bitext_customer_support` reused
+from L1 for a no-ground-truth variant (drafted support replies scored by a quality rubric, where
+inter-judge disagreement is the only signal).
 
 ## Two paths, one lab
 
-- **HTML** (`index.html`) — turn the dials (judge × slice) over the pre-computed scores and
-  watch the grid light up. No Python required.
-- **Jupyter notebook** (`notebook.ipynb`) — the code that produces those scores; students
-  re-run it, reword a rubric, add a slice, or point it at their own answers.
+- **HTML** (`index.html`) — two judge-type tabs. *Judge that classifies*: the gen-AI classifier
+  demo moved from the L1 lab (real precomputed LLM predictions on the L1 datasets — spin-the-wheel
+  draws, accuracy, per-class precision/recall, confusion matrix whose persistent lean is the bias),
+  a no-ground-truth batch with a re-judge button, and the ML-vs-LLM **calibration** contrast. *Judge
+  that scores*: turn the **bias** and **noise** dials over the frozen pool and watch the measured
+  score shift and wobble, then bootstrap it. No Python required, fully offline (loads the L1
+  prediction bundle by relative path).
+- **Jupyter notebook** (`notebook.ipynb`) — the code that reproduces the three beats on real LLM
+  judges and lets students reword a rubric, change the temperature, or point the bootstrap at
+  their own scored answers.
 
 ## Folder layout
 
 ```
-playground/judge_calibrator/
-  notebook.ipynb           # code path
-  index.html               # no-code path
-  lab.py                   # judge runners (programmatic + LLM) + loaders
+playground/judge_noise_and_bias/
+  index.html               # no-code path — the two-dial simulator + bootstrap
+  notebook.ipynb           # code path — real LLM judges + bootstrap on real answers
+  lab.py                   # judge runners (programmatic + LLM) + loaders + bootstrap helper
   prompts/
-    strict.j2  lenient.j2  lenient_v2.j2  scale_1_5.j2   # case-1 rubrics
-    reply_quality.j2                                     # case-2 rubric
-    generate_reply.j2                                    # drafts the bitext replies
+    strict.j2  lenient.j2  scale_1_5.j2   # graded / binary rubrics (case 1)
+    reply_quality.j2                      # no-ground-truth rubric (case 2)
+    generate_reply.j2                     # drafts the bitext replies
   answers/
-    qa_answers.json        # pre-generated free-text answers + per-judge scores (case 1)
-    bitext_replies.json    # pre-generated support replies + per-judge scores (case 2)
+    qa_answers.json        # pre-generated free-text answers + true-quality labels (committed)
+    bitext_replies.json    # pre-generated support replies (committed)
   .env.example
 ```
+
+## Skills exercised
+
+- Tell **bias apart from noise** in a reported score, and predict what each does to the number.
+- Read an uncertainty interval honestly — know that it captures noise but **not** bias.
+- Use the **bootstrap** to put an interval on any metric (binary, ordinal, continuous), as the
+  general-purpose successor to L1's Beta tool.
+- Match the fix to the defect: average / cool / sharpen for noise; **calibrate against trusted
+  labels** for bias.
+- Pick the right score type (binary / ordinal / continuous) — and see why a graded score is what
+  lets judge noise show up at all.

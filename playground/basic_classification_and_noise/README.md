@@ -1,9 +1,13 @@
 # basic_classification_and_noise
 
-L1 lab. Two classifiers — a trained TF-IDF model and a gen-AI few-shot LLM — evaluated on two
-**single-label** datasets: Bitext customer-support tickets (**multi-class**, one of five
-categories) and Rotten Tomatoes review sentiment (**binary**, POSITIVE/NEGATIVE). The focus is
-**how to read a single score honestly**.
+L1 lab. A trained ML classifier (TF-IDF) evaluated on two **single-label** datasets: Bitext
+customer-support tickets (**multi-class**, one of five categories) and Rotten Tomatoes review
+sentiment (**binary**, POSITIVE/NEGATIVE). The focus is **how to read a single score honestly**.
+
+The **gen-AI (few-shot LLM) classifier moved to the L2 lab** (`../judge_noise_and_bias/`,
+*Judge that classifies* tab); old `#…/genai` links redirect there. Its predictions are still
+**built here** (`build_predictions.py` writes both `tfidf` and `llm` into `predictions/data.js`)
+and the L2 page loads that bundle.
 
 **Source of uncertainty in focus:** sampling noise — a score is one draw.
 
@@ -13,15 +17,14 @@ tags per item) and non-classification tasks are introduced in later lessons.
 ## Two paths
 
 - **`index.html`** — the no-code path. Pick a **dataset** (Bitext / Rotten Tomatoes), then walk
-  the stage tabs: **Explore the data** (browse rows + class balance), **ML classifier** and
-  **Gen-AI classifier** (each with accuracy + per-class precision/recall + confusion matrix,
-  spin-the-wheel wobble + Beta interval, the jaggedness scatter + competence surface, and
-  browse-its-errors), **Sampling** (the class-imbalance / skew demo), and **Uncertainty (Beta)**
-  (the standalone credible-interval calculator). Loads precomputed predictions from
-  `predictions/data.js`, so the tabs work opened directly (`file://`). Each view is a **shareable
-  URL** via the hash, e.g. `index.html#bitext/ml`, `#bitext/sampling`, `#rotten_tomatoes/genai`.
-  The ML / Gen-AI tabs also have a **"Try it — classify your own text"** box that calls the local
-  API (see below); the rest of the page works without it.
+  the stage tabs: **Explore the data** (browse rows + class balance), **ML classifier**
+  (accuracy + per-class precision/recall + confusion matrix, spin-the-wheel wobble + Beta
+  interval, the jaggedness scatter + competence surface, and browse-its-errors), **Sampling**
+  (the class-imbalance / skew demo), and **Uncertainty (Beta)** (the standalone credible-interval
+  calculator). Loads precomputed predictions from `predictions/data.js`, so the tabs work opened
+  directly (`file://`). Each view is a **shareable URL** via the hash, e.g. `index.html#bitext/ml`,
+  `#bitext/sampling`, `#rotten_tomatoes/imbalance`. The ML tab also has a **"Try it — classify
+  your own text"** box that calls the local API (see below); the rest of the page works without it.
 - **`notebook.ipynb`** — the code path. Trains TF-IDF once, resamples the test set to show the
   accuracy/per-class-recall wobble, compares a majority baseline vs. the trained model under
   class imbalance (accuracy vs. macro-recall), and (Demo D) builds the jaggedness scatter live
@@ -43,7 +46,7 @@ tags per item) and non-classification tasks are introduced in later lessons.
 
 ## Live classification API (`serve.py`)
 
-Powers the **"Try it — classify your own text"** box on the ML / Gen-AI tabs. Start it from this
+Powers the **"Try it — classify your own text"** box on the ML tab. Start it from this
 folder (it fits the TF-IDF model per dataset on first request; the LLM path runs live with your
 `.env` keys, else returns a keyword mock):
 

@@ -27,4 +27,4 @@
 
 ## Tools and Playgrounds
 
-Pick your Judge (`judge_calibrator.html`): see how an AI judge can work. See the effect of minor judge changes on the final result
+Judge noise & bias (`judge_noise_and_bias/`): two judge types in two subtabs. **Classifying** judge — the gen-AI classifier demo (moved from the L1 lab): real precomputed LLM predictions on the L1 datasets, with spin-the-wheel draws, accuracy, per-class precision/recall and the confusion matrix whose persistent lean *is* the bias; then a no-ground-truth batch where only noise is visible, and you calibrate against a small trusted slice ("calibration" = prompt-tuning the judge to agree, not the ML sense of probability calibration). **Scoring** judge — turn a **bias** dial and a **noise** dial over a frozen pool of answers with a known true score, then **bootstrap** the result to watch noise widen the interval while bias slides it off the truth (and the interval can't see the bias).

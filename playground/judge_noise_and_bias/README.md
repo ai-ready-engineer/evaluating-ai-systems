@@ -1,9 +1,11 @@
-# judge_calibrator — "Pick your Judge"
+# judge_noise_and_bias — "Judge noise & bias"
 
-L2 lab. In L1 the judge was perfect; here it isn't. The student turns a **bias** dial and a
-**noise** dial over a frozen pool of answers with a *known* true score, watches the measured
-number shift and wobble off the truth, and then **bootstraps** the result to see what each
-defect does to the estimate.
+L2 lab. In L1 the judge was perfect; here it isn't — and it has the same two defects whether it
+**classifies** (hands you a label) or **scores** (hands you a number). The page is split into
+those two judge-type tabs. On the scoring side the student turns a **bias** dial and a **noise**
+dial over a frozen pool of answers with a *known* true score, watches the measured number shift
+and wobble off the truth, and then **bootstraps** the result to see what each defect does to the
+estimate.
 
 **Source of uncertainty in focus:** bias and noise around a score — the judge is part of the
 measurement instrument, not an objective oracle. Distinct from L1's sampling noise (picking
@@ -32,10 +34,27 @@ variance is pinned by its mean, so judge noise gets absorbed and does *not* wide
 interval. A graded score lets noise add genuine variance (`Var ≈ σ²/n`), so the "noise widens the
 interval" beat is both visible and honest.
 
-## The HTML simulator (`index.html`)
+## The HTML page (`index.html`) — two judge types
 
-No-code, fully offline, no dependencies. A frozen pool of 40 (question, answer) pairs, each with
-a known true quality; the pool's true mean is **70/100** by construction. Controls:
+No-code, fully offline, no dependencies. A tab bar splits the page by what the judge outputs;
+both shapes carry the same two defects. Hash-routable: `#classify`, `#score`.
+
+**Judge that classifies** (`#classify`) — the judge emits a label. Two regimes: *with ground
+truth* — the interactive **gen-AI classifier demo moved from the L1 lab**: real precomputed
+few-shot-LLM predictions on the two L1 datasets (Bitext multi-class + Rotten Tomatoes binary),
+with the prompt panel, dataset toggle, spin-the-wheel test-set draws, accuracy + per-class
+precision/recall, the confusion matrix (whose persistent off-diagonal lean *is* the bias), and a
+browse-the-misses table. Data comes from `../basic_classification_and_noise/predictions/data.js`
+(still built there by its `build_predictions.py`). Then *no ground truth* — a made-up unlabeled
+ticket batch with a **Re-judge** button: ambiguous rows flip = noise; with no truth column, bias
+is invisible. It closes on the **calibration contrast** — ML *probability calibration* (a small
+live reliability diagram + ECE) vs. an LLM judge, where "calibration" usually means tuning the
+prompt/rubric to agree with a trusted slice.
+
+**Judge that scores** (`#score`) — the judge emits a number (a scorecard: correctness /
+completeness / fluency, collapsed to one overall 0–100 for the simulator). A frozen pool of 40
+(question, answer) pairs, each with a known true quality; the pool's true mean is **70/100** by
+construction. Controls:
 
 - **Bias** ∈ [−25, +25] pts — harsher ↔ more generous. A pure centre-shift.
 - **Noise** (σ) ∈ [0, 30] pts — perfectly consistent ↔ very inconsistent. A pure spread.

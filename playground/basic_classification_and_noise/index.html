@@ -204,9 +204,11 @@
       <p>
         Two <strong>single-label</strong> datasets — customer-support tickets routed to one of five categories
         (<strong>multi-class</strong>), and movie-review sentiment as POSITIVE/NEGATIVE (<strong>binary</strong>).
-        For each, the page guides you through three tabs: <strong>Explore the data</strong> (no classifier yet),
-        then the <strong>ML classifier</strong> (TF-IDF + Logistic Regression), then the <strong>gen-AI classifier</strong>
-        (a few-shot LLM). Predictions and ground truth are <em>precomputed</em>, so you can spin freely — no API calls.
+        For each, the page guides you through the tabs: <strong>Explore the data</strong> (no classifier yet),
+        then the <strong>ML classifier</strong> (TF-IDF + Logistic Regression). Predictions and ground truth are
+        <em>precomputed</em>, so you can spin freely — no API calls.
+        (The <strong>gen-AI classifier</strong> that used to live here has moved to the L2 lab,
+        <a href="../judge_noise_and_bias/#classify">Judge noise &amp; bias</a>.)
       </p>
     </section>
 
@@ -891,7 +893,7 @@ CLASS:`;
     renderCalc();
   }
 
-  const STAGES=[['explore','Explore the data'],['ml','ML classifier'],['sampling','Sampling'],['genai','Gen-AI classifier'],['imbalance','Class imbalance'],['beta','Reporting']];
+  const STAGES=[['explore','Explore the data'],['ml','ML classifier'],['sampling','Sampling'],['imbalance','Class imbalance'],['beta','Reporting']];
   const dsbar=document.getElementById('dsbar'), stageTabs=document.getElementById('stagetabs');
   const dsBtns={}, stageBtns={};
   ORDER.forEach(key=>{ const b=document.createElement('button');
@@ -904,9 +906,11 @@ CLASS:`;
   function syncDS(){ Object.entries(dsBtns).forEach(([k,b])=>b.classList.toggle('active',k===curDS)); }
   function syncStage(){ Object.entries(stageBtns).forEach(([k,b])=>b.classList.toggle('active',k===curStage)); }
 
-  // Each view is a shareable URL, e.g.  #bitext/ml  ·  #bitext/sampling  ·  #rotten_tomatoes/genai
+  // Each view is a shareable URL, e.g.  #bitext/ml  ·  #bitext/sampling  ·  #rotten_tomatoes/imbalance
   function applyHash(){
     const parts = decodeURIComponent(location.hash.replace(/^#/,'')).split('/');
+    // the gen-AI classifier stage moved to the L2 lab — forward old links there
+    if(parts.includes('genai')){ location.replace('../judge_noise_and_bias/#classify'); return; }
     if(ORDER.includes(parts[0])) curDS=parts[0];
     // stage may be given as "<dataset>/<stage>" or, for standalone tabs, just "<stage>"
     const stage = STAGES.some(s=>s[0]===parts[1]) ? parts[1]
