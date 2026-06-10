@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2 — Assessing one “run” of an Agent · Part I</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    main { max-width: 820px; }
+    .tagline { font-size: 1.15rem; color: var(--color-text-muted); margin: .2rem 0 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; }
+    .chip { font-size: .8rem; font-weight: 600; border: 1px solid var(--color-border-strong); border-radius: 999px; padding: .25rem .7rem; color: var(--color-text); }
+    .chip.accent { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+    .video { position: relative; aspect-ratio: 16/9; margin: 1.6rem 0; border: 1px dashed var(--color-border-strong);
+      border-radius: 12px; background: var(--color-surface); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: .5rem; color: var(--color-text-muted); }
+    .video .play { width: 64px; height: 64px; border-radius: 50%; background: var(--color-primary); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .video .label { font-weight: 600; }
+    .srcnote { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px;
+      padding: .8rem 1rem; font-size: .92rem; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+    .urr { list-style: none; padding: 0; margin: 0; }
+    .urr li { padding: .35rem 0; border-bottom: 1px solid var(--color-border); }
+    .urr b { color: var(--color-primary); }
+    .btnrow { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .6rem; }
+    .btn { display: inline-block; text-decoration: none; font-weight: 600; border-radius: 8px; padding: .55rem .9rem;
+      border: 1px solid var(--color-border-strong); color: var(--color-text); }
+    .btn.primary { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  </style>
+</head>
+<body>
+  <main>
+    <p><a href="../index.html">← Course home</a></p>
+
+    <h1>Lesson 2 — Assessing one “run” of an Agent · Part I</h1>
+    <p class="tagline">How we assess whether an AI answer is correct — programmatic checks, judges, and numeric scores. Ground truth, AI judges, and judges of judges.</p>
+    <div class="meta">
+      <span class="chip">L2</span>
+      <span class="chip accent">Uncertainty: bias and noise around a score</span>
+      <span class="chip">Running example: judging free-text answers</span>
+    </div>
+
+    <!-- Lesson video — placeholder until release.
+         On release day, replace this block with the embed:
+    <div class="video" style="border:0; overflow:hidden; background:#000;">
+      <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID_HERE" title="Lesson 2 — Assessing one “run” of an Agent · Part I"
+        style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    -->
+    <div class="video">
+      <div class="play">▶</div>
+      <div class="label">Video coming Sunday, June 14</div>
+      <div>One lesson releases every Sunday.</div>
+    </div>
+
+    <h2>What we cover</h2>
+    <ul>
+      <li>Programmatic checks for the “easy” cases — exact match, format and schema checks, JSON validation.</li>
+      <li>When there is no clean ground truth — reference-based metrics, and <strong>LLM-as-judge</strong>.</li>
+      <li>Score types: binary (0/1), multiclass, ordinal (1–5), continuous.</li>
+      <li><strong>Bias and noise around a score</strong> — the same AI answer can be scored differently on re-run, even when the case has a clear answer.</li>
+      <li>A first “judge of judges” — calibrating a judge against humans, sanity-checking the rubric.</li>
+      <li>What “calibration” means for an ML classifier vs. for an LLM judge — two different procedures sharing one word.</li>
+    </ul>
+
+    <h2>Understand · report · reduce — bias and noise around a score</h2>
+    <ul class="urr">
+      <li><b>Understand</b> — the judge is an instrument with two defects: noise (random wobble, averages out) and bias (systematic offset, more data can’t fix it).</li>
+      <li><b>Report</b> — give agreement with trusted labels (e.g. Cohen’s κ) and show the rubric, never just the headline number.</li>
+      <li><b>Reduce</b> — noise: average repeats, lower temperature, sharpen the rubric. Bias: calibrate against a trusted slice.</li>
+    </ul>
+
+    <h2>Skills you unlock</h2>
+    <ul>
+      <li>Choose a scoring approach that fits the task — programmatic, reference-based, or LLM-as-judge.</li>
+      <li>Write a clear rubric an LLM-as-judge can apply consistently.</li>
+      <li>Spot when variance is coming from the judge, not from the data.</li>
+      <li>Calibrate a judge against human labels before trusting it.</li>
+      <li>Pick the right score type (binary, multiclass, ordinal, continuous) for the output.</li>
+    </ul>
+
+    <h2>Hands-on</h2>
+    <p>No install, no code — two judge types, two defects: turn the dials and feel the difference between bias and noise.</p>
+    <div class="btnrow">
+      <a class="btn primary" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/judge_noise_and_bias/" target="_blank" rel="noopener">Judge noise &amp; bias playground</a>
+      <a class="btn" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/judge_noise_and_bias/#classify" target="_blank" rel="noopener">Judge that classifies</a>
+      <a class="btn" href="https://ai-ready-engineer.github.io/evaluating-ai-systems/playground/judge_noise_and_bias/#score" target="_blank" rel="noopener">Judge that scores</a>
+    </div>
+
+    <p style="margin-top:2rem; color:var(--color-text-muted); font-size:.85rem;">
+      Scope note: L2 treats the judge as an instrument with measurable defects. Subjectivity — “the judge has opinions” — is Part II, in L6.</p>
+  </main>
+</body>
+</html>
