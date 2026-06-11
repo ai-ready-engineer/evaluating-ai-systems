@@ -138,36 +138,6 @@
     <p class="hero-meta">Uncertainty dimension: judge noise &amp; bias.</p>
   </div>
 
-  <section class="lab-section">
-    <h2>Where L1 left off</h2>
-    <p>
-      Lesson&nbsp;1 made two quiet assumptions: there is a <strong>perfect ground truth</strong>, and we can
-      <strong>compare the AI's answer to it perfectly</strong>. The only uncertainty was <em>which cases</em> landed in
-      your test set (sampling noise). This lesson removes the second assumption. The thing that judges an answer is
-      itself an <strong>instrument</strong>, and instruments are imperfect in two distinct ways.
-    </p>
-
-    <div class="concept">
-      <div class="card b">
-        <span class="tag">Bias — systematic</span>
-        <p>The judge is consistently off in one direction — a classifier that keeps reaching for the same wrong label, or
-           a scorer that rates everything a few points high.</p>
-        <p><strong>Effect:</strong> your measurement is <em>shifted</em> off the truth. More data does <em>not</em> fix it
-           — it just makes you confidently wrong.</p>
-      </div>
-      <div class="card n">
-        <span class="tag">Noise — random</span>
-        <p>The judge is inconsistent: re-run it (temperature, an ambiguous rubric, a different annotator) and the same
-           answer gets a different label, or a different score.</p>
-        <p><strong>Effect:</strong> your measurement <em>wobbles</em>. It averages out with more judgments — but on a
-           finite test set it <em>widens</em> the spread you must report.</p>
-      </div>
-    </div>
-
-    <p>We start with the simplest LLM judge — one that <em>classifies</em> — then add the two defects, then move to
-       judges that <em>score</em>. Pick a tab:</p>
-  </section>
-
   <div class="tabbar" role="tablist">
     <button id="tabbtn-classifier" class="active" data-tab="classifier" role="tab">The LLM judge, classifying<span class="sub">the simple case — straight from L1</span></button>
     <button id="tabbtn-classify" data-tab="classify" role="tab">Labels: noise &amp; bias<span class="sub">ground truth vs none · calibration</span></button>
