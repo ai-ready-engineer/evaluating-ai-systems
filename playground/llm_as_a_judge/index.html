@@ -53,6 +53,7 @@
     .dial.noise label span.name{ color:var(--noise); }
     .btnrow{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:1.1rem; }
     .btn{ font:inherit; font-weight:600; border-radius:8px; padding:.55rem 1.1rem; cursor:pointer; border:1px solid #111; }
+    a.btn{ text-decoration:none; display:inline-block; }
     .btn.primary{ background:#111; color:#fff; }
     .btn.ghost{ background:#fff; color:#111; }
     .btn:active{ transform:translateY(1px); }
@@ -171,6 +172,7 @@
     <button id="tabbtn-classifier" class="active" data-tab="classifier" role="tab">The LLM judge, classifying<span class="sub">the simple case — straight from L1</span></button>
     <button id="tabbtn-classify" data-tab="classify" role="tab">Labels: noise &amp; bias<span class="sub">ground truth vs none · calibration</span></button>
     <button id="tabbtn-score" data-tab="score" role="tab">Judge that scores<span class="sub">hands you a number (0–100)</span></button>
+    <button id="tabbtn-takeaways" data-tab="takeaways" role="tab">Takeaways<span class="sub">wrap-up · code · deep dives</span></button>
   </div>
 
   <!-- ===================== CLASSIFIER TAB (the simple LLM judge, from L1) ===================== -->
@@ -464,23 +466,43 @@
     </section>
   </div>
 
-  <!-- ===================== shared closing ===================== -->
-  <section class="lab-section">
-    <h2>The L2 takeaway</h2>
-    <ol>
-      <li><strong>Bias and noise are different defects.</strong> Noise is random and averages out; bias is systematic and
-        persists. Telling them apart is the first move.</li>
-      <li><strong>Both widen your real uncertainty — differently.</strong> Noise widens the interval you can measure.
-        Bias adds an offset your interval can't even see, so the truth may lie outside a confident-looking CI.</li>
-      <li><strong>They call for different fixes.</strong> Reduce <em>noise</em> by averaging repeats, lowering temperature,
-        and writing a crisper rubric. Reduce <em>bias</em> only by auditing the judge against trusted labels — calibrating
-        a "judge of judges" (the thread we pick up in L6).</li>
-      <li><strong>Label or number, the same two defects apply.</strong> And with no ground truth you can only see
-        <em>noise</em> (re-run consistency) — measuring <em>bias</em> always needs a trusted slice to calibrate against.</li>
-    </ol>
-    <p class="note">Next: the code path (<code>notebook.ipynb</code>) reproduces these numbers on real LLM judges and lets
-       you point the bootstrap at your own scored answers.</p>
-  </section>
+  <!-- ===================== TAKEAWAYS TAB ===================== -->
+  <div class="tabpane" id="tab-takeaways">
+
+    <section class="lab-section">
+      <h2>The L2 takeaway</h2>
+      <ol>
+        <li><strong>Bias and noise are different defects.</strong> Noise is random and averages out; bias is systematic and
+          persists. Telling them apart is the first move.</li>
+        <li><strong>Both widen your real uncertainty — differently.</strong> Noise widens the interval you can measure.
+          Bias adds an offset your interval can't even see, so the truth may lie outside a confident-looking CI.</li>
+        <li><strong>They call for different fixes.</strong> Reduce <em>noise</em> by averaging repeats, lowering temperature,
+          and writing a crisper rubric. Reduce <em>bias</em> only by auditing the judge against trusted labels — calibrating
+          a "judge of judges" (the thread we pick up in L6).</li>
+        <li><strong>Label or number, the same two defects apply.</strong> And with no ground truth you can only see
+          <em>noise</em> (re-run consistency) — measuring <em>bias</em> always needs a trusted slice to calibrate against.</li>
+      </ol>
+    </section>
+
+    <section class="lab-section">
+      <h2>Go further</h2>
+      <p><strong>The code path.</strong> The lab notebook reproduces these numbers on real LLM judges — three rubrics over
+         the same answers, re-run variance at <code>temperature&gt;0</code>, and the bootstrap on your own scored answers.</p>
+      <div class="btnrow">
+        <a class="btn primary" href="https://github.com/ai-ready-engineer/evaluating-ai-systems/blob/main/playground/llm_as_a_judge/notebook.ipynb" target="_blank" rel="noopener">Open the notebook ↗</a>
+        <a class="btn ghost" href="https://github.com/ai-ready-engineer/evaluating-ai-systems/tree/main/playground/llm_as_a_judge" target="_blank" rel="noopener">Lab folder &amp; README ↗</a>
+      </div>
+      <p style="margin-top:1.2rem"><strong>The lesson.</strong> This lab belongs to Lesson 2 — the full lesson page has the
+         video, what we cover, and the skills you unlock.</p>
+      <div class="btnrow">
+        <a class="btn ghost" href="../../lesson_2/L2.html">Lesson 2 page</a>
+        <a class="btn ghost" href="../../index.html">Course home</a>
+      </div>
+      <p style="margin-top:1.2rem"><strong>Deep dives.</strong> Optional companions for the curious — conditional
+         probability &amp; Bayes (what a probability <em>means</em> once you condition on evidence) and the Gaussian &amp;
+         CLT (why averages settle). They release after the lesson series; they're listed on the course home page.</p>
+    </section>
+  </div>
 </main>
 
 <!-- real LLM predictions from the L1 lab bundle (built there by build_predictions.py);
@@ -490,7 +512,7 @@
 // ===========================================================================
 // Tab switching. Hash-routable: #classifier / #classify / #score.
 // ===========================================================================
-const TABS = ["classifier","classify","score"];
+const TABS = ["classifier","classify","score","takeaways"];
 function showTab(name){
   if(!TABS.includes(name)) name = "classifier";
   TABS.forEach(t=>{

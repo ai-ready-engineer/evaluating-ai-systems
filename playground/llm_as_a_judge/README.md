@@ -37,7 +37,7 @@ interval" beat is both visible and honest.
 ## The HTML page (`index.html`) — three tabs
 
 No-code, fully offline, no dependencies. Topic: **LLM as a judge**; uncertainty dimension:
-**judge noise & bias**. Hash-routable: `#classifier`, `#classify`, `#score`.
+**judge noise & bias**. Hash-routable: `#classifier`, `#classify`, `#score`, `#takeaways` (wrap-up + links to the notebook and deep dives).
 
 **The LLM judge, classifying** (`#classifier`, the default) — the simple case, straight from L1:
 the interactive **gen-AI classifier demo moved from the L1 lab**. Real precomputed few-shot-LLM
