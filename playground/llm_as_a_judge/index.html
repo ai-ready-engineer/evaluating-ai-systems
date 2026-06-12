@@ -177,7 +177,11 @@
           <div id="gmetrics"></div>
           <div id="gcm"></div>
         </div>
-        <h4 style="margin:1.1rem 0 .1rem">Where it goes wrong — misses from this draw</h4>
+        <h4 style="margin:1.1rem 0 .3rem">Browse this draw's examples</h4>
+        <div class="dsrow" id="gshowrow">
+          <button data-show="miss" class="on">✗ classified wrong</button>
+          <button data-show="ok">✓ classified correctly</button>
+        </div>
         <table class="items">
           <thead><tr><th>Text</th><th>True label</th><th>LLM's label</th></tr></thead>
           <tbody id="gmiss"></tbody>
@@ -510,6 +514,7 @@ const llmOf = it => it.llm[0]||"∅";
 
 let gds = GEN_ORDER.find(k=>L1DATA[k]);
 let gIdx = [];
+let gShow = "miss";   // browse filter: "miss" | "ok"
 
 function gSample(n, size){
   const idx=[...Array(n).keys()];
@@ -587,25 +592,40 @@ function renderGen(){
     </table>`;
   document.getElementById("gcm").innerHTML = gCmTable(m.cm, d.labels);
 
-  // misses from this draw — and the dominant confusion (the lean)
+  // browse this draw: the misses (with the dominant confusion) or the correct ones
   const misses=sample.filter(it=>labOf(it)!==llmOf(it));
-  document.getElementById("gmiss").innerHTML = misses.slice(0,6).map(it=>`<tr>
-    <td>${escH(it.text)}</td>
-    <td><span class="lab">${escH(labOf(it))}</span></td>
-    <td><span class="lab">${escH(llmOf(it))}</span> <span class="mark bad">✗</span></td>
-  </tr>`).join("") || `<tr><td colspan="3" class="note">no misses in this draw — spin again</td></tr>`;
-  let leanNote="";
-  if(misses.length){
-    const pairs={};
-    misses.forEach(it=>{ const k=`${labOf(it)} → ${llmOf(it)}`; pairs[k]=(pairs[k]||0)+1; });
-    const top=Object.entries(pairs).sort((a,b)=>b[1]-a[1])[0];
-    leanNote = ` Most common confusion: <b>true ${escH(top[0])}</b> (${top[1]}×) — a lean you can only see because we hold the truth.`;
+  const correct=sample.filter(it=>labOf(it)===llmOf(it));
+  const rows = gShow==="miss" ? misses : correct;
+  document.getElementById("gmiss").innerHTML = rows.slice(0,6).map(it=>{
+    const ok=labOf(it)===llmOf(it);
+    return `<tr>
+      <td>${escH(it.text)}</td>
+      <td><span class="lab">${escH(labOf(it))}</span></td>
+      <td><span class="lab">${escH(llmOf(it))}</span> <span class="mark ${ok?"ok":"bad"}">${ok?"✓":"✗"}</span></td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="3" class="note">${gShow==="miss"
+    ? "no misses in this draw — spin again" : "no correct classifications in this draw — spin again"}</td></tr>`;
+  if(gShow==="miss"){
+    let leanNote="";
+    if(misses.length){
+      const pairs={};
+      misses.forEach(it=>{ const k=`${labOf(it)} → ${llmOf(it)}`; pairs[k]=(pairs[k]||0)+1; });
+      const top=Object.entries(pairs).sort((a,b)=>b[1]-a[1])[0];
+      leanNote = ` Most common confusion: <b>true ${escH(top[0])}</b> (${top[1]}×) — a lean you can only see because we hold the truth.`;
+    }
+    document.getElementById("gmissnote").innerHTML =
+      `<b>${misses.length}</b> misses in this draw of ${m.n}${misses.length>6?" (showing 6)":""}.${leanNote}`;
+  } else {
+    document.getElementById("gmissnote").innerHTML =
+      `<b>${correct.length}</b> classified correctly in this draw of ${m.n}${correct.length>6?" (showing 6)":""}.`;
   }
-  document.getElementById("gmissnote").innerHTML =
-    `<b>${misses.length}</b> misses in this draw of ${m.n}${misses.length>6?" (showing 6)":""}.${leanNote}`;
 }
 document.getElementById("gspin").addEventListener("click", ()=>{ gIdx=[]; renderGen(); });
 document.getElementById("gsize").addEventListener("change", ()=>{ gIdx=[]; renderGen(); });
+document.querySelectorAll("#gshowrow button").forEach(b=>
+  b.addEventListener("click", ()=>{ gShow=b.dataset.show;
+    document.querySelectorAll("#gshowrow button").forEach(x=>x.classList.toggle("on", x===b));
+    renderGen(); }));
 renderGen();
 
 // ===========================================================================
