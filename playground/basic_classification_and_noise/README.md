@@ -23,8 +23,10 @@ tags per item) and non-classification tasks are introduced in later lessons.
   (the class-imbalance / skew demo), and **Uncertainty (Beta)** (the standalone credible-interval
   calculator). Loads precomputed predictions from `predictions/data.js`, so the tabs work opened
   directly (`file://`). Each view is a **shareable URL** via the hash, e.g. `index.html#bitext/ml`,
-  `#bitext/sampling`, `#rotten_tomatoes/imbalance`. The ML tab also has a **"Try it — classify
-  your own text"** box that calls the local API (see below); the rest of the page works without it.
+  `#bitext/sampling`, `#rotten_tomatoes/imbalance`. The ML tab's **"Try it — classify your own
+  text"** box also runs **fully in the browser**: `tryit.js` reproduces the trained model's
+  `decision_function` and nearest-example placement from exported weights
+  (`predictions/models.js`), so the whole page works with no backend — including on GitHub Pages.
 - **`notebook.ipynb`** — the code path. Trains TF-IDF once, resamples the test set to show the
   accuracy/per-class-recall wobble, compares a majority baseline vs. the trained model under
   class imbalance (accuracy vs. macro-recall), and (Demo D) builds the jaggedness scatter live
@@ -39,16 +41,22 @@ tags per item) and non-classification tasks are introduced in later lessons.
 - `build_embeddings.py` — reproduces the same test pool and writes 2D `lex`/`sem` coords into
   each `predictions/bitext.json` item for the jaggedness scatter (numpy-only TF-IDF + LSA +
   t-SNE). Run after `build_predictions.py`: `python build_embeddings.py`.
-- `serve.py` — local FastAPI service for live classification (powers the "Try it" box)
+- `build_model_js.py` — trains the same TF-IDF models as `serve.py` and exports their weights
+  (vocab, idf, per-class coef/intercept + the placement vectorizer) to `predictions/models.js`
+  for the in-browser "Try it" box. Re-run after changing the model config.
+- `tryit.js` — the in-browser classifier: tokenizer + tf-idf + `decision_function` + nearest-
+  example placement, mirroring `serve.py` (parity-tested against scikit-learn)
+- `serve.py` — optional local FastAPI service (legacy path for the "Try it" box; no longer
+  needed by the page)
 - `prompts/` — `classify.j2` (single item) and `classify_batch.j2` (batched); both ask the model
   for exactly one class
 - `.env.example` — copy to a `.env` (here or repo root) for live LLM runs
 
-## Live classification API (`serve.py`)
+## Live classification API (`serve.py`) — optional
 
-Powers the **"Try it — classify your own text"** box on the ML tab. Start it from this
-folder (it fits the TF-IDF model per dataset on first request; the LLM path runs live with your
-`.env` keys, else returns a keyword mock):
+No longer required: the "Try it" box runs in-browser via `tryit.js` + `predictions/models.js`.
+`serve.py` remains as a convenience (serves the folder over http, and offers a live-LLM
+classify endpoint). Start it from this folder if you want it:
 
 ```
 uv add fastapi uvicorn                          # once
@@ -56,8 +64,6 @@ uv run uvicorn serve:app --port 8765 --reload
 ```
 
 Check it: open `http://localhost:8765/health` → `{"ok":true,"datasets":["bitext","rotten_tomatoes"]}`.
-The page (`index.html`) calls `http://localhost:8765` — keep this port, or update the `API`
-constant in `index.html` if you change it.
 
 Endpoints: `GET /health`, `GET /datasets`, `POST /classify {dataset, model:"tfidf"|"llm", text}`.
 

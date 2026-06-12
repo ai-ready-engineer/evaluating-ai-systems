@@ -220,6 +220,9 @@
 
   <!-- timestamped so regenerated predictions always load (no stale browser cache) -->
   <script>document.write('<scr' + 'ipt src="predictions/data.js?v=' + Date.now() + '"><\/scr' + 'ipt>');</script>
+  <!-- exported TF-IDF model weights + the in-browser classifier ("Try it" runs with no backend) -->
+  <script>document.write('<scr' + 'ipt src="predictions/models.js?v=' + Date.now() + '"><\/scr' + 'ipt>');</script>
+  <script>document.write('<scr' + 'ipt src="tryit.js?v=' + Date.now() + '"><\/scr' + 'ipt>');</script>
   <script>
   // ---------- special-function math: lgamma, regularized incomplete beta, quantile ----------
   function lgamma(z){
@@ -255,7 +258,16 @@
 
   // ---------- data + helpers ----------
   const DATA = window.L1_PREDICTIONS || {};
-  const API = 'http://localhost:8765';   // local FastAPI: uv run uvicorn serve:app --port 8765 --reload
+  // In-browser classification for the "Try it" boxes (tryit.js + predictions/models.js):
+  // same TF-IDF decision_function and nearest-example placement serve.py used, no backend.
+  function classifyLocal(text){
+    const M=(window.L1_MODELS||{})[curDS];
+    if(!M || !window.L1_TRYIT)
+      return {error:'Model weights missing — regenerate predictions/models.js with build_model_js.py.'};
+    const r=L1_TRYIT.classify(M.clf, text);
+    const pos=L1_TRYIT.place(M.place, state[curDS].d.items, text);
+    return {label:r.label, scores:r.scores, pos};
+  }
   const DESC = {
     bitext: {title:'Bitext — customer-support categories',
       body:'Customer-support utterances, each routed to one of 5 <strong>categories</strong> (account, order, refund, payment, delivery). <strong>Multi-class</strong>: exactly one class per ticket. (Realistic, synthetically generated data from the Bitext dataset on HuggingFace.)'},
@@ -420,23 +432,16 @@
     document.getElementById('surfview').querySelectorAll('button').forEach(b=> b.onclick=()=>{
       st.view=b.dataset.v; document.getElementById('surfview').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
       renderSurface(); });
-    const placeSentence = async (text)=>{
+    const placeSentence = (text)=>{
       const note=document.getElementById('surftrynote');
       if(!text){ note.textContent='type something first'; return; }
-      note.textContent='placing…';
-      try{
-        const r=await fetch(API+'/classify',{method:'POST',headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({dataset:curDS, model:clf, text})});
-        const j=await r.json();
-        if(j.error){ note.textContent=j.error; return; }
-        if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
-          note.innerHTML=`predicted <b style="color:${meta.color}">${esc(j.label)}</b> — see where it dropped ▲`;
-          renderSurface();
-          document.getElementById('surfknow').scrollIntoView({behavior:'smooth', block:'nearest'}); }
-        else { st.typed=null; note.innerHTML='This sentence is unlike anything we’ve seen — we genuinely can’t say where it lands. Try one of the suggestions below.'; renderSurface(); }
-      }catch(e){
-        note.innerHTML='Couldn’t reach the local API — start it with <code>uv run uvicorn serve:app --port 8765 --reload</code>';
-      }
+      const j=classifyLocal(text);
+      if(j.error){ note.textContent=j.error; return; }
+      if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
+        note.innerHTML=`predicted <b style="color:${meta.color}">${esc(j.label)}</b> — see where it dropped ▲`;
+        renderSurface();
+        document.getElementById('surfknow').scrollIntoView({behavior:'smooth', block:'nearest'}); }
+      else { st.typed=null; note.innerHTML='This sentence is unlike anything we’ve seen — we genuinely can’t say where it lands. Try one of the suggestions below.'; renderSurface(); }
     };
     document.getElementById('surftrybtn').onclick = ()=> placeSentence(document.getElementById('surftry').value.trim());
     document.querySelectorAll('.surf-egs .eg').forEach(b=> b.onclick=()=>{
@@ -635,32 +640,24 @@ CLASS:`;
       sc.addEventListener('mouseleave', ()=>{ tip.style.display='none'; });
     }
     const trybtn=document.getElementById('trybtn');   // absent on the gen-AI tab (static prompt panel instead)
-    if(trybtn) trybtn.onclick = async ()=>{
+    if(trybtn) trybtn.onclick = ()=>{
       const text=document.getElementById('tryinput').value.trim();
       const out=document.getElementById('tryout'), note=document.getElementById('trynote');
       if(!text){ note.textContent='type something first'; return; }
-      note.textContent='classifying…'; out.innerHTML='';
-      try{
-        const r=await fetch(API+'/classify',{method:'POST',headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({dataset:curDS, model:clf, text})});
-        const j=await r.json(); note.textContent='';
-        if(j.error){ out.innerHTML=`<p class="note">${esc(j.error)}</p>`; return; }
-        // decision-function scores → probabilities (softmax == predict_proba for this multinomial LR)
-        const _se=Object.entries(j.scores||{}), _mx=Math.max(..._se.map(([,v])=>v));
-        const _ex=_se.map(([k,v])=>[k, Math.exp(v-_mx)]), _Z=_ex.reduce((s,[,e])=>s+e,0)||1;
-        const probs=_ex.map(([k,e])=>[k, e/_Z]).sort((a,b)=>b[1]-a[1]);
-        out.innerHTML = `<div class="tryres">Predicted: <b style="color:${meta.color}">${esc(j.label)}</b>`+
-          (clf==='llm' && j.live===false ? ` <span class="note">(mock — set LIVE=true in .env for the real LLM)</span>`:'')+`</div>`+
-          (probs.length? `<div class="scores">probability: ${probs.map(([k,p])=>`${esc(k)} ${(p*100).toFixed(0)}%`).join(' · ')}</div>`:'')+
-          (j.pos? `<div class="scores">▼ placed on the map below, on its most similar example</div>`
-                : `<div class="scores">(couldn't place on the map — text shares no words with the examples)</div>`);
-        if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
-          renderScatter(); }
-        else { st.typed=null; renderScatter(); }
-      }catch(e){
-        note.textContent='';
-        out.innerHTML=`<p class="note">Couldn't reach the local API. Start it in <code>playground/basic_classification_and_noise/</code>: <code>uv run uvicorn serve:app --port 8765 --reload</code></p>`;
-      }
+      note.textContent=''; out.innerHTML='';
+      const j=classifyLocal(text);
+      if(j.error){ out.innerHTML=`<p class="note">${esc(j.error)}</p>`; return; }
+      // decision-function scores → probabilities (softmax == predict_proba for this multinomial LR)
+      const _se=Object.entries(j.scores||{}), _mx=Math.max(..._se.map(([,v])=>v));
+      const _ex=_se.map(([k,v])=>[k, Math.exp(v-_mx)]), _Z=_ex.reduce((s,[,e])=>s+e,0)||1;
+      const probs=_ex.map(([k,e])=>[k, e/_Z]).sort((a,b)=>b[1]-a[1]);
+      out.innerHTML = `<div class="tryres">Predicted: <b style="color:${meta.color}">${esc(j.label)}</b></div>`+
+        (probs.length? `<div class="scores">probability: ${probs.map(([k,p])=>`${esc(k)} ${(p*100).toFixed(0)}%`).join(' · ')}</div>`:'')+
+        (j.pos? `<div class="scores">▼ placed on the map below, on its most similar example</div>`
+              : `<div class="scores">(couldn't place on the map — text shares no words with the examples)</div>`);
+      if(j.pos){ st.typed={lex:j.pos.lex, sem:j.pos.sem, label:j.label, text};
+        renderScatter(); }
+      else { st.typed=null; renderScatter(); }
     };
     renderClf();
   }
