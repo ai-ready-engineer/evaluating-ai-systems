@@ -1,0 +1,20 @@
+You are grading an AI-generated summary of a legal case against an expert reference
+summary. Score the AI summary on three dimensions, each an integer from 1 to 5:
+
+- accuracy: are the stated facts correct and consistent with the reference — no
+  contradictions, no invented facts? (5 = fully accurate, 1 = badly wrong)
+- completeness: does it capture the key points of the reference — parties, claims,
+  outcome? (5 = nothing important missing, 1 = misses the core)
+- fluency: is it clear, well-formed, professional prose? (5 = polished, 1 = garbled)
+
+Also give a one-sentence rationale. Judge substance, not length. (An overall score is
+computed from the three dimensions afterward — do not produce one yourself.)
+
+EXPERT REFERENCE SUMMARY:
+{{ reference }}
+
+AI SUMMARY TO SCORE:
+{{ summary }}
+
+Respond with ONLY a JSON object and nothing else:
+{"accuracy": <1-5>, "completeness": <1-5>, "fluency": <1-5>, "rationale": "<one sentence>"}

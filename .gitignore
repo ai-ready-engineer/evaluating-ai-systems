@@ -13,6 +13,10 @@ wheels/
 # macOS
 .DS_Store
 
+# Heavy cached dataset sources — regenerated from HuggingFace by build_cache.py.
+# The committed artifact is the small scorecards.json (generated summaries + judgments).
+datasets/multi_lexsum/cases.jsonl
+
 # Local secrets — never commit real keys; .env.example is the committed template
 .env
 .env.*
@@ -28,3 +32,4 @@ the_case.html
 the_case.md
 the_case_designs.html
 the_case_v*.html
+private/
