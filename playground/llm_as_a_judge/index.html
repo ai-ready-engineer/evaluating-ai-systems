@@ -140,7 +140,9 @@
 
   <div class="tabbar" role="tablist">
     <button id="tabbtn-classifier" class="active" data-tab="classifier" role="tab">The LLM judge, classifying<span class="sub">the simple case — straight from L1</span></button>
+    <!-- hidden for now (restore by re-adding this button + "classify" to the TABS array):
     <button id="tabbtn-classify" data-tab="classify" role="tab">Labels: noise &amp; bias<span class="sub">ground truth vs none · calibration</span></button>
+    -->
     <button id="tabbtn-score" data-tab="score" role="tab">Judge that scores<span class="sub">hands you a number (0–100)</span></button>
     <button id="tabbtn-takeaways" data-tab="takeaways" role="tab">Takeaways<span class="sub">wrap-up · code · deep dives</span></button>
   </div>
@@ -191,8 +193,7 @@
 
       <div class="takeaway">
         <strong>Spin a few times.</strong> The accuracy wobbles — that's L1's sampling noise, still here. But watch
-        the confusion matrix: the same off-diagonal cells stay heavy draw after draw. The next tab digs into
-        exactly that — what you can and cannot see, with and without ground truth.
+        the confusion matrix: the same off-diagonal cells stay heavy draw after draw.
       </div>
     </section>
   </div>
@@ -485,7 +486,7 @@
 // ===========================================================================
 // Tab switching. Hash-routable: #classifier / #classify / #score.
 // ===========================================================================
-const TABS = ["classifier","classify","score","takeaways"];
+const TABS = ["classifier","score","takeaways"];   // "classify" hidden for now
 function showTab(name){
   if(!TABS.includes(name)) name = "classifier";
   TABS.forEach(t=>{
